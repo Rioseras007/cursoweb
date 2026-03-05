@@ -5,16 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Alfonso Rubio Rioseras">
-    <meta name="description" content="Portfolio de actividades del curso de programación web">
-    <title>Curso Online - Páginas Web | Alfonso Rubio</title>
+    <meta name="description" content="Dashboard de control y portfolio de actividades del curso de programación web">
+    <title>Dashboard Control Actividades | Curso Online</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
 
     <style>
         /* ============ RESET & VARIABLES ============ */
-        *, *::before, *::after {
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
@@ -26,9 +29,9 @@
             --bg-card: #16213e;
             --bg-card-hover: #1a2744;
             --accent-1: #0f3460;
-            --accent-2: #533483;
-            --accent-3: #e94560;
             --accent-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --accent-success: #34d399;
+            --accent-warning: #fbbf24;
             --text-primary: #e8e8f0;
             --text-secondary: #a0a0b8;
             --text-muted: #6c6c88;
@@ -61,29 +64,33 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.06) 0%, transparent 50%),
-                        radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.06) 0%, transparent 50%),
-                        radial-gradient(circle at 50% 80%, rgba(233, 69, 96, 0.04) 0%, transparent 50%);
+            background: radial-gradient(circle at 20% 50%, rgba(102, 126, 234, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(118, 75, 162, 0.04) 0%, transparent 50%);
             z-index: -1;
             animation: bgFloat 20s ease-in-out infinite alternate;
         }
 
         @keyframes bgFloat {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            100% { transform: translate(-20px, -20px) rotate(2deg); }
+            0% {
+                transform: translate(0, 0);
+            }
+
+            100% {
+                transform: translate(-20px, -20px);
+            }
         }
 
         /* ============ HEADER ============ */
         header {
             text-align: center;
             padding: 60px 20px 40px;
-            position: relative;
         }
 
         .header-badge {
             display: inline-block;
-            background: var(--accent-gradient);
-            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
             font-size: 0.75rem;
             font-weight: 600;
             letter-spacing: 2px;
@@ -91,24 +98,15 @@
             padding: 6px 18px;
             border-radius: 50px;
             margin-bottom: 20px;
-            animation: fadeInDown 0.6s ease;
         }
 
         header h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-size: clamp(2rem, 5vw, 3rem);
             font-weight: 800;
-            background: linear-gradient(135deg, #667eea, #a78bfa, #e94560);
-            background-size: 200% 200%;
+            background: linear-gradient(135deg, #ffffff, #a0a0b8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-clip: text;
-            animation: gradientShift 4s ease-in-out infinite;
             margin-bottom: 12px;
-        }
-
-        @keyframes gradientShift {
-            0%, 100% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
         }
 
         header p {
@@ -116,57 +114,83 @@
             font-size: 1.05rem;
             max-width: 500px;
             margin: 0 auto;
-            font-weight: 300;
         }
 
-        .header-author {
-            margin-top: 10px;
-            color: var(--text-muted);
-            font-size: 0.85rem;
+        /* ============ FILTERS ============ */
+        .filters {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+
+        .filter-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-family: inherit;
+            font-size: 0.9rem;
             font-weight: 500;
+            cursor: pointer;
+            transition: all var(--transition);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-primary);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .filter-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         /* ============ PROGRESS BAR ============ */
         .progress-section {
-            max-width: 600px;
-            margin: 10px auto 40px;
+            max-width: 800px;
+            margin: 0 auto 50px;
             padding: 0 20px;
-            animation: fadeInUp 0.8s ease 0.3s both;
         }
 
         .progress-label {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
             font-size: 0.85rem;
             color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
         }
 
         .progress-bar-bg {
             width: 100%;
-            height: 6px;
-            background: var(--bg-card);
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
             border-radius: 10px;
             overflow: hidden;
-            border: 1px solid var(--border-color);
         }
 
         .progress-bar-fill {
             height: 100%;
             width: 0%;
-            background: var(--accent-gradient);
+            background: var(--accent-success);
             border-radius: 10px;
-            transition: width 1.5s cubic-bezier(0.22, 1, 0.36, 1);
+            transition: width 1s ease-out;
+            box-shadow: 0 0 10px rgba(52, 211, 153, 0.5);
         }
 
         /* ============ GRID ============ */
         .grid-container {
-            max-width: 1100px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px 80px;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 24px;
         }
 
@@ -181,171 +205,86 @@
             display: flex;
             flex-direction: column;
             position: relative;
-            overflow: hidden;
-            transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
-            animation: fadeInUp 0.5s ease both;
+            transition: all var(--transition);
         }
 
-        .card:nth-child(1) { animation-delay: 0.1s; }
-        .card:nth-child(2) { animation-delay: 0.2s; }
-        .card:nth-child(3) { animation-delay: 0.3s; }
-        .card:nth-child(4) { animation-delay: 0.4s; }
-        .card:nth-child(5) { animation-delay: 0.5s; }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--accent-gradient);
-            opacity: 0;
-            transition: opacity var(--transition);
+        .card.status-completada:hover {
+            transform: translateY(-4px);
+            border-color: rgba(52, 211, 153, 0.3);
+            box-shadow: 0 8px 30px rgba(52, 211, 153, 0.08);
         }
 
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-card-hover);
-            border-color: rgba(102, 126, 234, 0.2);
+        .card.status-pendiente {
+            opacity: 0.7;
+            background: rgba(22, 33, 62, 0.5);
+            pointer-events: none;
         }
 
-        .card:hover::before {
-            opacity: 1;
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
         }
 
         .card-number {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
             font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+            color: var(--text-primary);
             line-height: 1;
-            margin-bottom: 12px;
-            opacity: 0.7;
         }
 
         .card-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 600;
-            color: var(--text-primary);
             margin-bottom: 8px;
         }
 
         .card-description {
-            font-size: 0.88rem;
+            font-size: 0.9rem;
             color: var(--text-secondary);
-            line-height: 1.6;
             flex-grow: 1;
-            margin-bottom: 16px;
+            margin-bottom: 24px;
         }
 
-        .card-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
+        /* ============ BADGES ============ */
         .card-badge {
             display: inline-flex;
             align-items: center;
             gap: 6px;
-            font-size: 0.73rem;
+            font-size: 0.75rem;
             font-weight: 600;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            padding: 4px 12px;
+            padding: 6px 12px;
             border-radius: 50px;
         }
 
         .badge-completada {
-            background: rgba(52, 211, 153, 0.12);
-            color: #34d399;
+            background: rgba(52, 211, 153, 0.1);
+            color: var(--accent-success);
+            border: 1px solid rgba(52, 211, 153, 0.2);
         }
 
         .badge-pendiente {
-            background: rgba(251, 191, 36, 0.12);
-            color: #fbbf24;
+            background: rgba(251, 191, 36, 0.1);
+            color: var(--accent-warning);
+            border: 1px solid rgba(251, 191, 36, 0.2);
         }
 
-        .card-arrow {
-            width: 32px;
-            height: 32px;
+        .status-dot {
+            width: 8px;
+            height: 8px;
             border-radius: 50%;
-            background: rgba(102, 126, 234, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background var(--transition), transform var(--transition);
+            background: currentColor;
+            box-shadow: 0 0 8px currentColor;
         }
 
-        .card:hover .card-arrow {
-            background: rgba(102, 126, 234, 0.25);
-            transform: translateX(4px);
+        .hidden {
+            display: none !important;
         }
 
-        .card-arrow svg {
-            width: 16px;
-            height: 16px;
-            stroke: #667eea;
-        }
-
-        /* Card sin enlace (pendiente) */
-        .card--disabled {
-            opacity: 0.5;
-            pointer-events: none;
-        }
-
-        /* ============ FOOTER ============ */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.82rem;
-        }
-
-        footer span {
-            color: var(--accent-3);
-        }
-
-        /* ============ ANIMATIONS ============ */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(24px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-16px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* ============ RESPONSIVE ============ */
         @media (max-width: 640px) {
-            header {
-                padding: 40px 16px 30px;
-            }
-
             .grid-container {
                 grid-template-columns: 1fr;
-                padding: 0 16px 60px;
-            }
-
-            .card {
-                padding: 22px 20px;
             }
         }
     </style>
@@ -353,138 +292,140 @@
 
 <body>
 
-    <!-- HEADER -->
     <header>
-        <div class="header-badge">📚 Curso Online</div>
-        <h1>Programación de Páginas Web</h1>
-        <p>Portfolio de actividades obligatorias del curso. Cada tarjeta lleva a una actividad completada.</p>
-        <p class="header-author">Alfonso Rubio Rioseras</p>
+        <div class="header-badge">Control Panel</div>
+        <h1>Dashboard de Actividades</h1>
+        <p>Monitorización del progreso del curso de Programación de Páginas Web. Alfonso Rubio Rioseras.</p>
     </header>
 
-    <!-- PROGRESS -->
     <section class="progress-section">
         <div class="progress-label">
-            <span>Progreso del curso</span>
-            <span id="progress-text">5 actividades</span>
+            <span>Progreso General</span>
+            <span id="progress-text">Calculando...</span>
         </div>
         <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="progress-fill"></div>
         </div>
     </section>
 
-    <!-- ACTIVITY GRID -->
-    <main class="grid-container">
+    <div class="filters">
+        <button class="filter-btn active" data-filter="all">Todas</button>
+        <button class="filter-btn" data-filter="completada">Completadas</button>
+        <button class="filter-btn" data-filter="pendiente">Pendientes</button>
+    </div>
 
-        <!-- ACTIVIDAD 1 -->
-        <a href="Actividad 1/web.html" class="card">
-            <div class="card-number">01</div>
-            <div class="card-title">Caso Práctico 1</div>
-            <div class="card-description">
-                Introducción al HTML: etiquetas <code>&lt;head&gt;</code>, <code>&lt;meta&gt;</code>, <code>&lt;title&gt;</code> y estructura básica de una página web. Instalación de editores de código.
-            </div>
-            <div class="card-footer">
-                <span class="card-badge badge-completada">
-                    <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-                    Completada
-                </span>
-                <span class="card-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                </span>
-            </div>
-        </a>
-
-        <!-- ACTIVIDAD 2 -->
-        <div class="card card--disabled">
-            <div class="card-number">02</div>
-            <div class="card-title">Caso Práctico 2</div>
-            <div class="card-description">
-                Actividad basada en estadísticas. Contenido visual con imagen de referencia.
-            </div>
-            <div class="card-footer">
-                <span class="card-badge badge-pendiente">
-                    <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-                    Sin página
-                </span>
-            </div>
-        </div>
-
-        <!-- ACTIVIDAD 3 -->
-        <a href="Actividad 3/Actividad3.html" class="card">
-            <div class="card-number">03</div>
-            <div class="card-title">Caso Práctico 3</div>
-            <div class="card-description">
-                Formatos de texto y párrafos: negrita, cursiva, subrayado, tachado. Alineación y separadores horizontales.
-            </div>
-            <div class="card-footer">
-                <span class="card-badge badge-completada">
-                    <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-                    Completada
-                </span>
-                <span class="card-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                </span>
-            </div>
-        </a>
-
-        <!-- ACTIVIDAD 4 -->
-        <a href="Actividad 4/Actividad4.html" class="card">
-            <div class="card-number">04</div>
-            <div class="card-title">Caso Práctico 4</div>
-            <div class="card-description">
-                Elementos especiales: superíndices, subíndices y comentarios HTML. Ecuación de segundo grado y fórmula del agua.
-            </div>
-            <div class="card-footer">
-                <span class="card-badge badge-completada">
-                    <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-                    Completada
-                </span>
-                <span class="card-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                </span>
-            </div>
-        </a>
-
-        <!-- ACTIVIDAD 5 -->
-        <a href="Actvidad 5/Actividad5.html" class="card">
-            <div class="card-number">05</div>
-            <div class="card-title">Caso Práctico 5</div>
-            <div class="card-description">
-                Texto preformateado, blockquotes, espacios no separables (<code>&amp;nbsp;</code>) y saltos de línea. Poema de Bécquer con estilos inline.
-            </div>
-            <div class="card-footer">
-                <span class="card-badge badge-completada">
-                    <svg width="10" height="10" viewBox="0 0 10 10"><circle cx="5" cy="5" r="5" fill="currentColor"/></svg>
-                    Completada
-                </span>
-                <span class="card-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"/></svg>
-                </span>
-            </div>
-        </a>
-
+    <main class="grid-container" id="activities-grid">
+        <!-- Cards injected by JS -->
     </main>
 
-    <!-- FOOTER -->
-    <footer>
-        <p>Hecho con <span>❤</span> por Alfonso Rubio Rioseras &mdash; Curso de Programación Web 2026</p>
-    </footer>
-
-    <!-- PROGRESS ANIMATION -->
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const totalActividades = document.querySelectorAll('.card').length;
-            const completadas = document.querySelectorAll('.badge-completada').length;
-            const porcentaje = Math.round((completadas / totalActividades) * 100);
+        const activities = [
+            // Unidad Didáctica 1
+            { id: 'UD1-01', title: 'UD1 - Caso Práctico 1', desc: 'Introducción al HTML. Etiquetas head, meta, title y estructura.', status: 'completada', link: 'Unidad didactica 1/Actividad _01/web.html' },
+            { id: 'UD1-02', title: 'UD1 - Caso Práctico 2', desc: 'Fichero estadístico, imagen de referencia al lado.', status: 'pendiente', link: '#' },
+            { id: 'UD1-03', title: 'UD1 - Caso Práctico 3', desc: 'Formatos de texto, párrafos, alineación y separadores.', status: 'completada', link: 'Unidad didactica 1/Actividad_03/Actividad3.html' },
+            { id: 'UD1-04', title: 'UD1 - Caso Práctico 4', desc: 'Elementos especiales, subíndices y química/matemáticas.', status: 'completada', link: 'Unidad didactica 1/Actividad _04/Actividad4.html' },
+            { id: 'UD1-05', title: 'UD1 - Caso Práctico 5', desc: 'Texto preformateado y poema de Bécquer.', status: 'completada', link: 'Unidad didactica 1/Actvidad_05/Actividad5.html' },
+            { id: 'UD1-06', title: 'UD1 - Caso Práctico 6', desc: 'Uso de tablas para estructurar información tabular.', status: 'completada', link: 'Unidad didactica 1/Actvidad_06/Actividad6.html' },
+            { id: 'UD1-06b', title: 'UD1 - Tablas avanzadas', desc: 'Diseño complejo de tablas con fusiones.', status: 'completada', link: 'Unidad didactica 1/Actvidad_06/Actividad6b.html' },
+            { id: 'UD1-07A', title: 'UD1 - Práctica 7A', desc: 'Práctica A de la serie 7.', status: 'completada', link: 'Unidad didactica 1/Actividad_07/Actividad_7A.html' },
+            { id: 'UD1-07B', title: 'UD1 - Práctica 7B', desc: 'Práctica B de la serie 7.', status: 'completada', link: 'Unidad didactica 1/Actividad_07/Actividad_7B.html' },
+            { id: 'UD1-08', title: 'UD1 - Listas', desc: 'Listas ordenadas, desordenadas y de definición.', status: 'completada', link: 'Unidad didactica 1/Actividad_08/Actividad_8.html' },
+            { id: 'UD1-09', title: 'UD1 - Contacto', desc: 'Sistema de secciones interconectadas.', status: 'completada', link: 'Unidad didactica 1/Actvidad_09/principal.html' },
+            { id: 'UD1-10', title: 'UD1 - Frames', desc: 'Estructuración de páginas usando frames/marcos.', status: 'completada', link: 'Unidad didactica 1/Actividad 10/index.html' },
+            { id: 'UD1-11', title: 'UD1 - Práctica Final', desc: 'Integra conceptos de unidades anteriores.', status: 'completada', link: 'Unidad didactica 1/Actividad 11/Actividad_11.html' },
+            { id: 'UD1-12', title: 'UD1 - Proyecto Clínico', desc: 'Proyecto completo de estructura clínica con varios apartados.', status: 'completada', link: 'Unidad didactica 1/Actividad 12/index.html' },
 
-            const progressFill = document.getElementById('progress-fill');
-            const progressText = document.getElementById('progress-text');
+            // Unidad Didáctica 2
+            { id: 'UD2-01', title: 'UD2 - Actividad 1', desc: 'Actividad pendiente unidad 2.', status: 'pendiente', link: '#' },
+            { id: 'UD2-02', title: 'UD2 - Actividad 2', desc: 'Actividad alternativa.', status: 'completada', link: 'Unidad didactica 2/Actvidad_02/Actividad2.html' },
+            { id: 'UD2-03', title: 'UD2 - Actividad 3', desc: 'Ampliación de formatos de texto.', status: 'completada', link: 'Unidad didactica 2/Actividad_03/index.html' },
+            { id: 'UD2-04', title: 'UD2 - Imagen Mapeable', desc: 'Mapeo de zonas de imagen con enlaces interactivos.', status: 'completada', link: 'Unidad didactica 2/Actividad_04/index.html' },
+            { id: 'UD2-05', title: 'UD2 - Formularios', desc: 'Creación de controles de formulario para captura de datos.', status: 'completada', link: 'Unidad didactica 2/Actividad_05/index.html' },
 
-            progressText.textContent = `${completadas} de ${totalActividades} completadas (${porcentaje}%)`;
+            // Unidad Didáctica 3
+            { id: 'UD3-01', title: 'UD3 - CSS Introducción', desc: 'Actividades de introducción a hojas de estilo.', status: 'completada', link: 'Unidad didactica 3/CSS/Actividad 1/index_con_css_externo.html' },
 
-            // Animate after a small delay
-            setTimeout(() => {
-                progressFill.style.width = porcentaje + '%';
-            }, 400);
+            // Unidad Didáctica 4
+            { id: 'UD4-01', title: 'UD4 - Actividad 1', desc: 'Actividad de la unidad 4.', status: 'pendiente', link: '#' },
+            { id: 'UD4-02', title: 'UD4 - Actividad 2', desc: 'Actividad de la unidad 4.', status: 'pendiente', link: '#' },
+
+            // Actividades Raíz
+            { id: 'R-01', title: 'Raíz - Actividad 1', desc: 'Introducción HTML.', status: 'completada', link: 'Actividad 1/web.html' },
+            { id: 'R-02', title: 'Raíz - Actividad 2', desc: 'Actividad pendiente.', status: 'pendiente', link: '#' },
+            { id: 'R-02b', title: 'Raíz - Actividad 2b', desc: 'Versión alternativa.', status: 'completada', link: 'Actvidad 2b/Actividad2.html' },
+            { id: 'R-03', title: 'Raíz - Actividad 3', desc: 'Formatos.', status: 'completada', link: 'Actividad 3/Actividad3.html' },
+            { id: 'R-03b', title: 'Raíz - Actividad 3b', desc: 'Formatos ampl.', status: 'completada', link: 'Actividad 3b/index.html' },
+            { id: 'R-04', title: 'Raíz - Actividad 4', desc: 'Especiales.', status: 'completada', link: 'Actividad 4/Actividad4.html' },
+            { id: 'R-04b', title: 'Raíz - Actividad 4b', desc: 'Mapeo.', status: 'completada', link: 'Actividad 4b/index.html' },
+            { id: 'R-05', title: 'Raíz - Actividad 5', desc: 'Preformateado.', status: 'completada', link: 'Actvidad 5/Actividad5.html' },
+            { id: 'R-05b', title: 'Raíz - Actividad 5b', desc: 'Formularios.', status: 'completada', link: 'Actividad 5b/index.html' },
+            { id: 'R-06', title: 'Raíz - Actividad 6', desc: 'Tablas.', status: 'completada', link: 'Actvidad 6/Actividad6.html' },
+            { id: 'R-06b', title: 'Raíz - Actividad 6b', desc: 'Tablas Av.', status: 'completada', link: 'Actvidad 6/Actividad6b.html' },
+            { id: 'R-07A', title: 'Raíz - Actividad 7A', desc: 'Práctica A.', status: 'completada', link: 'Actividad 7/Actividad_7A.html' },
+            { id: 'R-07B', title: 'Raíz - Actividad 7B', desc: 'Práctica B.', status: 'completada', link: 'Actividad 7/Actividad_7B.html' },
+            { id: 'R-08', title: 'Raíz - Actividad 8', desc: 'Listas.', status: 'completada', link: 'Actividad 8/Actividad_8.html' },
+            { id: 'R-09', title: 'Raíz - Actividad 9', desc: 'Contacto.', status: 'completada', link: 'Actvidad 9/principal.html' },
+            { id: 'R-10', title: 'Raíz - Actividad 10', desc: 'Frames.', status: 'completada', link: 'Actividad 10/index.html' },
+            { id: 'R-11', title: 'Raíz - Actividad 11', desc: 'Final.', status: 'completada', link: 'Actividad 11/Actividad_11.html' },
+            { id: 'R-12', title: 'Raíz - Actividad 12', desc: 'Clínico.', status: 'completada', link: 'Actividad 12/index.html' }
+        ];
+
+        const grid = document.getElementById('activities-grid');
+        const progressText = document.getElementById('progress-text');
+        const progressFill = document.getElementById('progress-fill');
+        const filterBtns = document.querySelectorAll('.filter-btn');
+
+        function renderActivities(filter = 'all') {
+            grid.innerHTML = '';
+
+            let visibleCount = 0;
+            let completedCount = 0;
+
+            activities.forEach(act => {
+                if (act.status === 'completada') completedCount++;
+
+                if (filter === 'all' || filter === act.status) {
+                    visibleCount++;
+                    const isCompleted = act.status === 'completada';
+
+                    const el = document.createElement(isCompleted ? 'a' : 'div');
+                    el.className = `card status-${act.status}`;
+                    if (isCompleted) el.href = act.link;
+
+                    el.innerHTML = `
+                        <div class="card-header">
+                            <div class="card-number">${act.id}</div>
+                            <span class="card-badge badge-${act.status}">
+                                <div class="status-dot"></div>
+                                ${isCompleted ? 'Completada' : 'Pendiente'}
+                            </span>
+                        </div>
+                        <div class="card-title">${act.title}</div>
+                        <div class="card-description">${act.desc}</div>
+                    `;
+                    grid.appendChild(el);
+                }
+            });
+
+            // Update Progress on 'all'
+            if (filter === 'all') {
+                const perc = Math.round((completedCount / activities.length) * 100);
+                progressText.textContent = `${completedCount} de ${activities.length} completadas (${perc}%)`;
+                setTimeout(() => { progressFill.style.width = `${perc}%`; }, 100);
+            }
+        }
+
+        // Initialize
+        renderActivities();
+
+        // Filters Event Listeners
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                renderActivities(btn.dataset.filter);
+            });
         });
     </script>
 
