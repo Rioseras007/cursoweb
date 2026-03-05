@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CREACIÓN DE MAPA DE IMÁGENES</title>
+    <style>
+        body { 
+            background: #0f172a; 
+            color: white; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center; 
+            min-height: 100vh;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        .container { position: relative; }
+        img { max-width: 90vw; max-height: 80vh; border: 4px solid #ffffff; }
+        .info { margin-bottom: 20px; text-align: center; }
+        h2 { color: #818cf8; margin-bottom: 5px; }
+      
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h2>Pulse en cualquiera de las cuatro zonas de color segun sus preferencias: (obtendra un destino diferente)</h2>
+     
+    </div>
+    <div class="container">
+        <img src="imagenmapeable.jpg" usemap="#preview-map">
+        <map name="preview-map">
+            <area target="_blank" alt="zona roja" title="zona roja" href="https://es.wikipedia.org/wiki/Rojo" coords="0,2,197,197" shape="rect">
+<area target="_blank" alt="Área 2_amarillo" title="zona amarila" href="https://es.wikipedia.org/wiki/Amarillo" coords="397,195,201,1" shape="rect">
+<area target="_blank" alt="Área 3_azuil" title="zona azul" href="https://es.wikipedia.org/wiki/Azul" coords="197,396,3,202" shape="rect">
+<area target="_blank" alt="Área 4_verde" title="zona verde" href="https://es.wikipedia.org/wiki/Verde" coords="396,395,205,201" shape="rect">
+        </map>
+    </div>
+
+ <footer>©️ Alfonso Rubio Rioseras 2026</footer>   
+</body>
+</html>

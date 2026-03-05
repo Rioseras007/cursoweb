@@ -1,0 +1,146 @@
+¿Es mejor utilizar un editor de texto plano o un Entorno de Desarrollo Integrado (IDE) con ayudas visuales?
+¿Cuáles conocéis? Nombra al menos 3. Si utilizas alguno en concreto comenta por qué lo prefieres.
+¿Cuáles son las ventajas e inconvenientes de cada tipo? ¿En qué caso utilizarías uno u otro?
+Un editor visual permite insertar etiquetas html sin necesidad de escribir el código. ¿Pero se puede desarrollar una web entera sin acceder al código? ¿Tendría algún problema el código generado?
+
+
+Yo creo que al principio hay que sufrir un poco con el bloc de notas pero pronto el cuerpo te pide algo más cómodo y profesional.
+Yo utilice Dreamweaver de joven , y recuerdo el mítico FrontPage , me gusta actualmente Visual Code.
+Ventajas
+
+Autocompletado inteligente y detección de errores en tiempo real.
+
+Integración con Git, terminal, servidores locales, frameworks…
+
+Depuración paso a paso.
+
+Plantillas, snippets y herramientas visuales que aceleran el trabajo.
+
+Inconvenientes
+
+Consumen más recursos.
+
+Pueden ocultar parte del funcionamiento interno.
+
+La automatización puede generar código innecesario o poco limpio si no se controla.
+
+Cuándo usarlo
+
+Cuando estás aprendiendo.
+
+Para proyectos pequeños o archivos sueltos.
+
+Cuando quieres entender exactamente qué hace cada línea.
+
+El código siempre hay que revisarlo lo hayas generado completamente de forma autónoma y con ayudas de cualquier herramienta ,
+recuerdo que Dreamweaver metía mucha "suciedad" para lograr dejar las cosas en su sitio.
+Una web entera se puede crear con el bloc de notas pero requiere mucho conocimiento y ser auto mosaquista.
+Si no eres aficionado al masoquismo cualquier ayuda es bien recibida al menos por mi.
+
+
+
+
+🧩 Editores de texto plano vs. IDE con ayudas visuales
+✏️ Editores de texto plano (Sublime Text, Notepad++, Visual Studio Code usado sin extensiones)
+Qué son: Programas ligeros que permiten escribir código sin automatismos avanzados.
+
+
+Ventajas
+
+Carga muy rápida y bajo consumo de recursos.
+
+Máximo control sobre el código: nada se genera sin que tú lo escribas.
+
+Ideales para aprender HTML, CSS y JavaScript desde cero.
+
+Menos distracciones y más enfoque en la sintaxis real.
+
+Inconvenientes
+
+No ofrecen depuración integrada, autocompletado avanzado o herramientas visuales.
+
+Requieren más conocimientos técnicos.
+
+Tareas repetitivas (minificar, compilar, formatear) deben hacerse manualmente o con plugins.
+
+Cuándo usarlo
+
+Cuando estás aprendiendo.
+
+Para proyectos pequeños o archivos sueltos.
+
+Cuando quieres entender exactamente qué hace cada línea.
+
+🧠 IDEs con ayudas visuales (Visual Studio Code con extensiones, WebStorm, Eclipse, Dreamweaver)
+Qué son: Entornos completos que integran editor, depurador, autocompletado, vista previa, control de versiones y más.
+
+Ventajas
+
+Autocompletado inteligente y detección de errores en tiempo real.
+
+Integración con Git, terminal, servidores locales, frameworks…
+
+Depuración paso a paso.
+
+Plantillas, snippets y herramientas visuales que aceleran el trabajo.
+
+Inconvenientes
+
+Consumen más recursos.
+
+Pueden ocultar parte del funcionamiento interno.
+
+La automatización puede generar código innecesario o poco limpio si no se controla.
+
+Cuándo usarlo
+
+Proyectos medianos o grandes.
+
+Cuando trabajas con frameworks (React, Angular, Vue).
+
+Si necesitas depurar, compilar o automatizar tareas.
+
+🖥️ ¿Qué editores o IDEs se conocen? (al menos 3)
+Visual Studio Code — el más popular hoy en día, flexible y extensible.
+
+Sublime Text — muy rápido y ligero.
+
+WebStorm — IDE profesional para JavaScript y frameworks modernos.
+
+Notepad++ — clásico, simple y muy ligero.
+
+Dreamweaver — conocido por su editor visual WYSIWYG.
+
+⭐ ¿Cuál prefiero y por qué?
+Yo suelo recomendar Visual Studio Code, porque:
+
+Es ligero pero potente.
+
+Tiene miles de extensiones.
+
+Funciona bien tanto para principiantes como para profesionales.
+
+Permite trabajar con HTML, CSS, JS, PHP, Python, etc.
+
+🌐 ¿Se puede desarrollar una web entera sin acceder al código usando un editor visual?
+Sí, se puede, pero no es recomendable para proyectos profesionales.
+
+Problemas habituales del código generado automáticamente
+HTML excesivo o mal estructurado.
+
+Clases y estilos innecesarios.
+
+Código difícil de mantener o modificar.
+
+Dependencia del propio editor visual.
+
+Falta de semántica y accesibilidad.
+
+Los editores visuales son útiles para prototipos rápidos, pero no sustituyen el control manual del código cuando buscas calidad, rendimiento y buenas prácticas.
+
+🧭 ¿Cuándo usarías un editor visual?
+Para crear prototipos rápidos.
+
+Para usuarios sin conocimientos de programación.
+
+Para maquetar ideas antes de pasarlas a código real.

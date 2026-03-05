@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <title>Actividad 9 — Tipos de Enlaces</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alfonso Rubio Rioseras">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #e2e8f0;
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        /* --- Header --- */
+        .header {
+            background: linear-gradient(135deg, #1e3a5f 0%, #0f172a 100%);
+            padding: 40px 30px;
+            text-align: center;
+            border-bottom: 3px solid #3b82f6;
+        }
+
+        .header h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f8fafc;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- Enunciado toggle --- */
+        .enunciado-toggle {
+            max-width: 900px;
+            margin: 25px auto 0;
+        }
+
+        .enunciado-toggle summary {
+            cursor: pointer;
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.2s;
+        }
+
+        .enunciado-toggle summary:hover {
+            background: rgba(59, 130, 246, 0.25);
+        }
+
+        .enunciado-toggle summary::before {
+            content: "📋 ";
+        }
+
+        .enunciado-toggle[open] summary {
+            border-radius: 8px 8px 0 0;
+        }
+
+        .enunciado-content {
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid #334155;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            padding: 20px 24px;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            line-height: 1.8;
+            white-space: pre-wrap;
+        }
+
+        /* --- Main container --- */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #3b82f6;
+            display: inline-block;
+        }
+
+        /* --- Requirement Cards --- */
+        .req-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .req-card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 22px 24px;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .req-card:hover {
+            transform: translateY(-3px);
+            border-color: #3b82f6;
+            box-shadow: 0 8px 25px rgba(59, 130, 246, 0.15);
+        }
+
+        .req-card .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .req-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+
+        .req-card p {
+            font-size: 0.88rem;
+            color: #94a3b8;
+            margin-bottom: 14px;
+        }
+
+        .req-card .link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(59, 130, 246, 0.12);
+            color: #60a5fa;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .req-card .link:hover {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        /* --- News Article --- */
+        .news-article {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border-left: 4px solid #f59e0b;
+        }
+
+        .news-article .news-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 16px;
+        }
+
+        .news-article h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 16px;
+            line-height: 1.5;
+        }
+
+        .news-article p {
+            color: #cbd5e1;
+            font-size: 0.92rem;
+            margin-bottom: 14px;
+            text-align: justify;
+        }
+
+        .news-article .source-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #fbbf24;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            transition: color 0.2s;
+        }
+
+        .news-article .source-link:hover {
+            color: #f59e0b;
+            text-decoration: underline;
+        }
+
+        /* --- Author Footer --- */
+        .author-footer {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid #334155;
+            border-radius: 12px;
+            padding: 24px 30px;
+            text-align: center;
+        }
+
+        .author-footer .author-name {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #f8fafc;
+            margin-bottom: 4px;
+        }
+
+        .author-footer .author-info {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* --- Bottom anchor --- */
+        .bottom-anchor {
+            margin-top: 800px;
+            text-align: center;
+            padding: 30px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 12px;
+            border: 1px dashed #3b82f6;
+            color: #60a5fa;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        code {
+            background: rgba(59, 130, 246, 0.15);
+            color: #93c5fd;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.82rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 640px) {
+            .req-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.4rem;
+            }
+
+            .container {
+                padding: 25px 15px 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========== cabezera ========== -->
+    <div class="header" id="inicio">
+        <h1>📄 Actividad 9 — Tipos de Enlaces</h1>
+
+        <details class="enunciado-toggle">
+            <summary>Ver enunciado de la actividad</summary>
+            <div class="enunciado-content">1. Cree una página web llamada principal.html que contenga distintos tipos de
+                enlaces.
+                a. Enlace a Google con dirección absoluta (nueva ventana).
+                b. Noticia con enlace a la fuente original (nueva ventana).
+                c. Enlace interno al principio de la página.
+                d. Enlace interno al final de la página.
+                e. Enlace a un archivo de imagen.
+                f. Enlace relativo a "contacto.html" (misma ventana).
+
+                2. En contacto.html:
+                a. Enlace "Volver a la página principal" (misma ventana).
+                b. Enlace para descargar CV en PDF (nueva ventana).
+                c. Enlace mailto con imagen de sobre.
+                d. Mailto con cc y asunto por defecto.</div>
+        </details>
+    </div>
+
+    <!-- ========== Contenido Principal ========== -->
+    <div class="container">
+
+        <h2 class="section-title">✅ Cumpliendo requisitos</h2>
+
+        <!-- Req 1 + 1a -->
+        <div class="req-grid">
+            <div class="req-card">
+                <span class="badge">Requisito 1</span>
+                <h3>Página principal creada</h3>
+                <p>Esta página se llama <strong>principal.html</strong> — página bautizada.</p>
+            </div>
+            <div class="req-card">
+                <span class="badge">Requisito 1a</span>
+                <h3>Enlace absoluto a Google</h3>
+                <p>Se abre en nueva ventana con <code>target="_blank"</code>.</p>
+                <a href="https://www.google.com/" target="_blank" class="link">🌐 Ir a Google →</a>
+            </div>
+        </div>
+
+        <!-- Req 1b: Noticia -->
+        <div class="news-article">
+            <span class="news-label">📰 Requisito 1b — Noticia</span>
+            <h3>La Casa Real advierte al rey emérito de que para volver debería recuperar la residencia fiscal en España
+            </h3>
+            <p>Juan Carlos I puede volver a residir en el país donde reinó durante 39 años en el momento que quiera,
+                pero en tal caso "debería recuperar la residencia fiscal en España". Esa es la posición de la Casa Real
+                sobre el regreso del rey emérito, ante la polémica generada por la petición del líder de la oposición,
+                Alberto Núñez Feijóo, de que ponga fin a su autoexilio en Abu Dabi tras la desclasificación de los
+                documentos secretos que han confirmado su protagonismo en el fracaso del golpe de Estado del 23-F.</p>
+            <p>Fuentes de la Casa Real han subrayado este viernes que, "como se ha dicho, el padre de Felipe VI puede
+                volver a residir en España cuando él quiera". Pero han advertido de que, "en todo caso, para
+                salvaguardar su imagen y reputación de especulaciones y posibles críticas, y por consiguiente
+                salvaguardar la imagen de la Corona como institución, don Juan Carlos debería recuperar la residencia
+                fiscal en España".</p>
+            <a href="https://elpais.com/espana/2026-02-27/la-casa-real-advierte-al-rey-emerito-de-que-para-volver-deberia-recuperar-la-residencia-fiscal-en-espana.html"
+                target="_blank" class="source-link">📎 Fuente oficial de la noticia →</a>
+        </div>
+
+        <!-- Req 1c + 1d -->
+        <div class="req-grid">
+            <div class="req-card">
+                <span class="badge">Requisito 1c</span>
+                <h3>Enlace interno — Inicio</h3>
+                <p>Navega al principio de esta página.</p>
+                <a href="#inicio" class="link">⬆️ Ir al inicio →</a>
+            </div>
+            <div class="req-card">
+                <span class="badge">Requisito 1d</span>
+                <h3>Enlace interno — Final</h3>
+                <p>Navega al final de esta página.</p>
+                <a href="#fondo" class="link">⬇️ Ir al fondo →</a>
+            </div>
+        </div>
+
+        <!-- Req 1e + 1f -->
+        <div class="req-grid">
+            <div class="req-card">
+                <span class="badge">Requisito 1e</span>
+                <h3>Enlace a imagen externa</h3>
+                <p>Abre un archivo de imagen en nueva ventana.</p>
+                <a href="https://www.hawtcelebs.com/wp-content/uploads/2025/05/angelina-jolie-at-eddington-premiere-at-78th-cannes-film-festival-05-16-2025-3.jpg"
+                    target="_blank" class="link">🖼️ Ver imagen →</a>
+            </div>
+            <div class="req-card">
+                <span class="badge">Requisito 1f</span>
+                <h3>Enlace relativo a contacto.html</h3>
+                <p>Se abre en la misma ventana con dirección relativa.</p>
+                <a href="contacto.html" target="_self" class="link">📬 Ir a contacto →</a>
+            </div>
+        </div>
+
+        <!-- Autor Footer -->
+        <div class="author-footer">
+            <p class="author-name">Alfonso Rubio Rioseras</p>
+            <p class="author-info">arioseras@hotmail.com · Valladolid</p>
+        </div>
+
+        <!-- Boton Fondo profundo de la pagina  -->
+        <div id="fondo" class="bottom-anchor">
+            🏴‍☠️ ESTOS SON LOS BAJOS FONDOS DE ESTA PÁGINA
+        </div>
+    </div>
+
+</body>
+
+</html>
