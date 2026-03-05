@@ -5,8 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Alfonso Rubio Rioseras">
-    <meta name="description" content="Dashboard de control y portfolio de actividades del curso de programación web">
-    <title>Dashboard Control Actividades | Curso Online</title>
+    <meta name="description"
+        content="Dashboard de control y portfolio de actividades del curso de programación web (Unidades Didácticas)">
+    <title>Dashboard Unidades Didácticas | Curso Online</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -105,6 +106,7 @@
             font-weight: 800;
             background: linear-gradient(135deg, #ffffff, #a0a0b8);
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 12px;
         }
@@ -199,8 +201,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-color);
             border-radius: var(--radius);
-            padding: 28px 24px;
-            text-decoration: none;
+            padding: 24px;
             color: inherit;
             display: flex;
             flex-direction: column;
@@ -217,7 +218,6 @@
         .card.status-pendiente {
             opacity: 0.7;
             background: rgba(22, 33, 62, 0.5);
-            pointer-events: none;
         }
 
         .card-header {
@@ -278,6 +278,59 @@
             box-shadow: 0 0 8px currentColor;
         }
 
+        /* ============ LINKS (BUTTONS) ============ */
+        .card-actions {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all var(--transition);
+        }
+
+        .btn-html {
+            background: rgba(102, 126, 234, 0.1);
+            color: #8b9af0;
+            border: 1px solid rgba(102, 126, 234, 0.2);
+        }
+
+        .btn-html:hover {
+            background: rgba(102, 126, 234, 0.2);
+            color: #ffffff;
+        }
+
+        .btn-pdf {
+            background: rgba(239, 68, 68, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.2);
+        }
+
+        .btn-pdf:hover {
+            background: rgba(239, 68, 68, 0.2);
+            color: #ffffff;
+        }
+
+        .btn-zip {
+            background: rgba(245, 158, 11, 0.1);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .btn-zip:hover {
+            background: rgba(245, 158, 11, 0.2);
+            color: #ffffff;
+        }
+
         .hidden {
             display: none !important;
         }
@@ -294,8 +347,8 @@
 
     <header>
         <div class="header-badge">Control Panel</div>
-        <h1>Dashboard de Actividades</h1>
-        <p>Monitorización del progreso del curso de Programación de Páginas Web. Alfonso Rubio Rioseras.</p>
+        <h1>Dashboard - Unidades Didácticas</h1>
+        <p>Monitorización del progreso exclusivo de actividades por módulos. Alfonso Rubio Rioseras.</p>
     </header>
 
     <section class="progress-section">
@@ -321,60 +374,128 @@
     <script>
         const activities = [
             // Unidad Didáctica 1
-            { id: 'UD1-01', title: 'UD1 - Caso Práctico 1', desc: 'Introducción al HTML. Etiquetas head, meta, title y estructura.', status: 'completada', link: 'Unidad didactica 1/Actividad _01/web.html' },
-            { id: 'UD1-02', title: 'UD1 - Caso Práctico 2', desc: 'Fichero estadístico, imagen de referencia al lado.', status: 'pendiente', link: '#' },
-            { id: 'UD1-03', title: 'UD1 - Caso Práctico 3', desc: 'Formatos de texto, párrafos, alineación y separadores.', status: 'completada', link: 'Unidad didactica 1/Actividad_03/Actividad3.html' },
-            { id: 'UD1-04', title: 'UD1 - Caso Práctico 4', desc: 'Elementos especiales, subíndices y química/matemáticas.', status: 'completada', link: 'Unidad didactica 1/Actividad _04/Actividad4.html' },
-            { id: 'UD1-05', title: 'UD1 - Caso Práctico 5', desc: 'Texto preformateado y poema de Bécquer.', status: 'completada', link: 'Unidad didactica 1/Actvidad_05/Actividad5.html' },
-            { id: 'UD1-06', title: 'UD1 - Caso Práctico 6', desc: 'Uso de tablas para estructurar información tabular.', status: 'completada', link: 'Unidad didactica 1/Actvidad_06/Actividad6.html' },
-            { id: 'UD1-06b', title: 'UD1 - Tablas avanzadas', desc: 'Diseño complejo de tablas con fusiones.', status: 'completada', link: 'Unidad didactica 1/Actvidad_06/Actividad6b.html' },
-            { id: 'UD1-07A', title: 'UD1 - Práctica 7A', desc: 'Práctica A de la serie 7.', status: 'completada', link: 'Unidad didactica 1/Actividad_07/Actividad_7A.html' },
-            { id: 'UD1-07B', title: 'UD1 - Práctica 7B', desc: 'Práctica B de la serie 7.', status: 'completada', link: 'Unidad didactica 1/Actividad_07/Actividad_7B.html' },
-            { id: 'UD1-08', title: 'UD1 - Listas', desc: 'Listas ordenadas, desordenadas y de definición.', status: 'completada', link: 'Unidad didactica 1/Actividad_08/Actividad_8.html' },
-            { id: 'UD1-09', title: 'UD1 - Contacto', desc: 'Sistema de secciones interconectadas.', status: 'completada', link: 'Unidad didactica 1/Actvidad_09/principal.html' },
-            { id: 'UD1-10', title: 'UD1 - Frames', desc: 'Estructuración de páginas usando frames/marcos.', status: 'completada', link: 'Unidad didactica 1/Actividad 10/index.html' },
-            { id: 'UD1-11', title: 'UD1 - Práctica Final', desc: 'Integra conceptos de unidades anteriores.', status: 'completada', link: 'Unidad didactica 1/Actividad 11/Actividad_11.html' },
-            { id: 'UD1-12', title: 'UD1 - Proyecto Clínico', desc: 'Proyecto completo de estructura clínica con varios apartados.', status: 'completada', link: 'Unidad didactica 1/Actividad 12/index.html' },
+            {
+                id: 'UD1-01', title: 'Caso Práctico 1', desc: 'Introducción al HTML. Etiquetas head, meta, title.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad _01/web.html'
+            },
+            {
+                id: 'UD1-03', title: 'Caso Práctico 3', desc: 'Formatos de texto, párrafos, alineación y separadores.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad_03/Actividad3.html',
+                linkZip: 'Unidad didactica 1/Actividad_03/Actividad3.zip'
+            },
+            {
+                id: 'UD1-04', title: 'Caso Práctico 4', desc: 'Elementos especiales, subíndices y química/matemáticas.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad _04/Actividad4.html',
+                linkZip: 'Unidad didactica 1/Actividad _04/Actividad4.zip'
+            },
+            {
+                id: 'UD1-05', title: 'Caso Práctico 5', desc: 'Texto preformateado y poema de Bécquer.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actvidad_05/Actividad5.html',
+                linkZip: 'Unidad didactica 1/Actvidad_05/Actividad5.zip'
+            },
+            {
+                id: 'UD1-06', title: 'Caso Práctico 6', desc: 'Uso de tablas para estructurar información tabular.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actvidad_06/Actividad6.html',
+                linkZip: 'Unidad didactica 1/Actvidad_06/Actvidad 6.zip'
+            },
+            {
+                id: 'UD1-07', title: 'Caso Práctico 7', desc: 'Prácticas A y B de la serie 7.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad_07/Actividad_7A.html',
+                linkZip: 'Unidad didactica 1/Actividad_07/Actividad 7.zip'
+            },
+            {
+                id: 'UD1-08', title: 'Listas', desc: 'Listas ordenadas, desordenadas y de definición.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad_08/Actividad_8.html',
+                linkZip: 'Unidad didactica 1/Actividad_08/Actividad_8.zip'
+            },
+            {
+                id: 'UD1-09', title: 'Contacto', desc: 'Sistema de secciones interconectadas.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actvidad_09/principal.html',
+                linkPdf: 'Unidad didactica 1/Actvidad_09/cv.pdf',
+                linkZip: 'Unidad didactica 1/Actvidad_09/Actividad9.zip'
+            },
+            {
+                id: 'UD1-10', title: 'Frames', desc: 'Estructuración de páginas usando frames/marcos.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad 10/index.html',
+                linkZip: 'Unidad didactica 1/Actividad 10/Actividad 10.zip'
+            },
+            {
+                id: 'UD1-11', title: 'Práctica Final', desc: 'Integra conceptos de unidades anteriores.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad 11/Actividad_11.html',
+                linkZip: 'Unidad didactica 1/Actividad 11/Actividad_11.zip'
+            },
+            {
+                id: 'UD1-12', title: 'Proyecto Clínico', desc: 'Proyecto completo de estructura clínica con varios apartados.', status: 'completada',
+                linkHtml: 'Unidad didactica 1/Actividad 12/index.html',
+                linkZip: 'Unidad didactica 1/Actividad 12/Actividad 12.zip'
+            },
 
             // Unidad Didáctica 2
-            { id: 'UD2-01', title: 'UD2 - Actividad 1', desc: 'Actividad pendiente unidad 2.', status: 'pendiente', link: '#' },
-            { id: 'UD2-02', title: 'UD2 - Actividad 2', desc: 'Actividad alternativa.', status: 'completada', link: 'Unidad didactica 2/Actvidad_02/Actividad2.html' },
-            { id: 'UD2-03', title: 'UD2 - Actividad 3', desc: 'Ampliación de formatos de texto.', status: 'completada', link: 'Unidad didactica 2/Actividad_03/index.html' },
-            { id: 'UD2-04', title: 'UD2 - Imagen Mapeable', desc: 'Mapeo de zonas de imagen con enlaces interactivos.', status: 'completada', link: 'Unidad didactica 2/Actividad_04/index.html' },
-            { id: 'UD2-05', title: 'UD2 - Formularios', desc: 'Creación de controles de formulario para captura de datos.', status: 'completada', link: 'Unidad didactica 2/Actividad_05/index.html' },
+            {
+                id: 'UD2-01', title: 'Actividad 1', desc: 'Documento PDF de referencia unidad 2.', status: 'completada',
+                linkPdf: 'Unidad didactica 2/Actividad_01/Actividad_01.pdf'
+            },
+            {
+                id: 'UD2-02', title: 'Actividad 2b', desc: 'Versión alternativa unidad 2.', status: 'completada',
+                linkHtml: 'Unidad didactica 2/Actvidad_02/Actividad2.html',
+                linkZip: 'Unidad didactica 2/Actvidad_02/Actvidad 2b.zip'
+            },
+            {
+                id: 'UD2-03', title: 'Actividad 3b', desc: 'Ampliación de formatos de texto.', status: 'completada',
+                linkHtml: 'Unidad didactica 2/Actividad_03/index.html',
+                linkZip: 'Unidad didactica 2/Actividad_03/Actividad 3b.zip'
+            },
+            {
+                id: 'UD2-04', title: 'Actividad 4b', desc: 'Mapeo de zonas de imagen con enlaces.', status: 'completada',
+                linkHtml: 'Unidad didactica 2/Actividad_04/index.html',
+                linkZip: 'Unidad didactica 2/Actividad_04/Actividad 4b.zip'
+            },
+            {
+                id: 'UD2-05', title: 'Actividad 5b', desc: 'Controles de formulario.', status: 'completada',
+                linkHtml: 'Unidad didactica 2/Actividad_05/index.html',
+                linkZip: 'Unidad didactica 2/Actividad_05/Actividad 5b.zip'
+            },
 
             // Unidad Didáctica 3
-            { id: 'UD3-01', title: 'UD3 - CSS Introducción', desc: 'Actividades de introducción a hojas de estilo.', status: 'completada', link: 'Unidad didactica 3/CSS/Actividad 1/index_con_css_externo.html' },
+            {
+                id: 'UD3-01', title: 'CSS Intro', desc: 'Introducción a hojas de estilo.', status: 'completada',
+                linkHtml: 'Unidad didactica 3/CSS/Actividad 1/index_con_css_externo.html',
+                linkPdf: 'Unidad didactica 3/CSS/Actividad 1/Actvidad 1_CSS.pdf',
+                linkZip: 'Unidad didactica 3/CSS/Actividad 1/Actividad 1.zip'
+            },
 
             // Unidad Didáctica 4
-            { id: 'UD4-01', title: 'UD4 - Actividad 1', desc: 'Actividad de la unidad 4.', status: 'pendiente', link: '#' },
-            { id: 'UD4-02', title: 'UD4 - Actividad 2', desc: 'Actividad de la unidad 4.', status: 'pendiente', link: '#' },
-
-            // Actividades Raíz
-            { id: 'R-01', title: 'Raíz - Actividad 1', desc: 'Introducción HTML.', status: 'completada', link: 'Actividad 1/web.html' },
-            { id: 'R-02', title: 'Raíz - Actividad 2', desc: 'Actividad pendiente.', status: 'pendiente', link: '#' },
-            { id: 'R-02b', title: 'Raíz - Actividad 2b', desc: 'Versión alternativa.', status: 'completada', link: 'Actvidad 2b/Actividad2.html' },
-            { id: 'R-03', title: 'Raíz - Actividad 3', desc: 'Formatos.', status: 'completada', link: 'Actividad 3/Actividad3.html' },
-            { id: 'R-03b', title: 'Raíz - Actividad 3b', desc: 'Formatos ampl.', status: 'completada', link: 'Actividad 3b/index.html' },
-            { id: 'R-04', title: 'Raíz - Actividad 4', desc: 'Especiales.', status: 'completada', link: 'Actividad 4/Actividad4.html' },
-            { id: 'R-04b', title: 'Raíz - Actividad 4b', desc: 'Mapeo.', status: 'completada', link: 'Actividad 4b/index.html' },
-            { id: 'R-05', title: 'Raíz - Actividad 5', desc: 'Preformateado.', status: 'completada', link: 'Actvidad 5/Actividad5.html' },
-            { id: 'R-05b', title: 'Raíz - Actividad 5b', desc: 'Formularios.', status: 'completada', link: 'Actividad 5b/index.html' },
-            { id: 'R-06', title: 'Raíz - Actividad 6', desc: 'Tablas.', status: 'completada', link: 'Actvidad 6/Actividad6.html' },
-            { id: 'R-06b', title: 'Raíz - Actividad 6b', desc: 'Tablas Av.', status: 'completada', link: 'Actvidad 6/Actividad6b.html' },
-            { id: 'R-07A', title: 'Raíz - Actividad 7A', desc: 'Práctica A.', status: 'completada', link: 'Actividad 7/Actividad_7A.html' },
-            { id: 'R-07B', title: 'Raíz - Actividad 7B', desc: 'Práctica B.', status: 'completada', link: 'Actividad 7/Actividad_7B.html' },
-            { id: 'R-08', title: 'Raíz - Actividad 8', desc: 'Listas.', status: 'completada', link: 'Actividad 8/Actividad_8.html' },
-            { id: 'R-09', title: 'Raíz - Actividad 9', desc: 'Contacto.', status: 'completada', link: 'Actvidad 9/principal.html' },
-            { id: 'R-10', title: 'Raíz - Actividad 10', desc: 'Frames.', status: 'completada', link: 'Actividad 10/index.html' },
-            { id: 'R-11', title: 'Raíz - Actividad 11', desc: 'Final.', status: 'completada', link: 'Actividad 11/Actividad_11.html' },
-            { id: 'R-12', title: 'Raíz - Actividad 12', desc: 'Clínico.', status: 'completada', link: 'Actividad 12/index.html' }
+            {
+                id: 'UD4-01', title: 'Actividad 1', desc: 'Solución maquetada Unidad 4.', status: 'completada',
+                linkPdf: 'Unidad didactica 4/Actividad_01/Solucion maquetada.pdf',
+                linkZip: 'Unidad didactica 4/Actividad_01/Actividad_01.zip'
+            },
+            {
+                id: 'UD4-02', title: 'Actividad 2', desc: 'No hay archivos en la carpeta Actividad_02 de Unidad Didáctica 4 todavía.', status: 'pendiente'
+            }
         ];
 
         const grid = document.getElementById('activities-grid');
         const progressText = document.getElementById('progress-text');
         const progressFill = document.getElementById('progress-fill');
         const filterBtns = document.querySelectorAll('.filter-btn');
+
+        function generateLinks(act) {
+            let links = '';
+            // Si está pendiente, no mostramos botones
+            if (act.status === 'pendiente') return '';
+
+            if (act.linkHtml) {
+                links += `<a href="${act.linkHtml}" class="action-btn btn-html" target="_blank">📄 Ver Web</a>`;
+            }
+            if (act.linkPdf) {
+                links += `<a href="${act.linkPdf}" class="action-btn btn-pdf" target="_blank">📕 Ver PDF</a>`;
+            }
+            if (act.linkZip) {
+                links += `<a href="${act.linkZip}" class="action-btn btn-zip" download>📦 Descargar ZIP</a>`;
+            }
+            return links;
+        }
 
         function renderActivities(filter = 'all') {
             grid.innerHTML = '';
@@ -389,9 +510,8 @@
                     visibleCount++;
                     const isCompleted = act.status === 'completada';
 
-                    const el = document.createElement(isCompleted ? 'a' : 'div');
+                    const el = document.createElement('div');
                     el.className = `card status-${act.status}`;
-                    if (isCompleted) el.href = act.link;
 
                     el.innerHTML = `
                         <div class="card-header">
@@ -403,6 +523,9 @@
                         </div>
                         <div class="card-title">${act.title}</div>
                         <div class="card-description">${act.desc}</div>
+                        <div class="card-actions">
+                            ${generateLinks(act)}
+                        </div>
                     `;
                     grid.appendChild(el);
                 }
