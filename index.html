@@ -842,6 +842,36 @@
       return formatLabel(baseName);
     }
 
+    function isZipFile(file) {
+      return Boolean(file && file.ext === ".zip");
+    }
+
+    function getLinkAttributes(file) {
+      const href = encodeRepoPath(file.path);
+
+      if (isZipFile(file)) {
+        return `href="${href}" download="${escapeHtml(getBaseName(file.path))}" title="${escapeHtml(getBaseName(file.path))}"`;
+      }
+
+      return `href="${href}" target="_blank" rel="noreferrer"`;
+    }
+
+    function getPrimaryLabel(activity) {
+      if (!activity.primaryFile) return "Abrir archivo";
+      if (isZipFile(activity.primaryFile)) return "Descargar ZIP";
+      if (activity.hasHtml) return "Abrir actividad";
+      if (activity.primaryFile.ext === ".pdf") return "Abrir PDF";
+      return "Abrir archivo";
+    }
+
+    function getResourceLabel(file) {
+      if (isZipFile(file)) {
+        return "Descargar ZIP";
+      }
+
+      return labelForResource(file);
+    }
+
     function choosePrimaryFile(files) {
       const htmlFiles = files
         .filter((file) => HTML_EXTENSIONS.includes(file.ext))
@@ -973,7 +1003,7 @@
       const hiddenCount = Math.max(0, files.length - visibleFiles.length);
 
       const links = visibleFiles.map((file) => `
-        <a class="resource-pill" href="${encodeRepoPath(file.path)}" target="_blank" rel="noreferrer">${escapeHtml(labelForResource(file))}</a>
+        <a class="resource-pill" ${getLinkAttributes(file)}>${escapeHtml(getResourceLabel(file))}</a>
       `).join("");
 
       const overflow = hiddenCount > 0 ? `<span class="resource-overflow">+${hiddenCount} más</span>` : "";
@@ -983,10 +1013,11 @@
 
     function renderCard(activity) {
       const primaryFile = activity.primaryFile;
-      const primaryLabel = activity.hasHtml ? "Abrir actividad" : "Abrir archivo";
+      const primaryLabel = getPrimaryLabel(activity);
       const badgeLabel = activity.hasHtml ? "Vista web" : "Solo archivos";
       const badgeClass = activity.hasHtml ? "web" : "docs";
       const primaryLink = primaryFile ? encodeRepoPath(primaryFile.path) : "#";
+      const primaryAttributes = primaryFile ? getLinkAttributes(primaryFile) : `href="${primaryLink}"`;
 
       return `
         <article class="activity-card">
@@ -1004,7 +1035,7 @@
             <span>${activity.documentCount} recursos</span>
           </div>
           <div class="card-actions">
-            <a class="button button-primary" href="${primaryLink}" target="_blank" rel="noreferrer">${primaryLabel}</a>
+            <a class="button button-primary" ${primaryAttributes}>${primaryLabel}</a>
             <div class="resource-row">${createSecondaryLinks(activity.secondaryFiles)}</div>
           </div>
           <p class="card-route">${escapeHtml(activity.root)}</p>
