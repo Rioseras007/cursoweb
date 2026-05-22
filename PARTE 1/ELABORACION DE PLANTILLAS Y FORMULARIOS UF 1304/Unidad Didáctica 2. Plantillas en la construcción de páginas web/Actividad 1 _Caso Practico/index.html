@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Plantilla examen">
+  <meta name="keywords" content="examen, plantilla">
+  <meta name="author" content="Alfonso Rubio Rioseras">
+  <title>Plantilla examen</title>
+
+  <style>
+    .container {
+      width: 75%;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- INICIO DE LA PLANTILLA -->
+  <div class="container" style="background-color: #f0f0f0;" align="center">
+    <!-- El formulario enviará los datos a una página de destino (action). Indicar que este valor es MODIFICABLE -->
+    <form action="destino.html" method="get">
+
+      <fieldset>
+        <legend>Datos del alumno</legend>
+        <!-- Esta parte de la plantilla será una parte fija -->
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre"><br><br>
+
+        <label for="apellido">Apellido:</label>
+        <input type="text" id="apellido" name="apellido"><br><br>
+
+        <label for="dni">DNI:</label>
+        <input type="text" id="dni" name="dni"><br><br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email"><br><br>
+      </fieldset>
+
+      <fieldset>
+        <legend>Preguntas de examen</legend>
+
+        <p>Pregunta 1: [Escribe aquí el enunciado de la pregunta 1]</p>
+        <input type="radio" id="p1a" name="respuesta1" value="A">
+        <label for="p1a">Respuesta A</label><br>
+        <input type="radio" id="p1b" name="respuesta1" value="B">
+        <label for="p1b">Respuesta B</label><br>
+        <input type="radio" id="p1c" name="respuesta1" value="C">
+        <label for="p1c">Respuesta C</label><br>
+
+        <p>Pregunta 2: [Escribe aquí el enunciado de la pregunta 2]</p>
+        <input type="radio" id="p2a" name="respuesta2" value="A">
+        <label for="p2a">Respuesta A</label><br>
+        <input type="radio" id="p2b" name="respuesta2" value="B">
+        <label for="p2b">Respuesta B</label><br>
+        <input type="radio" id="p2c" name="respuesta2" value="C">
+        <label for="p2c">Respuesta C</label><br>
+
+        <p>Pregunta 3: [Escribe aquí el enunciado de la pregunta 3]</p>
+        <input type="radio" id="p3a" name="respuesta3" value="A">
+        <label for="p3a">Respuesta A</label><br>
+        <input type="radio" id="p3b" name="respuesta3" value="B">
+        <label for="p3b">Respuesta B</label><br>
+        <input type="radio" id="p3c" name="respuesta3" value="C">
+        <label for="p3c">Respuesta C</label><br>
+
+        <p>Pregunta 4: [Escribe aquí el enunciado de la pregunta 4]</p>
+        <input type="radio" id="p4a" name="respuesta4" value="A">
+        <label for="p4a">Respuesta A</label><br>
+        <input type="radio" id="p4b" name="respuesta4" value="B">
+        <label for="p4b">Respuesta B</label><br>
+        <input type="radio" id="p4c" name="respuesta4" value="C">
+        <label for="p4c">Respuesta C</label><br>
+
+        <p>Pregunta 5: [Escribe aquí el enunciado de la pregunta 5 (múltiples opciones válidas)]</p>
+        <input type="checkbox" id="p5a" name="respuesta5" value="A">
+        <label for="p5a">Respuesta A</label><br>
+        <input type="checkbox" id="p5b" name="respuesta5" value="B">
+        <label for="p5b">Respuesta B</label><br>
+        <input type="checkbox" id="p5c" name="respuesta5" value="C">
+        <label for="p5c">Respuesta C</label><br>
+
+      </fieldset>
+
+      <br>
+      <input type="submit" value="Enviar">
+
+    </form>
+  </div>
+  <!-- FIN DE LA PLANTILLA -->
+
+</body>
+
+</html>

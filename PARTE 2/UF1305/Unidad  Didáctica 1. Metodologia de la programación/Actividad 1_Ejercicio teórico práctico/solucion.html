@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 1_Ejercicio teórico práctico</title>
+
+    <style>
+        /* Fondo general */
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #d6d6d6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Hoja A4 */
+        .pagina-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: auto;
+            padding: 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Cabecera */
+        .cabecera {
+            border-bottom: 3px solid #222;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .cabecera h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .cabecera p {
+            margin-top: 5px;
+            color: #666;
+        }
+
+        /* Contenido */
+        .contenido {
+            line-height: 1.7;
+            color: #222;
+        }
+
+        .contenido h2 {
+            border-left: 5px solid #444;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+
+        /* Pie */
+        .pie {
+            margin-top: 40px;
+            border-top: 1px solid #999;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Ajuste para imprimir */
+        @media print {
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .pagina-a4 {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: auto;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pagina-a4">
+
+        <div class="cabecera">
+            <h1>Actividad 1_Ejercicio teórico práctico</h1>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+        </div>
+
+        <div class="contenido">
+
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+
+            <p>
+                PREGUNTAS/ACTIVIDADES A REALIZAR
+            </p>
+
+            <p>
+                Pregunta 1. Explica qué son las siguientes instrucciones:
+            </p>
+
+            <ul>
+                <li><strong>a. Instrucciones de control:</strong> Son instrucciones que permiten dirigir el flujo de
+                    ejecución de un programa. Incluyen decisiones, repeticiones y saltos, y determinan qué instrucciones
+                    se ejecutan y en qué orden.</li>
+                <li><strong>b. Instrucción alternativa:</strong> Es una estructura de decisión que permite elegir entre
+                    dos opciones según una condición. En pseudocódigo suele representarse como "SI ... ENTONCES ... SINO
+                    ... FIN SI".</li>
+                <li><strong>c. Instrucción de salto incondicional:</strong> Es una orden que desvía la ejecución a otra
+                    parte del programa sin evaluar ninguna condición. Un ejemplo clásico es "GOTO" que permite saltar a una línea específica del código.</li>
+                <li><strong>d. Instrucción de salto condicional:</strong> Es una orden que desvía la ejecución solo si
+                    se cumple una condición. En pseudocódigo se usa en estructuras como "SI ... ENTONCES" o en bucles
+                    con condiciones de entrada o salida.</li>
+                <li><strong>e. Instrucción repetitiva:</strong> Es una estructura que repite un bloque de instrucciones
+                    mientras se cumpla una condición o durante un número determinado de veces. Ejemplos son "MIENTRAS
+                    ... HACER" y "PARA ... HACER".</li>
+            </ul>
+
+            <h2>Pregunta 2. Resuelve el problema de que dado un número mayor que cero por teclado diga si es par o
+                impar.</h2>
+
+            <h3>a. Ordinograma</h3>
+            <pre>
+Inicio
+  ├─> Leer número
+  ├─> ¿Número > 0?
+  │     ├─ Sí ─> ¿Número mod 2 = 0?
+  │     │           ├─ Sí ─> Escribir "El número es par"
+  │     │           └─ No ─> Escribir "El número es impar"
+  │     └─ No ─> Escribir "Introduce un número mayor que cero"
+  └─> Fin
+            </pre>
+
+            <h3>b. Pseudocódigo</h3>
+            <pre>
+Leer numero
+SI numero > 0 ENTONCES
+    SI numero MOD 2 = 0 ENTONCES
+        Escribir "El número es par"
+    SINO
+        Escribir "El número es impar"
+    FIN SI
+SINO
+    Escribir "Debe introducir un número mayor que cero"
+FIN SI
+            </pre>
+
+            <h3>c. Tipo de estructura utilizada</h3>
+            <p>Se utiliza una estructura condicional doble (alternativa) porque el problema necesita tomar decisiones
+                según el valor del número. Primero se comprueba si el número es mayor que cero, y después se comprueba
+                si es divisible por 2 para determinar par o impar. En lenguajes fuertemente tipados, esta estructura se
+                implementa con sentencias "if-else" y "switch-case".</p>
+
+            <h2>Pregunta 3. Mediante pseudocódigo, realiza lo siguiente:</h2>
+
+            <ul>
+                <li><strong>a. Cálculo de superficie rectangular:</strong></li>
+            </ul>
+
+            <pre>
+Leer base
+Leer altura
+superficie <- base * altura
+Escribir "Superficie: " + Formatear(superficie, 2) + " m²"
+            </pre>
+
+            <h3>b. Tipo de estructura utilizado</h3>
+            <p>Se utiliza una estructura secuencial porque el problema se resuelve realizando pasos en orden: leer
+                datos, calcular el área y mostrar el resultado. No se necesita una condición ni una repetición
+                adicional.</p>
+
+            <h3>Código JavaScript de ejemplo</h3>
+            <pre>
+function comprobarParImpar(numero) {
+    if (numero <= 0) {
+        return 'Debe introducir un número mayor que cero';
+    }
+    return numero % 2 === 0 ? 'El número es par' : 'El número es impar';
+}
+
+function calcularSuperficieRectangulo(base, altura) {
+    const superficie = base * altura;
+    return superficie.toFixed(2) + ' m²';
+}
+
+console.log(comprobarParImpar(7));
+console.log(comprobarParImpar(12));
+console.log(calcularSuperficieRectangulo(5.25, 3.4));
+            </pre>
+
+        </div>
+
+        <div class="pie">
+            ©️ Alfonso Rubio Rioseras - 2026
+        </div>
+
+    </div>
+
+</body>
+
+</html>

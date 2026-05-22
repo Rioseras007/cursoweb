@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Actividad 1_Ejercicio teórico práctico</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        .noto-sans-uniquifier {
+            font-family: "Noto Sans", sans-serif;
+            font-optical-sizing: auto;
+            font-weight: 400;
+            font-style: normal;
+
+        }
+
+
+
+        /* Fondo general */
+        body {
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #e8eff7 0%, #cfd8e7 100%);
+            font-family: noto-sans-uniquifier, sans-serif;
+            color: #28303d;
+        }
+
+        /* Hoja A4 */
+        .pagina-a4 {
+            width: min(100%, 900px);
+            min-height: auto;
+            background: #ffffff;
+            margin: auto;
+            padding: 24mm;
+            box-sizing: border-box;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(22, 38, 62, 0.12);
+            border: 1px solid rgba(32, 47, 68, 0.08);
+        }
+
+        /* Cabecera */
+        .cabecera {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7aa3d5 100%);
+            border-bottom: 4px solid #0f1f3a;
+            border-radius: 14px;
+            padding: 28px 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 8px 24px rgba(30, 60, 114, 0.25);
+        }
+
+        .cabecera h1 {
+            margin: 0 0 14px 0;
+            font-size: 2.4rem;
+            line-height: 1.2;
+            letter-spacing: 0.03em;
+            color: #ffffff;
+            font-weight: 800;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .cabecera p {
+            margin: 8px 0 0;
+            color: #e8f0fc;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            line-height: 1.6;
+        }
+
+        .cabecera p:first-of-type {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 12px;
+            color: #f0f4ff;
+        }
+
+        .contenido {
+            line-height: 1.75;
+            color: #2c3848;
+        }
+
+        .contenido h2 {
+            border-left: 6px solid #3a4f6e;
+            padding-left: 12px;
+            margin-top: 34px;
+            margin-bottom: 18px;
+            font-size: 1.28rem;
+            color: #1d2a3a;
+        }
+
+        .contenido p {
+            margin-bottom: 22px;
+            font-size: 1rem;
+        }
+
+        form ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contenido ul li {
+            background: linear-gradient(135deg, #e3f2fd 0%, #f1f5fb 100%);
+            border: 2px solid #42a5f5;
+            border-radius: 14px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 12px rgba(66, 165, 245, 0.12);
+            transition: all 0.3s ease;
+        }
+
+        .contenido ul li:hover {
+            border-color: #1e88e5;
+            box-shadow: 0 6px 16px rgba(30, 136, 229, 0.18);
+            background: linear-gradient(135deg, #e1f5fe 0%, #f0f7ff 100%);
+        }
+
+        .contenido ul li strong {
+            display: block;
+            margin-bottom: 12px;
+            color: #1565c0;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .respuesta-textarea {
+            width: 95%;
+            min-height: 160px;
+            max-height: 280px;
+            margin: 14px 0 18px;
+            padding: 16px 18px;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1b5e20;
+            border: 2px solid #81c784;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #f1f8e9 0%, #fffde7 100%);
+            resize: vertical;
+            box-shadow: inset 0 2px 4px rgba(33, 150, 243, 0.08);
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .respuesta-textarea:focus {
+            outline: none;
+            border-color: #2e7d32;
+            box-shadow: inset 0 2px 4px rgba(33, 150, 243, 0.08), 0 0 0 5px rgba(129, 199, 132, 0.25);
+            background: linear-gradient(135deg, #f1f8e9 0%, #ffffff 100%);
+        }
+
+        .respuesta-textarea::placeholder {
+            color: #558b2f;
+            opacity: 0.7;
+        }
+
+        .contenido table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #ffffff;
+            border: 1px solid #d8e2ec;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(32, 54, 84, 0.06);
+            margin-top: 1rem;
+        }
+
+        .contenido th,
+        .contenido td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e8eff5;
+        }
+
+        .contenido th {
+            background: #3a5a8f;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 0.92rem;
+            letter-spacing: 0.04em;
+        }
+
+        .contenido tr:nth-child(even) {
+            background: #f5f8ff;
+        }
+
+        .contenido tr:hover {
+            background: #e8f1ff;
+        }
+
+        .pie {
+            margin-top: 42px;
+            border-top: 1px solid #d1dae4;
+            padding-top: 16px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #5a6b7f;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 18px;
+            }
+
+            .pagina-a4 {
+                padding: 18px;
+            }
+
+            .cabecera h1 {
+                font-size: 1.7rem;
+            }
+
+            .contenido th,
+            .contenido td {
+                padding: 12px 10px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .pagina-a4 {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: auto;
+                border: none;
+                border-radius: 0;
+            }
+
+            .contenido table,
+            .contenido th,
+            .contenido td {
+                box-shadow: none;
+                border-color: #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pagina-a4">
+
+        <div class="cabecera">
+            <h1> Actividad 1_Ejercicio teórico práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+            <p>Unidad Didáctica 3. Elementos básicos del lenguaje de guión</p>
+        </div>
+
+        <div class="contenido">
+
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+
+
+
+            <p>
+                Pregunta 1. Responde brevemente a las siguientes preguntas:
+            </p>
+
+            <form>
+                <ul>
+                    <li>
+                        <strong>a.</strong> ¿Cuál es la diferencia entre una variable global y una variable local?
+                        <textarea class="respuesta-textarea" name="respuesta-a" cols="100"
+                            rows="50">Las variables globales y locales se diferencian principalmente por el lugar donde pueden utilizarse dentro de un programa. Una variable global se declara fuera de una función y puede accederse a ella desde cualquier parte del código, por ejemplo let nombre = "Alfonso";. En cambio, una variable local solo existe dentro de la función donde fue creada, como let edad = 25; dentro de una función mostrarEdad(). Si intentamos usar esa variable fuera de la función, JavaScript generará un error. Las variables globales son útiles cuando varios elementos del programa necesitan compartir información, mientras que las locales ayudan a mantener el código más seguro y organizado. Por ello, en la mayoría de los casos se recomienda utilizar variables locales para evitar conflictos y modificaciones accidentales de datos.</textarea>
+                    </li>
+                    <li>
+                        <strong>b.</strong> ¿Cuáles son las estructuras disponibles en JavaScript para crear bucles?¿Cuáles son sus principales diferencias?
+                        <textarea class="respuesta-textarea" name="respuesta-b" cols="100"
+                            rows="50">JavaScript dispone de varias estructuras para crear bucles o repeticiones, permitiendo ejecutar un bloque de código varias veces. Las más utilizadas son for, while, do...while, for...in y for...of. El bucle for se utiliza cuando conocemos el número de repeticiones, por ejemplo for(let i=0; i<5; i++). El bucle while repite instrucciones mientras se cumpla una condición, siendo útil cuando no sabemos cuántas veces se ejecutará. El do...while funciona de forma parecida, pero garantiza al menos una ejecución antes de comprobar la condición. Por otro lado, for...in se emplea para recorrer propiedades de objetos, mientras que for...of se usa para recorrer elementos de arrays o colecciones. La principal diferencia entre ellos es la forma en que controlan la repetición y el tipo de datos que pueden recorrer.</textarea>
+                    </li>
+                    <li>
+                        <strong>c.</strong> ¿Qué significa inicializar una variable? ¿Es necesario hacerlo?
+                        <textarea class="respuesta-textarea" name="respuesta-c" cols="100"
+                            rows="5">Inicializar una variable significa asignarle un valor cuando se declara. Es necesario hacerlo para evitar valores undefined y asegurar que la variable tenga un estado conocido desde el principio.</textarea>
+                    </li>
+                    <li>
+                        <strong>d.</strong> Explique los distintos tipos de datos que se pueden usar en JavaScript para
+                        representar y almacenar
+                        valores en variables.
+                        <textarea class="respuesta-textarea" name="respuesta-d" cols="100"
+                            rows="50">JavaScript dispone de varios tipos de datos para representar y almacenar información en variables. Los más básicos son los tipos primitivos: Number para números como let edad = 25;, String para textos como let nombre = "Alfonso";, y Boolean para valores verdaderos o falsos como let activo = true;. También existen Undefined, cuando una variable no tiene valor asignado, y Null, que representa la ausencia intencionada de valor. Además, JavaScript incluye tipos más complejos como Array para almacenar listas de datos (let numeros = [1,2,3];) y Object para guardar información organizada en propiedades (let persona = {nombre:"Ana", edad:20};). Gracias a estos tipos de datos, JavaScript puede manejar desde cálculos matemáticos hasta colecciones y estructuras complejas de información.</textarea>
+                    </li>
+
+                    <li>
+                        <strong>e.</strong> ¿Cuáles son los operadores que se pueden utilizar en JavaScript para
+                        realizar cálculos y operaciones
+                        matemáticas?
+                      
+                    <table>
+                                <tr>
+                                    <th>Operador</th>
+                                    <th>Descripción</th>
+                                    <th>Ejemplo</th>
+                                    <th>Resultado</th>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>+</code></td>
+                                    <td>Suma</td>
+                                    <td><code>5 + 3</code></td>
+                                    <td>8</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>-</code></td>
+                                    <td>Resta</td>
+                                    <td><code>10 - 4</code></td>
+                                    <td>6</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>*</code></td>
+                                    <td>Multiplicación</td>
+                                    <td><code>6 * 2</code></td>
+                                    <td>12</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>/</code></td>
+                                    <td>División</td>
+                                    <td><code>20 / 5</code></td>
+                                    <td>4</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>%</code></td>
+                                    <td>Módulo (resto)</td>
+                                    <td><code>10 % 3</code></td>
+                                    <td>1</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>**</code></td>
+                                    <td>Potencia</td>
+                                    <td><code>2 ** 3</code></td>
+                                    <td>8</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>++</code></td>
+                                    <td>Incremento</td>
+                                    <td><code>x++</code></td>
+                                    <td>Aumenta 1</td>
+                                </tr>
+                        
+                                <tr>
+                                    <td><code>--</code></td>
+                                    <td>Decremento</td>
+                                    <td><code>x--</code></td>
+                                    <td>Disminuye 1</td>
+                                </tr>
+                            </table> 
+                           
+                    </li>
+                </ul>
+
+
+
+
+            </form>
+
+        </div>
+
+        <div class="pie">
+            ©️Alfonso Rubio Rioseras - 2026
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Actividad 1_Ejercicio teórico práctico</title>
+
+    <style>
+        /* Fondo general */
+        body {
+            margin: 0;
+            padding: 30px;
+            background: linear-gradient(135deg, #e8eff7 0%, #cfd8e7 100%);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #28303d;
+        }
+
+        /* Hoja A4 */
+        .pagina-a4 {
+            width: min(100%, 900px);
+            min-height: auto;
+            background: #ffffff;
+            margin: auto;
+            padding: 24mm;
+            box-sizing: border-box;
+            border-radius: 18px;
+            box-shadow: 0 20px 50px rgba(22, 38, 62, 0.12);
+            border: 1px solid rgba(32, 47, 68, 0.08);
+        }
+
+        /* Cabecera */
+        .cabecera {
+            border-bottom: 2px solid #3a4f6e;
+            padding-bottom: 18px;
+            margin-bottom: 30px;
+        }
+
+        .cabecera h1 {
+            margin: 0;
+            font-size: 2rem;
+            line-height: 1.1;
+            letter-spacing: 0.02em;
+            color: #1c2a3a;
+        }
+
+        .cabecera p {
+            margin: 8px 0 0;
+            color: #52606d;
+            font-size: 0.96rem;
+        }
+
+        .contenido {
+            line-height: 1.75;
+            color: #2c3848;
+        }
+
+        .contenido h2 {
+            border-left: 6px solid #3a4f6e;
+            padding-left: 12px;
+            margin-top: 34px;
+            margin-bottom: 18px;
+            font-size: 1.28rem;
+            color: #1d2a3a;
+        }
+
+        .contenido p {
+            margin-bottom: 22px;
+            font-size: 1rem;
+        }
+
+        form ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contenido ul li {
+            background: #fbfcfe;
+            border: 1px solid #d7e0ec;
+            border-radius: 12px;
+            padding: 18px;
+            margin-bottom: 16px;
+        }
+
+        .contenido ul li strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #172134;
+            font-size: 1rem;
+        }
+
+        .respuesta-textarea {
+            width: 90%;
+            min-height: 110px;
+            max-height: 180px;
+            margin: 10px 0 18px;
+            padding: 14px 16px;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #293441;
+            border: 1px solid #c0c8d5;
+            border-radius: 12px;
+            background: #fcfdff;
+            resize: vertical;
+            box-shadow: inset 0 1px 2px rgba(15, 35, 65, 0.04);
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            font-weight: 500;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .respuesta-textarea:focus {
+            outline: none;
+            border-color: #4f7cc8;
+            box-shadow: 0 0 0 4px rgba(79, 124, 200, 0.14);
+        }
+
+        .contenido table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #ffffff;
+            border: 1px solid #d8e2ec;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 12px 24px rgba(32, 54, 84, 0.06);
+            margin-top: 1rem;
+        }
+
+        .contenido th,
+        .contenido td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #e8eff5;
+        }
+
+        .contenido th {
+            background: #3a5a8f;
+            color: #ffffff;
+            text-transform: uppercase;
+            font-size: 0.92rem;
+            letter-spacing: 0.04em;
+        }
+
+        .contenido tr:nth-child(even) {
+            background: #f5f8ff;
+        }
+
+        .contenido tr:hover {
+            background: #e8f1ff;
+        }
+
+        .pie {
+            margin-top: 42px;
+            border-top: 1px solid #d1dae4;
+            padding-top: 16px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #5a6b7f;
+        }
+
+        @media (max-width: 760px) {
+            body {
+                padding: 18px;
+            }
+
+            .pagina-a4 {
+                padding: 18px;
+            }
+
+            .cabecera h1 {
+                font-size: 1.7rem;
+            }
+
+            .contenido th,
+            .contenido td {
+                padding: 12px 10px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .pagina-a4 {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: auto;
+                border: none;
+                border-radius: 0;
+            }
+
+            .contenido table,
+            .contenido th,
+            .contenido td {
+                box-shadow: none;
+                border-color: #ccc;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pagina-a4">
+
+        <div class="cabecera">
+            <h1> Actividad 1_Ejercicio teórico práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+            <p>Unidad Didáctica 2. Lenguaje de guión</p>
+        </div>
+
+        <div class="contenido">
+
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+
+
+
+            <p>
+                Pregunta 1. Responde brevemente a las siguientes preguntas:
+            </p>
+
+            <form>
+                <ul>
+                    <li>
+                        <strong>a.</strong> Explica qué es un lenguaje interpretado.
+                        <textarea class="respuesta-textarea"
+                            name="respuesta-a" cols="50" rows="3">Un lenguaje interpretado es aquel en el que el código fuente se ejecuta directamente por un programa intérprete, línea a línea o instrucción a instrucción, sin generar un archivo binario independiente.</textarea>
+                    </li>
+                    <li>
+                        <strong>b.</strong> Explica qué es un lenguaje compilado.
+                        <textarea class="respuesta-textarea"
+                            name="respuesta-b" cols="50" rows="3">Un lenguaje compilado se transforma primero en código máquina o en un formato intermedio mediante un compilador; luego ese código resultante se ejecuta de forma independiente, lo que suele mejorar el rendimiento.</textarea>
+                    </li>
+                    <li>
+                        <strong>c.</strong> ¿Qué es un disparador de eventos y cómo funciona?
+                        <textarea class="respuesta-textarea"
+                            name="respuesta-c" cols="50" rows="3">Un disparador de eventos en JavaScript es un mecanismo que espera que ocurra una acción del usuario o del sistema (como clic, pulsación de tecla o carga de página) y ejecuta una función asociada cuando se produce ese evento.</textarea>
+                    </li>
+                    <li>
+                        <strong>d.</strong> ¿Qué es la sintaxis del lenguaje del guión?
+                        <textarea class="respuesta-textarea"
+                            name="respuesta-d" cols="50" rows="3">La sintaxis del lenguaje del guión es el conjunto de reglas y estructuras que define cómo escribir instrucciones válidas, incluyendo la forma de declarar variables, funciones, operadores y bloques de código.</textarea>
+                    </li>
+                </ul>
+                <p>
+                    <b> Pregunta 2.</b> Busca en internet librerías de JavaScript para añadir más funcionalidad a una
+                    página
+                    web. Encuentra al menos 3, indicando su nombre y para qué sirven. ¿Cómo se podría hacer uso de estas
+                    librerías y las funcionalidades que ofrecen en una página web?
+                </p>
+                <textarea class="respuesta-textarea"
+                    name="respuesta-2" cols="40" rows="3">Ejemplos: jQuery para manipular el DOM y animaciones, Bootstrap para elementos de interfaz responsive, y Chart.js para crear gráficos interactivos; se usan incluyendo sus librerías en la página y escribiendo código que llame a sus funciones.</textarea>
+
+                <p>
+                    <b>Pregunta 3.</b> Elabora un cuadro resumen donde se enumeren y clasifiquen los distintos tipos de
+                    eventos en JavaScript según sean de ratón, de teclado o de otro tipo, indicando el momento en que se
+                    producen.
+                </p>
+
+                <h2>Cuadro Resumen de Eventos en JavaScript</h2>
+
+                <table>
+                    <tr>
+                        <th>Tipo de evento</th>
+                        <th>Evento</th>
+                        <th>¿Cuándo se produce?</th>
+                    </tr>
+
+                    <!-- Eventos de Ratón -->
+                    <tr>
+                        <td>Ratón</td>
+                        <td>click</td>
+                        <td>Cuando el usuario hace clic sobre un elemento.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ratón</td>
+                        <td>dblclick</td>
+                        <td>Cuando se hace doble clic sobre un elemento.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ratón</td>
+                        <td>mousedown</td>
+                        <td>Cuando se presiona un botón del ratón.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ratón</td>
+                        <td>mouseup</td>
+                        <td>Cuando se suelta un botón del ratón.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ratón</td>
+                        <td>mousemove</td>
+                        <td>Cuando el puntero se mueve sobre un elemento.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ratón</td>
+                        <td>mouseover</td>
+                        <td>Cuando el puntero entra en un elemento.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ratón</td>
+                        <td>mouseout</td>
+                        <td>Cuando el puntero sale de un elemento.</td>
+                    </tr>
+
+                    <!-- Eventos de Teclado -->
+                    <tr>
+                        <td>Teclado</td>
+                        <td>keydown</td>
+                        <td>Cuando se presiona una tecla.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Teclado</td>
+                        <td>keyup</td>
+                        <td>Cuando se libera una tecla.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Teclado</td>
+                        <td>keypress</td>
+                        <td>Cuando se pulsa una tecla de carácter.</td>
+                    </tr>
+
+                    <!-- Otros Eventos -->
+                    <tr>
+                        <td>Formulario</td>
+                        <td>focus</td>
+                        <td>Cuando un elemento recibe el foco.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Formulario</td>
+                        <td>blur</td>
+                        <td>Cuando un elemento pierde el foco.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Formulario</td>
+                        <td>change</td>
+                        <td>Cuando cambia el valor de un campo.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ventana</td>
+                        <td>load</td>
+                        <td>Cuando la página termina de cargarse.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ventana</td>
+                        <td>resize</td>
+                        <td>Cuando cambia el tamaño de la ventana.</td>
+                    </tr>
+
+                    <tr>
+                        <td>Ventana</td>
+                        <td>scroll</td>
+                        <td>Cuando el usuario desplaza la página.</td>
+                    </tr>
+
+                </table>
+            </form>
+
+        </div>
+
+        <div class="pie">
+            ©️Alfonso rubio Rioseras - 2026
+        </div>
+
+    </div>
+
+</body>
+
+</html>

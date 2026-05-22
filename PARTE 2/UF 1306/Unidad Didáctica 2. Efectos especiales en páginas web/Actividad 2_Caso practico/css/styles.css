@@ -1,0 +1,314 @@
+body{
+
+    background-color:blue;
+}
+
+
+/* ==========================================================================
+   CABECERA
+   ========================================================================== */
+.cabecera {
+    text-align: center;
+    border-bottom: 4px solid #2E4DB0;
+    padding: 25px 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, rgba(46, 77, 176, 0.05), rgba(255, 255, 255, 0));
+    border-radius: 8px 8px 0 0;
+}
+
+.cabecera h1 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    font-family: 'Playwrite DE SAS', cursive;
+    color: #2E4DB0;
+    letter-spacing: 1px;
+}
+
+.cabecera p {
+    margin: 5px 0 2px 0;
+    color: #555;
+    font-family: 'Playwrite DE SAS', cursive;
+    font-size: 14px;
+}
+
+/* ==========================================================================
+   CONTENIDO PRINCIPAL
+   ========================================================================== */
+.contenido {
+    line-height: 1.7;
+    color: #222;
+}
+
+h2 {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-top: 30px;
+    border-left: 5px solid #2E4DB0;
+    border-right: 5px solid #2E4DB0;
+    padding-left: 15px;
+    color: #2E4DB0;
+}
+
+/* Listas y Preguntas */
+.preguntas li, .contenido ul li {
+    background: rgba(236, 189, 4, 0.5);
+    padding: 12px 18px;
+    margin-bottom: 12px;
+    border-left: 4px solid #2E4DB0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    list-style: none;
+    color: #333;
+}
+
+.preguntas li:hover, .contenido ul li:hover {
+    background: rgba(30, 75, 223, 0.5);
+    transform: translateX(5px);
+}
+
+/* Áreas de Texto (Respuestas) */
+.actividad-textarea {
+    width: 100%;
+    height: 220px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 2px solid rgba(46, 77, 176, 0.15);
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 1.8;
+    color: #333;
+    resize: none;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.02);
+    transition: all 0.3s ease;
+    box-sizing: border-box;
+}
+
+.actividad-textarea:focus, 
+.actividad-textarea:hover {
+    outline: none;
+    border-color: #2E4DB0;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(46, 77, 176, 0.1);
+}
+
+.respuesta-textarea {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 15px;
+    border: 2px solid rgba(46, 77, 176, 0.15);
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #333;
+    resize: vertical;
+    margin-top: 5px;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+}
+
+.respuesta-textarea:focus,
+.respuesta-textarea:hover {
+    outline: none;
+    border-color: #2E4DB0;
+    background-color: #ffffff;
+    box-shadow: 0 5px 15px rgba(46, 77, 176, 0.1);
+}
+
+
+
+
+
+/* ==========================================================================
+   PIE DE PÁGINA Y REDES SOCIALES
+   ========================================================================== */
+.pie {
+    margin-top: 60px;
+    border-top: 3px solid #2E4DB0;
+    padding: 30px 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #444;
+    background: linear-gradient(135deg, rgba(46, 77, 176, 0.08), rgba(255, 255, 255, 1));
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.05);
+    font-family: 'Playwrite DE SAS', cursive;
+    letter-spacing: 0.5px;
+    width: 85%;
+    max-width: 800px;
+    margin: 50px auto 0 auto;
+    position: relative;
+    border-bottom: 1px solid rgba(46, 77, 176, 0.1);
+}
+
+.social-icon {
+    margin-top: -15px;
+    padding-bottom: 40px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1), rgba(46, 77, 176, 0.05));
+    border-radius: 0 0 15px 15px;
+    width: 85%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.03);
+}
+
+.modern-social {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+}
+
+.social-link {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    background: white;
+    color: #555;
+    font-size: 20px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.social-link:hover {
+    transform: translateY(-5px) scale(1.1);
+    color: white;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
+}
+
+.social-link i {
+    transition: transform 0.3s ease;
+}
+
+.social-link:hover i {
+    transform: rotate(360deg);
+}
+
+.info {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #2E4DB0;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.info:hover {
+    background-color: #1b3a8a;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(46, 77, 176, 0.2);
+}
+ .info:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 10px rgba(46, 77, 176, 0.1);
+}
+
+
+.infodiv {
+    display: flex;
+    align-items: center;
+    padding: 12px 25px;
+    background-color: #79e2e7;
+    color: white;
+    border: white 2px solid;
+    border-radius: 8px;
+    font-size: 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: 'Montserrat', sans-serif;
+    width: 500px;
+}
+
+
+
+
+
+.infodiv:hover {
+    background-color: #7a62a7;
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 20px rgba(46, 77, 176, 0.2);
+}
+ .infodiv:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 10px rgba(142, 13, 167, 0.8);
+    color: #eee;
+}
+
+
+.datos-navegador {
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(46, 77, 176, 0.05);
+    border-left: 4px solid #2E4DB0;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.02);
+}
+
+
+
+/* Colores de marca para los iconos de redes sociales */
+.social-link.facebook:hover { background-color: #1877F2; }
+.social-link.instagram:hover { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+.social-link.x-twitter:hover { background-color: #000000; }
+.social-link.youtube:hover { background-color: #FF0000; }
+.social-link.tiktok:hover { background-color: #000000; border-color: #00f2ea; }
+.social-link.discord:hover { background-color: #5865F2; }
+.social-link.whatsapp:hover { background-color: #25D366; }
+.social-link.linkedin:hover { background-color: #0077B5; }
+.social-link.github:hover { background-color: #24292e; }
+.social-link.pinterest:hover { background-color: #BD081C; }
+
+/* ==========================================================================
+   AJUSTES DE IMPRESIÓN
+   ========================================================================== */
+@media print {
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .pagina-a4 {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .pie, .social-icon {
+        display: none; /* No imprimir redes sociales ni pie decorativo */
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

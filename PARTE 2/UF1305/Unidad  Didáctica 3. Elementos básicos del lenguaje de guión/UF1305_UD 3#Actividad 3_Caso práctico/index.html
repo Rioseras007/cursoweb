@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
+    <meta name="author" content="Alfonso Rubio Rioseras">
+    <title>Actividad 4_Caso práctico</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function actualizarHora() {
+                const ahora = new Date();
+                let horas = ahora.getHours();
+                let minutos = ahora.getMinutes();
+                let segundos = ahora.getSeconds();
+
+                // Añadir cero delante si es menor de 10
+                horas = String(horas).padStart(2, '0');
+                minutos = String(minutos).padStart(2, '0');
+                segundos = String(segundos).padStart(2, '0');
+
+                const horaCompleta = `${horas}:${minutos}:${segundos}`;
+                document.getElementById("clock").textContent = horaCompleta;
+            }
+            // Ejecutar inmediatamente
+            actualizarHora();
+            mensajeBienvenida();
+            // Actualizar cada segundo
+            setInterval(actualizarHora, 1000);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pagina-a4">
+        <div class="cabecera">
+            <h1>Actividad 3_Caso práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+            <p>Unidad Didáctica 3. Elementos básicos del lenguaje de guión</p>
+        </div>
+        <div class="contenido">
+            <h2>ENUNCIADOS DE LAS ACTIVIDADES</h2>
+            <div class="enunciados">
+                <p id="pregunta-1"><b>Pregunta 1:</b> Crea un nuevo documento html e incluye las siguientes aplicaciones JavaScript. Realiza
+                    capturas de pantalla de cada apartado. 2.6 2.7.</p>
+                <ul class="preguntas">
+                    <li>a. Calcule el factorial de 6 utilizando una estructura de bucle FOR.</li>
+                    <li>b. Calcule los múltiplos de 5 hasta el 30 usando una estructura de bucle WHILE.</li>  
+                    <li>c. Calcule el producto de los 10 primeros números impares usando DO-WHILE.</li>
+                </ul>
+                <p id="pregunta-2"><b>Pregunta 2:</b> Utilizando operadores de desplazamiento de bits calcula las siguientes
+                    operaciones y muestra los resultados por pantalla.</p>
+                <ul class="preguntas">
+                    <li>30x8=</li>
+                    <li>10x2=</li>
+                    <li>150/16=</li>
+                    <li>100/4=</li>
+                </ul>
+            </div>
+
+            <hr>
+
+            <h2>RESULTADOS DE LAS ACTIVIDADES</h2>
+            <div class="resultados-ejercicios">
+                <div class="ejercicios-grid">
+                    <div class="ejercicio-card">
+                        <h4>6! (Factorial)</h4>
+                        <div id="res-1a" class="resultado-box">...</div>
+                    </div>
+                    <div class="ejercicio-card">
+                        <h4>Múltiplos 5</h4>
+                        <div id="res-1b" class="resultado-box">...</div>
+                    </div>
+                    <div class="ejercicio-card">
+                        <h4>Prod. 10 Impares</h4>
+                        <div id="res-1c" class="resultado-box">...</div>
+                    </div>
+                </div>
+
+                <div class="seccion-interactiva">
+                    <hr>
+                    <h2>CÁLCULOS PERSONALIZADOS</h2>
+                    <div class="ejercicios-grid">
+                        <div class="ejercicio-card">
+                            <h4>Factorial de n (n personalizado)</h4>
+                            <div class="input-group">
+                                <input type="number" id="input-factorial" placeholder="Ej: 5" min="0">
+                                <button onclick="calcularFactorialPersonalizado()" class="btn-calc">Calcular</button>
+                            </div>
+                            <div id="res-factorial-n" class="resultado-box">...</div>
+                        </div>
+                        <div class="ejercicio-card">
+                            <h4>Múltiplos de 5 hasta m (m personalizado)</h4>
+                            <div class="input-group">
+                                <input type="number" id="input-multiplos" placeholder="Ej: 50" min="0">
+                                <button onclick="calcularMultiplosPersonalizado()" class="btn-calc">Calcular</button>
+                            </div>
+                            <div id="res-multiplos-m" class="resultado-box">...</div>
+                        </div>
+                        <div class="ejercicio-card">
+                            <h4>Prod. de primeros k Impares (k ≠ 10)</h4>
+                            <div class="input-group">
+                                <input type="number" id="input-impares" placeholder="Ej: 5" min="1">
+                                <button onclick="calcularImparesPersonalizado()" class="btn-calc">Calcular</button>
+                            </div>
+                            <div id="res-impares-k" class="resultado-box">...</div>
+                        </div>
+                    </div>
+                    <button class="btn-calc" onclick="reiniciarResultadosPersonalizados()" class="btn-reset">Reiniciar Resultados Personalizados</button>
+                </div>
+
+
+
+                <div class="resultados-bits">
+                    <p><b>Desplazamiento de bits:</b></p>
+                    <ul class="preguntas">
+                        <li>30 x 8 = <span id="res-2a" class="result-badge">...</span></li>
+                        <li>10 x 2 = <span id="res-2b" class="result-badge">...</span></li>
+                        <li>150 / 16 = <span id="res-2c" class="result-badge">...</span></li>
+                        <li>100 / 4 = <span id="res-2d" class="result-badge">...</span></li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+        </div>
+
+  
+
+    <div class="mision">
+        <h3>Banda Sonora Pagina</h3>
+        <audio controls loop id="audioPlayer">
+            <source src="img/tema.mp3" type="audio/mpeg">
+            Tu navegador no soporta la reproducción de audio.
+        </audio>
+        <p><small>Nota: Escucha la música de fondo.</small></p>
+    </div>
+    </div>
+    <div class="pie">
+        © Alfonso Rubio Rioseras 2026 Actividad 3_Caso práctico. Todos los derechos reservados.
+    </div>
+    </div>
+
+
+    <script>
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioIniciado = false;
+
+        function iniciarMusica() {
+            if (!audioIniciado) {
+                // 1. Mostrar la sección primero
+                var mision = document.querySelector('.mision');
+                mision.style.opacity = '1';
+                mision.style.pointerEvents = 'auto';
+
+                // 2. Asegurar volumen y reproducir
+                audioPlayer.volume = 1.0;
+                audioPlayer.play().then(function () {
+                    audioIniciado = true;
+                    console.log("Audio iniciado y reproductor visible.");
+                }).catch(function (error) {
+                    console.log("El navegador bloqueó el autoplay. Esperando interacción...");
+                    // Si falla, volvemos a ocultar para no confundir
+                    mision.style.opacity = '0';
+                });
+            }
+        }
+
+        // Iniciar la música al primer clic en cualquier parte de la página
+        // Esta es la forma más fiable de cumplir con las políticas de los navegadores
+        document.addEventListener('click', function () {
+            iniciarMusica();
+        }, { once: true });
+    </script>
+</body>
+
+</html>

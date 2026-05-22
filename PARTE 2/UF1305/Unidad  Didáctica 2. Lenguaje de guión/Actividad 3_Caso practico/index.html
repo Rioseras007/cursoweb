@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
+    <meta name="author" content="Alfonso Rubio Rioseras">
+    <title>Actividad 3_Caso práctico</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function actualizarHora() {
+                const ahora = new Date();
+                let horas = ahora.getHours();
+                let minutos = ahora.getMinutes();
+                let segundos = ahora.getSeconds();
+
+                // Añadir cero delante si es menor de 10
+                horas = String(horas).padStart(2, '0');
+                minutos = String(minutos).padStart(2, '0');
+                segundos = String(segundos).padStart(2, '0');
+
+                const horaCompleta = `${horas}:${minutos}:${segundos}`;
+                document.getElementById("clock").textContent = horaCompleta;
+            }
+            // Ejecutar inmediatamente
+            actualizarHora();
+            // Actualizar cada segundo
+            setInterval(actualizarHora, 1000);
+        });
+    </script>
+</head>
+
+<body onmouseover="cambiarAudio('img/mision.mp3')">
+    <div class="pagina-a4">
+        <div class="cabecera">
+            <h1>Actividad 3_Caso práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+            <p>Unidad Didáctica 2. Lenguaje de guión</p>
+        </div>
+        <div class="contenido">
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+            <p>Pregunta 1. Cree un nuevo documento html.</p>
+            <form id="formulario-respuestas" class="formulario-respuestas">
+                <ul class="preguntas">
+                    <li>
+                        <p>a. ¿Qué función será necesaria para mostrar información de la fecha o la hora actual en una
+                            página web mediante JavaScript? Describa el funcionamiento de esa función. ¿Qué parámetros
+                            utilizará?</p>
+                        <label for="respuesta-a">Respuesta:</label>
+                        <textarea id="respuesta-a" name="respuesta-a"
+                            rows="10">La función necesaria es Date(). El constructor new Date() crea un objeto de tipo Date que contiene la fecha y hora actual del sistema. No requiere parámetros obligatorios para obtener la fecha/hora actual. A partir del objeto Date se pueden usar métodos como getHours(), getMinutes(), getSeconds(), getFullYear(), getMonth() y getDate() para extraer cada componente de la fecha y hora.</textarea>
+                    </li>
+                    <li>
+                        <p>b. ¿Qué método habrá que utilizar para mostrar la hora? Que se muestre en la página web la
+                            hora a la que la página se ha cargado de forma que se muestren las horas y minutos. Por
+                            ejemplo, "La página web se ha cargado a las 13 horas y 5 minutos". Realice una captura de
+                            pantalla.</p>
+                        <label for="respuesta-b">Respuesta:</label>
+                        <textarea id="respuesta-b" name="respuesta-b" rows="12">Para mostrar la hora se utilizan los métodos getHours() y getMinutes() del objeto Date. Ejemplo:
+var fecha = new Date();
+var mensaje = "La página web se ha cargado a las " + fecha.getHours() + " horas y " + fecha.getMinutes() + " minutos";
+document.write(mensaje);
+Estos métodos devuelven valores numéricos: getHours() de 0 a 23 y getMinutes() de 0 a 59.</textarea>
+                    </li>
+                    <li>
+                        <p>c. ¿Qué método se utiliza para escribir directamente en la página web desde JavaScript? ¿Qué
+                            parámetros hay que pasarle a ese método?</p>
+                        <label for="respuesta-c">Respuesta:</label>
+                        <textarea id="respuesta-c" name="respuesta-c"
+                            rows="10">El método utilizado para escribir directamente en la página web es document.write(). Se le pasa como parámetro una cadena de texto (string) que puede contener texto plano y/o etiquetas HTML. Ejemplo: document.write("&lt;h1&gt;Hola mundo&lt;/h1&gt;"). También existe document.getElementById("id").textContent o .innerHTML para escribir dentro de un elemento específico del DOM.</textarea>
+                    </li>
+                    <li>
+                        <p>d. Cree una función llamada "escribirDespedida()" que muestre el texto "Hasta la próxima
+                            visitante", en la página web. ¿Es necesario pasarle algún parámetro a la función?</p>
+                        <label for="respuesta-d">Respuesta:</label>
+                        <textarea id="respuesta-d" name="respuesta-d"
+                            rows="10">function escribirDespedida() {
+    alert("Hasta la próxima visitante");
+}
+No es necesario pasarle ningún parámetro a la función, ya que el texto a mostrar está definido directamente dentro de la función como una cadena literal. La función simplemente ejecuta alert() con el mensaje fijo.</textarea>
+                    </li>
+                    <li>
+                        <p>e. Introduzca un botón en la página web con el texto "Salir". Al pulsarlo se ejecutará la
+                            función. Realice una captura de pantalla.</p>
+                        <label for="respuesta-e">Respuesta:</label>
+                        <textarea id="respuesta-e" name="respuesta-e"
+                            rows="10">Se introduce un botón HTML con el evento onclick que llama a la función:
+&lt;button onclick="escribirDespedida()"&gt;Salir&lt;/button&gt;
+Al pulsar el botón se ejecuta la función escribirDespedida() que muestra la ventana emergente con el mensaje "Hasta la próxima visitante". Ver captura de pantalla adjunta.</textarea>
+                    </li>
+                    <li>
+                        <p>f. Cree una función llamada "mostrarHoraActual()" que muestre la hora actual en una ventana
+                            emergente de la forma "Son las 5 horas y 20 minutos".</p>
+                        <label for="respuesta-f">Respuesta:</label>
+                        <textarea id="respuesta-f" name="respuesta-f"
+                            rows="12">function mostrarHoraActual() {
+    var horaActual = new Date();
+    alert("Son las " + horaActual.getHours() + " horas y " + horaActual.getMinutes() + " minutos");
+}
+La función crea un nuevo objeto Date con la hora actual y usa getHours() y getMinutes() para construir el mensaje que se muestra en una ventana emergente con alert().</textarea>
+                    </li>
+                    <li>
+                        <p>g. Introduzca un botón en la página web con el texto "¿Qué hora es?". Al pulsarlo debe
+                            ejecutarse la función "mostrarHoraActual()".</p>
+                        <label for="respuesta-g">Respuesta:</label>
+                        <textarea id="respuesta-g" name="respuesta-g"
+                            rows="10">Se introduce el botón con el evento onclick vinculado a la función:
+&lt;button onclick="mostrarHoraActual()"&gt;¿Qué hora es?&lt;/button&gt;
+Al pulsarlo se ejecuta mostrarHoraActual(), que obtiene la hora del sistema mediante new Date() y muestra un alert con el formato "Son las X horas y Y minutos".</textarea>
+                    </li>
+                </ul>
+            </form>
+            <script>
+                // Funciones para las preguntas b, d y f
+                var fechaCarga = new Date();
+                function escribirDespedida() {
+                    alert("Hasta la próxima visitante");
+                    setTimeout(function () {
+                        window.close();
+                    }, 3000);
+                }
+                function mostrarHoraActual() {
+                    var horaActual = new Date();
+                    alert("Son las " + horaActual.getHours() + " horas y " + horaActual.getMinutes() + " minutos");
+                }
+                function mostrarHoraCarga() {
+                    alert("La página web se ha cargado a las " + fechaCarga.getHours() + " horas y " + fechaCarga.getMinutes() + " minutos");
+                }
+            </script>
+        </div>
+        <div class="resultados">
+            <h2>SISTEMA TEMPORAL</h2>
+            <div class="reloj">
+                <div class="time" id="clock">00:00:00</div>
+                <button class="time" onclick="mostrarHoraCarga()">Mostrar hora de carga</button>
+                <button class="time" onclick="mostrarHoraActual()">¿Qué hora es?</button>
+                <button class="time" onclick="escribirDespedida()">Salir</button>
+            </div>
+            <hr>
+            <h2>SISTEMA DE VISIONADO DE CAPTURAS</h2>
+            <div class="capturas">
+                <img src="img/Captura1.png" alt="Captura 1" width="600">
+                <img src="img/Captura2.png" alt="Captura 2" width="600">
+
+            </div>
+
+            <div class="mision">
+                <h3>Banda Sonora</h3>
+                <audio controls loop id="audioPlayer">
+                    <source src="img/mision.mp3" type="audio/mpeg">
+                    <source src="img/mision.mid" type="audio/midi">
+                    Tu navegador no soporta la reproducción de audio.
+                </audio>
+                <p><small>Nota: Escucha la música de fondo.</small></p>
+            </div>
+        </div>
+        <div class="pie">
+            © Alfonso Rubio Rioseras 2026 Actividad 3_Caso práctico. Todos los derechos reservados.
+        </div>
+    </div>
+
+
+    <script>
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioIniciado = false;
+
+        function iniciarMusica() {
+            if (!audioIniciado) {
+                audioPlayer.play().then(function () {
+                    audioIniciado = true;
+                    console.log("Audio iniciado correctamente.");
+                }).catch(function (error) {
+                    console.log("Esperando interacción del usuario para iniciar audio...");
+                });
+            }
+        }
+
+        // Intentar iniciar al mover el ratón por la página
+        function cambiarAudio(fuente) {
+            if (!audioIniciado) {
+                audioPlayer.src = fuente;
+                iniciarMusica();
+            }
+        }
+
+        // Fallback: Iniciar en el primer clic en cualquier parte de la página
+        document.addEventListener('click', function () {
+            iniciarMusica();
+        }, { once: true });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
+   <script src="script.js"></script>
+   <meta name="author" content="Alfonso Rubio Rioseras">
+   <meta name="description" content="Actividad 3_Caso práctico. Integración de componentes software en páginas web (MF0951_2). Programación con lenguajes de guión en páginas web (UF1305). Unidad Didáctica 6. Los eventos del lenguaje de guión.">
+    <meta http-equiv="Permissions-Policy" content="xr-spatial-tracking=()">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title> Actividad 3_Caso práctico</title>
+
+   
+
+  
+</head>
+
+<body>
+
+    <div class="pagina-a4">
+
+        <div class="cabecera">
+            <h1> Actividad 3_Caso práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Pruebas de funcionalidades y optimización de páginas web (UF1306) </p>
+            <p>Unidad Didáctica 2. Efectos especiales en páginas web </p>
+
+        </div>
+
+        <div class="contenido">
+
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+
+            <p>
+                <b>Pregunta 1</b> Se creará una página web que abre otras ventanas con las que interactúa.</p>
+
+            <ul>
+
+                <li><b>a.</b> Crear un botón y una caja de texto donde se introducirá una URL de internet. Al pulsar el botón se abrirá 
+                  esa dirección en una nueva ventana. Además se permitirá abrir varias ventanas si se sigue pulsando el 
+                  botón.</li>
+                <li><b>b.</b> Modificar el programa para que aparezcajunto al botón una etiqueta en la página web 
+                  que muestre el valor del contador. Cada vez que se pulse el botón se incrementará el 
+                  valor de ese contador y se mostrará su valor en la propia página web.</li>
+
+                  <li><b>c.</b> Crear, en la página principal, un botón “Cerrar subventana” que cierre la ventana hija.</li>
+
+                  <li><b>d.</b> En la subventana se pondrá una caja de texto y un botón de “Enviar al padre”, al pulsar el botón se 
+                    enviará el texto que haya en la subventana a una caja de texto de la ventana principal (padre).</li>
+                
+              <b>Pregunta 2</b> Realice una tabla comparativa donde se incluyan distintos tipos de archivos que se puedan 
+              encontrar en una página web. ¿Cómo organizaría estos archivos en una estructura de carpetas en el 
+              servidor web?.</p>
+
+              <h2>Tabla estructura archivos en un servidor Web</h2>
+              <br>
+              <div id="tabla">
+                <table>
+                  <tr>
+                      <th>Tipo de Archivo</th>
+                      <th>Extensión Común</th>
+                      <th>Función Principal</th>
+                      <th>Ventajas</th>
+                      <th>Desventajas</th>
+                  </tr>
+                  <tr>
+                      <td>HTML</td>
+                      <td>.html, .htm</td>
+                      <td>Estructura y contenido básico de la página web.</td>
+                      <td>Compatible con todos los navegadores, fácil de editar.</td>
+                      <td>No incluye estilos ni interactividad por sí solo.</td>
+                  </tr>
+                  <tr>
+                      <td>CSS</td>
+                      <td>.css</td>
+                      <td>Definir estilos visuales (colores, tipografía, diseño).</td>
+                      <td>Separa diseño de contenido, reutilizable.</td>
+                      <td>Depende de HTML para mostrarse.</td>
+                  </tr>
+                  <tr>
+                      <td>JavaScript</td>
+                      <td>.js</td>
+                      <td>Añadir interactividad y funciones dinámicas.</td>
+                      <td>Mejora la experiencia del usuario, gran flexibilidad.</td>
+                      <td>Puede afectar el rendimiento si no se optimiza.</td>
+                  </tr>
+                  <tr>
+                      <td>Imagen</td>
+                      <td>.jpg, .png, .gif, .svg</td>
+                      <td>Mostrar gráficos, fotos e iconos.</td>
+                      <td>Mejora el atractivo visual, formatos optimizados para web.</td>
+                      <td>Archivos pesados pueden ralentizar la carga.</td>
+                  </tr>
+                  <tr>
+                      <td>Audio</td>
+                      <td>.mp3, .wav, .ogg</td>
+                      <td>Reproducir sonido o música.</td>
+                      <td>Compatible con reproductores integrados en navegadores.</td>
+                      <td>Puede aumentar el peso total de la página.</td>
+                  </tr>
+                  <tr>
+                      <td>Video</td>
+                      <td>.mp4, .webm, .ogg</td>
+                      <td>Mostrar contenido audiovisual.</td>
+                      <td>Alta capacidad de comunicación y engagement.</td>
+                      <td>Requiere mayor ancho de banda.</td>
+                  </tr>
+                  <tr>
+                      <td>Fuente Web</td>
+                      <td>.woff, .woff2, .ttf</td>
+                      <td>Personalizar tipografía.</td>
+                      <td>Mejora la identidad visual.</td>
+                      <td>Puede aumentar el tiempo de carga si no se optimiza.</td>
+                  </tr>
+                  <tr>
+                      <td>Documento</td>
+                      <td>.pdf</td>
+                      <td>Mostrar o descargar información en formato fijo.</td>
+                      <td>Conserva el formato original, fácil de compartir.</td>
+                      <td>No siempre es editable desde el navegador.</td>
+                  </tr>
+              </table>
+
+              
+              </div>
+            
+
+              <img src="img/tabla.jpg">
+
+              
+              
+
+            </ul>
+<hr><br>
+
+             
+                <div ><h2>Banda sonora gentileza de Suno</h2>
+                  <iframe src="https://suno.com/embed/e8408f7f-50b2-428d-9305-aa8ea1951430" width="600" height="240" frameborder="0" allow="autoplay; encrypted-media; fullscreen" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"><a href="https://suno.com/song/e8408f7f-50b2-428d-9305-aa8ea1951430">Listen on Suno</a></iframe>
+                  
+              
+
+          
+
+            <h2>Control de mando botononeria</h2>
+       
+
+            <div class="container">
+  <h3>Abrir URL en nueva ventana</h3>
+  <p>Introduce una dirección web y pulsa el botón</p>
+  <input type="text" id="urlInputSingle" placeholder="https://ejemplo.com" value="https://www.google.com" />
+  <button class="boton-elegante" onclick="abrirVentana()">🌐 Abrir en Nueva Ventana</button>
+  <div class="info">Puedes pulsar el botón varias veces para abrir múltiples ventanas</div>
+</div>
+
+<hr><br>
+
+            <div class="container2">
+              <h2>Gestor de Ventanas</h2>
+              
+              <h3>Abrir URL en nueva ventana</h3>
+              <input type="text" id="urlInput" placeholder="https://ejemplo.com" value="https://www.google.com">
+              <br> <hr><br>
+              <button class="boton-elegante" onclick="abrirURL()">🌐 Abrir URL (múltiples permitidas)</button>
+          
+              <hr style="margin: 30px 0;">
+              
+              <h3>Abrir Subventana (Solo una)</h3>
+              <button class="boton-elegante" onclick="abrirSubventana()">📄 Abrir Subventana Única</button>
+                        <button class="boton-elegante" onclick="cerrarSubventana()">Cerrar Subventana</button>
+              <hr><br>
+                <div class="info">
+                  <p>Mensaje del hijo:</p>
+                  <input type="text" id="textoPadre" placeholder="Recibe texto del hijo" readonly class="boton-elegante" style="width:80%;margin-top:5px;"/>
+                </div>
+            </div>
+             
+
+        </div>
+
+ <hr> <br>    
+
+        <div class="pie"> © Alfonso Rubio Rioseras 2026 Actividad 3_Caso práctico. Todos los derechos reservados.</div>
+            <div class="social-icon">
+               
+                <div class="modern-social">
+                  <a href="https://www.facebook.com/AlfonsoRubioRioseras" target="_blank" class="social-link facebook"
+                    title="Facebook" aria-label="Ir al perfil de Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com" target="_blank" class="social-link instagram" title="Instagram"
+                    aria-label="Ir al perfil de Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="https://x.com/alfrubrio" target="_blank" class="social-link x-twitter" title="X (Twitter)"
+                    aria-label="Ir al perfil de X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://www.youtube.com/@AlfonsoRubioRioseras" target="_blank" class="social-link youtube"
+                    title="YouTube" aria-label="Ir al canal de YouTube"><i class="bi bi-youtube"></i></a>
+                  <a href="https://www.tiktok.com/@alfonsorubio007" target="_blank" class="social-link tiktok" title="TikTok"
+                    aria-label="Ir al perfil de TikTok"><i class="bi bi-tiktok"></i></a>
+                  <a href="https://discord.com/" target="_blank" class="social-link discord" title="Discord"
+                    aria-label="Unirse al servidor de Discord"><i class="bi bi-discord"></i></a>
+                  <a href="https://web.whatsapp.com/" target="_blank" class="social-link whatsapp" title="WhatsApp"
+                    aria-label="Contactar por WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.linkedin.com/in/alfonsorubiorioseras/" target="_blank" class="social-link linkedin"
+                    title="LinkedIn" aria-label="Ir al perfil de LinkedIn"><i class="bi bi-linkedin"></i></a>
+                  <a href="https://github.com/Rioseras007" target="_blank" class="social-link github" title="GitHub"
+                    aria-label="Ir al perfil de GitHub"><i class="bi bi-github"></i></a>
+                  <a href="https://es.pinterest.com/alfonsorubiorioseras/" target="_blank" class="social-link pinterest"
+                    title="Pinterest" aria-label="Ir al perfil de Pinterest"><i class="bi bi-pinterest"></i></a>
+                </div>
+        </div>
+
+    </div>
+
+  
+
+</body>
+
+</html>

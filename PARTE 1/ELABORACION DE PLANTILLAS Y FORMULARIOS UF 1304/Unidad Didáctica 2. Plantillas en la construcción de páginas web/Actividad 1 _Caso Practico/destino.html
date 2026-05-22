@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plantilla examen">
+    <meta name="keywords" content="examen, plantilla">
+    <meta name="author" content="Alfonso Rubio Rioseras & Compañia">
+    <title>Resultados del Examen - Panel del Profesor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .results-container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 75%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .data-section {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #eef2f7;
+            border-left: 5px solid #3498db;
+        }
+
+        .response-item {
+            margin: 10px 0;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        .note {
+            font-size: 0.9em;
+            color: #666;
+            font-style: italic;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="results-container">
+        <h1>Resumen de Respuestas del Alumno</h1>
+
+        <div id="display-area">
+            <p><strong>Nota importante:</strong> Como este es un entorno de diseño de plantillas (estático), para
+                procesar datos reales se necesitaría un lenguaje de servidor (como PHP o Node.js). A continuación se
+                muestra cómo se verían los datos capturados.</p>
+
+            <div class="data-section">
+                <h2>Datos del Alumno</h2>
+                <div id="student-data">
+                    <p><span class="label">Nombre completo:</span> <span id="out-nombre"></span></p>
+                    <p><span class="label">Apellido:</span> <span id="out-apellido"></span></p>
+                    <p><span class="label">DNI:</span> <span id="out-dni"></span></p>
+                    <p><span class="label">Email:</span> <span id="out-email"></span></p>
+                </div>
+            </div>
+
+            <div class="data-section">
+                <h2>Respuestas Enviadas</h2>
+                <div class="response-item">
+                    <span class="label">Pregunta 1:</span> <span id="out-p1"></span>
+                </div>
+                <div class="response-item">
+                    <span class="label">Pregunta 2:</span> <span id="out-p2"></span>
+                </div>
+                <div class="response-item">
+                    <span class="label">Pregunta 3:</span> <span id="out-p3"></span>
+                </div>
+                <div class="response-item">
+                    <span class="label">Pregunta 4:</span> <span id="out-p4"></span>
+                </div>
+                <div class="response-item">
+                    <span class="label">Pregunta 5 (Múltiple):</span> <span id="out-p5"></span>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Lógica para leer las "variables" de la URL (método GET)
+            // Nota: He cambiado el método a GET en index.html para que podamos ver los datos sin servidor.
+            const params = new URLSearchParams(window.location.search);
+
+            document.getElementById('out-nombre').textContent = params.get('nombre') || 'No enviado';
+            document.getElementById('out-apellido').textContent = params.get('apellido') || 'No enviado';
+            document.getElementById('out-dni').textContent = params.get('dni') || 'No enviado';
+            document.getElementById('out-email').textContent = params.get('email') || 'No enviado';
+
+            document.getElementById('out-p1').textContent = params.get('respuesta1') || 'Sin respuesta';
+            document.getElementById('out-p2').textContent = params.get('respuesta2') || 'Sin respuesta';
+            document.getElementById('out-p3').textContent = params.get('respuesta3') || 'Sin respuesta';
+            document.getElementById('out-p4').textContent = params.get('respuesta4') || 'Sin respuesta';
+
+            // Para la respuesta múltiple (checkboxes), obtenemos todos los valores
+            const p5 = params.getAll('respuesta5');
+            document.getElementById('out-p5').textContent = p5.length > 0 ? p5.join(', ') : 'Sin respuesta';
+        </script>
+
+        <p class="note">Aviso para el profesor: Esta página es una simulación visual de la recepción de datos. Para que
+            sea funcional, el formulario en `index.html` debe apuntar a un script de servidor que recoja las variables
+            de la cabecera POST.</p>
+
+        <button onclick="window.history.back()" style="padding: 10px 20px; cursor: pointer;">Volver al Examen</button>
+    </div>
+
+</body>
+
+</html>

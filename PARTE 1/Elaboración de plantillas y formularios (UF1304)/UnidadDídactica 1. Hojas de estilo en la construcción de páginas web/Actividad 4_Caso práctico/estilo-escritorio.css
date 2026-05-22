@@ -1,0 +1,62 @@
+body {
+    background: #00ffff;
+    font-family: Georgia, serif;
+    margin: 0;
+}
+
+.pagina {
+    width: 90%;
+    margin: auto;
+    text-align: center;
+}
+
+h1 {
+    font-size: 42px;
+    margin-top: 40px;
+}
+
+.descripcion {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.columna1 {
+    background: #ffc0cb;
+    padding: 0 40px 40px 40px;
+    width: 45%;
+    font-size: 18px;
+    color: black;
+    height: 200px;
+    text-align: left;
+}
+
+.columna2 {
+    background: #808080;
+    padding: 0 40px 100px 40px;
+    width: 45%;
+    font-size: 18px;
+    color: black;
+    min-width: 200px;
+    height: 400px;
+    text-align: left;
+}
+
+footer {
+    background: black;
+    color: white;
+    padding: 10px;
+    margin-top: 60px;
+    font-size: 18px;
+}
+
+footer pre {
+    margin: 0;
+    font-family: inherit;
+}

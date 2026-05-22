@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta author="Alfonso Rubio" lang="es">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario</title>
+</head>
+
+<div align="center" color="#DCDCDC" style="border: 4px solid rgb(188, 27, 27); padding: 20px;" >
+<h1>Formulario de Encuesta</h1>
+
+<form method="post" lang="es" action="enviado.html" target="_blank">
+
+<fieldset>
+<legend>Datos Personales</legend>
+
+<table border="2">
+<tr>
+<td><label for="nombre">Nombre</label></td>
+<td><input type="text" name="nombre" autocomplete="off"></td>
+</tr>
+
+<tr>
+<td><label for="apellidos">Apellidos</label></td>
+<td><input type="text" name="apellidos" autocomplete="off"></td>
+</tr>
+
+<tr>
+<td><label for="email">Email</label></td>
+<td><input type="email" name="email" required></td>
+</tr>
+</table>
+
+</fieldset>
+
+<br>
+
+<fieldset>
+<legend>Encuesta</legend>
+
+<table border="2" width="50%">
+
+<tr>
+<td colspan="2"><p>¿Qué puntuación darías a esta página?</p></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<input type="radio" name="puntuacion" value="1"> Muy mala:1
+<input type="radio" name="puntuacion" value="2"> Mala:2
+<input type="radio" name="puntuacion" value="3"> Regular:3
+<input type="radio" name="puntuacion" value="4"> Buena:4
+<input type="radio" name="puntuacion" value="5"> Excelente:5
+</td>
+</tr>
+
+<tr>
+<td colspan="2"><p>¿Qué apartados te gustaría añadir a esta página?</p></td>
+</tr>
+
+<tr>
+<td colspan="2">
+<input type="checkbox" name="apartados" value="blog"> Blog
+<input type="checkbox" name="apartados" value="fotos"> Fotos
+<input type="checkbox" name="apartados" value="redes sociales"> Redes Sociales
+<input type="checkbox" name="apartados" value="musica"> Música
+<input type="checkbox" name="apartados" value="noticias"> Noticias
+</td>
+</tr>
+
+<tr>
+<td>
+<button type="submit" formaction="enviado.html" formtarget="_blank">Enviar</button>
+</td>
+
+<td>
+<button type="reset">Borrar</button>
+</td>
+</tr>
+
+</table>
+
+</fieldset>
+
+</form>
+
+
+<footer>©️ Alfonso Rubio Rioseras 2026</footer>
+
+
+
+
+<body>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+PREGUNTAS/ACTIVIDADES A REALIZAR
+
+
+1. Utilice herramientas online de validación de la accesibilidad TAW y HERA para comprobar que una página web implementa correctamente las recomendaciones y pautas de accesibilidad web.
+a. Analice con TAW la página web https://www.google.es/ respecto al estándar WCAG 2.0 y nivel A y muestre los resultados.
+
+b. Analice con HERA la página web http://www.20minutos.es/ y muestre los resultados.

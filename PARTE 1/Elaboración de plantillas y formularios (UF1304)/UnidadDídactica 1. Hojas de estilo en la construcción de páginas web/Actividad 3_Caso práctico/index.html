@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documento html con 3 enlaces</title>
+    <style>
+        /* Estilos para los enlaces siguiendo el orden LVHA (Link, Visited, Hover, Active) */
+
+        /* Regla general para todos los enlaces */
+        a {
+            font-size: 28px;
+            /* Tamaño de letra aumentado a 28px */
+            text-decoration: none;
+            /* Opcional: quitar subrayado para un look más limpio */
+        }
+
+        /* Estado inicial del enlace (no visitado) */
+        a:link {
+            color: yellow;
+            /* Color amarillo */
+            background-color: blue;
+            /* Fondo azul */
+        }
+
+        /* Estado del enlace una vez visitado */
+        a:visited {
+            color: red;
+            /* Color rojo */
+            background-color: white;
+            /* Fondo blanco */
+        }
+
+        /* Estado cuando el ratón está sobre el enlace (hover) */
+        a:hover {
+            color: black;
+            /* Color negro */
+            font-weight: bold;
+            /* Texto en negrita */
+            background-color: yellow;
+            /* Fondo amarillo */
+        }
+
+        /* Estado mientras se mantiene pulsado el clic */
+        a:active {
+            color: yellow;
+            /* Color verde */
+            background-color: blue;
+            /* Fondo blanco */
+        }
+
+        /* Estilo para el área de preguntas/actividades */
+        .preguntas {
+            color: #ecf0f1;
+            /* Color gris muy claro casi blanco */
+            background-color: #2c3e50;
+            /* Azul oscuro elegante */
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 5px solid #3498db;
+            /* Borde izquierdo azul brillante */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            white-space: pre-wrap;
+            /* Mantiene saltos de línea pero ajusta texto largo */
+        }
+
+        h1 {
+            color: #2c3e50;
+            /* Azul oscuro elegante */
+            font-size: 64px;
+            /* Tamaño de fuente grande */
+            font-weight: bold;
+            /* Texto en negrita */
+            margin-bottom: 20px;
+            /* Margen inferior para separar del contenido */
+        }
+
+        /* Estilo para centrar el contenedor de enlaces */
+        .enlaces {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 40px;
+        }
+
+
+        .enlaces ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        /* Añadir un poco de espacio entre los elementos de la lista */
+        .enlaces li {
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sección que muestra el enunciado de la actividad -->
+    <div class="preguntas"><strong>PREGUNTAS/ACTIVIDADES A REALIZAR</strong><br><br>
+        1. Cree un documento html donde aparezcan 3 enlaces. Se quiere modificar el aspecto predeterminado que tienen
+        los enlaces de forma que:
+        a. El color por defecto del enlace sea amarillo con fondo azul.
+
+        b. Al pasar el ratón por encima el color del enlace sea negro y la letra esté en negrita y el fondo amarillo.
+
+        c. Cuando un enlace haya sido visitado el enlace aparecerá de color rojo y con fondo blanco.
+    </div>
+
+    <!-- Título de la sección de enlaces -->
+
+    <div class="enlaces">
+        <h1>Los 3 enlaces a otras páginas</h1>
+
+        <!-- Lista desordenada con los enlaces requeridos -->
+        <ul>
+            <li><a href="https://www.google.com">Google</a></li>
+            <li><a href="https://www.facebook.com">Facebook</a></li>
+            <li><a href="https://www.yahoo.com">Yahoo</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

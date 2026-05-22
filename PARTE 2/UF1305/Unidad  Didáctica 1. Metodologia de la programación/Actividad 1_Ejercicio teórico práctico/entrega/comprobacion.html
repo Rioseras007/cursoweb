@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aplicación práctica de los Scripts</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 20px;
+            background: #f4f4f4;
+            color: #222;
+        }
+
+        .contenedor {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 24px;
+        }
+
+        .grupo {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 4px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        button:hover {
+            background: #8070c3;
+        }
+
+        .resultado {
+            margin-top: 12px;
+            padding: 12px;
+            background: #eef5ff;
+            border: 1px solid #c8ddff;
+            border-radius: 4px;
+            min-height: 40px;
+            color: #333;
+            font-weight: bold;
+            font-family: 'Courier New', Courier, monospace;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contenedor">
+        <h1>Aplicación práctica de los Scripts 💻 </h1>
+
+        <div class="grupo">
+            <label for="numero">Número mayor que cero</label>
+            <input type="number" id="numero" min="1" placeholder="Introduce un número entero">
+            <button id="btnParImpar">Comprobar par/impar</button>
+            <div id="resultadoParImpar" class="resultado">Resultado aquí</div>
+        </div>
+
+        <div class="grupo">
+            <label for="base">Base del rectángulo (m)</label>
+            <input type="number" id="base" step="0.01" placeholder="Introduce la base">
+            <label for="altura">Altura del rectángulo (m)</label>
+            <input type="number" id="altura" step="0.01" placeholder="Introduce la altura">
+            <button id="btnSuperficie">Calcular superficie</button>
+            <div id="resultadoSuperficie" class="resultado">Resultado aquí</div>
+        </div>
+    </div>
+
+    <div class="dibujar_rectangulo" id="dibujo" style="margin-top: 40px; text-align: center;">
+        <svg id="svgRectangulo" width="260" height="160">
+            <rect x="10" y="10" width="240" height="140" fill="#007bff" stroke="#0056b3" stroke-width="2" />
+            <text x="130" y="85" font-family="Arial" font-size="16" fill="#fff" text-anchor="middle"
+                alignment-baseline="middle">Rectángulo</text>
+        </svg>
+    </div>
+
+
+    <div class="pie" style="margin-top: 40px; border-top: 1px solid #999; padding-top: 10px; text-align: center; font-size: 12px; color: #777;">
+        ©️ Alfonso Rubio Rioseras & Visual Code  - 2026
+    </div>
+
+    <script>
+        function comprobarParImpar(numero) {
+            if (numero <= 0) {
+                return 'Debe introducir un número mayor que cero.';
+            }
+            return numero % 2 === 0 ? 'El número es par.' : 'El número es impar.';
+        }
+
+        function calcularSuperficieRectangulo(base, altura) {
+            const superficie = base * altura;
+            return superficie.toFixed(2) + ' m²';
+        }
+
+        function dibujarRectangulo(base, altura) {
+            const svg = document.getElementById('svgRectangulo');
+            const maxWidth = 240;
+            const maxHeight = 140;
+            const scale = Math.min(maxWidth / base, maxHeight / altura, 1);
+            const width = Math.max(10, Math.round(base * scale));
+            const height = Math.max(10, Math.round(altura * scale));
+            const x = Math.round((260 - width) / 2);
+            const y = Math.round((160 - height) / 2);
+            svg.innerHTML = `
+                <rect x="${x}" y="${y}" width="${width}" height="${height}" fill="#007bff" stroke="#0056b3" stroke-width="2" />
+                <text x="130" y="${y + height / 2}" font-family="Arial" font-size="14" fill="#fff" text-anchor="middle" alignment-baseline="middle">${base}m x ${altura}m</text>
+            `;
+        }
+
+        document.getElementById('btnParImpar').addEventListener('click', function () {
+            const numero = Number(document.getElementById('numero').value);
+            const resultado = comprobarParImpar(numero);
+            document.getElementById('resultadoParImpar').textContent = resultado;
+        });
+
+        document.getElementById('btnSuperficie').addEventListener('click', function () {
+            const base = Number(document.getElementById('base').value);
+            const altura = Number(document.getElementById('altura').value);
+            if (base <= 0 || altura <= 0) {
+                document.getElementById('resultadoSuperficie').textContent = 'Introduce valores positivos para base y altura.';
+                return;
+            }
+            document.getElementById('resultadoSuperficie').textContent = calcularSuperficieRectangulo(base, altura);
+            dibujarRectangulo(base, altura);
+        });
+    </script>
+</body>
+
+</html>

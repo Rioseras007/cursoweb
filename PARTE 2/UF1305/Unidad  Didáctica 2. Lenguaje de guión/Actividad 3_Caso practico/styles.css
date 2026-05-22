@@ -1,0 +1,354 @@
+@font-face {
+    font-family: 'dahot.digital-7 (italic)';
+    src: url('https://static.wfonts.com/data/2014/06/03/digital-7/dahot.digital-7 (italic).ttf') format('ttf');
+    font-display: swap;
+}
+
+#preview-render {
+    font-family: 'dahot.digital-7 (italic)', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-size: 32px;
+    color: #373c44;
+}
+
+body {
+    background: black;
+    color: #00ff99;
+}
+
+h1 {
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 3px;
+}
+
+.reloj {
+    font-family: 'dahot.digital-7 (italic)';
+    font-size: 70px;
+    color: #7CFF00;
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-family: 'Orbitron', sans-serif;
+}
+
+/* Fondo general */
+body {
+    margin: 0;
+    padding: 40px;
+    background: #d6d6d6;
+    font-family: 'orb', sans-serif;
+    background-image: url('fondo.jpg');
+}
+
+/* Hoja A4 */
+.pagina-a4 {
+    width: 210mm;
+    min-height: 297mm;
+    background: white;
+    margin: auto;
+    padding: 20mm;
+    box-sizing: border-box;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+}
+
+/* Cabecera */
+.cabecera {
+    text-align: center;
+    border-bottom: 3px solid #222;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, rgba(0,204,170,0.05), rgba(255,255,255,0));
+    padding: 25px 20px;
+    border-radius: 8px 8px 0 0;
+}
+
+.cabecera h1 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    font-family: 'Playwrite DE SAS', cursive;
+    color: #1a1a2e;
+    letter-spacing: 1px;
+}
+
+.cabecera p {
+    margin-top: 5px;
+    margin-bottom: 2px;
+    color: #555;
+    font-family: 'Playwrite DE SAS', cursive;
+    font-size: 14px;
+}
+
+/* Contenido */
+.contenido {
+    line-height: 1.7;
+    color: #222;
+}
+
+.contenido h2 {
+    border-left: 5px solid #444;
+    padding-left: 10px;
+    margin-top: 30px;
+}
+
+.datos {
+    border-left: none;
+    padding-left: 0;
+    font-size: 1.8rem;
+    color: #cf4646;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Pie */
+.pie {
+    margin-top: 40px;
+    border-top: 1px solid #999;
+    padding-top: 10px;
+    text-align: center;
+    font-size: 12px;
+    color: #777;
+}
+
+/* Ajuste para imprimir */
+@media print {
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .pagina-a4 {
+        box-shadow: none;
+        margin: 0;
+        width: 100%;
+        min-height: auto;
+    }
+
+    .datos {
+        border-left: none;
+        padding-left: 0;
+        font-size: 14px;
+        color: #cf4646;
+        font-weight: bold;
+        font-family: 'Courier New', Courier, monospace;
+        padding: 60px 0;
+        margin-bottom: 60px;
+    }
+}
+
+/* =========================
+   BOTÓN TIME STYLE
+   ========================= */
+
+.time {
+    background: linear-gradient(145deg, #111, #2a2a2a);
+    color: #00ffcc;
+    border: 2px solid #00ffcc;
+    padding: 14px 28px;
+    font-size: 18px;
+    font-family: 'Digital-7', monospace;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 255, 200, 0.3);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+/* New visual class for question list items */
+.preguntas li {
+    background: rgba(0,255,200,0.1);
+    padding: 10px 15px;
+    margin-bottom: 8px;
+    border-left: 4px solid #00ffcc;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+.preguntas li:hover {
+    background: rgba(0,255,200,0.2);
+}
+
+/* Formulario de respuestas */
+.formulario-respuestas label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 14px;
+    color: #444;
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 1px;
+}
+
+.formulario-respuestas textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 5px;
+    border: 2px solid #ccc;
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    color: #222;
+    background: #fafafa;
+    resize: vertical;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formulario-respuestas textarea:focus {
+    outline: none;
+    border-color: #00ccaa;
+    box-shadow: 0 0 8px rgba(0, 204, 170, 0.4);
+    background: #fff;
+}
+
+.formulario-respuestas textarea::placeholder {
+    color: #aaa;
+    font-style: italic;
+}
+
+.preguntas li p {
+    margin: 0 0 5px 0;
+    font-weight: 500;
+}
+
+/* Mision Section - Hidden by default */
+.mision {
+    display: none; 
+    margin-top: 30px;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+    text-align: center;
+    border: 1px dashed #00ffcc;
+}
+
+.mision h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #1a1a2e;
+    margin-bottom: 15px;
+}
+
+audio {
+    width: 100%;
+    max-width: 400px;
+    filter: sepia(20%) saturate(70%) hue-rotate(100deg);
+}
+
+
+
+/* =========================
+   HOVER
+   ========================= */
+
+.time:hover {
+    background: #00ffcc;
+    color: #111;
+    transform: scale(1.05);
+    box-shadow: 0 0 20px rgba(0, 255, 200, 0.7);
+}
+
+/* =========================
+   ACTIVE (CLICK)
+   ========================= */
+
+.time:active {
+    transform: scale(0.96);
+    box-shadow: 0 0 5px rgba(0, 255, 200, 0.5);
+}
+
+/* =========================
+   FOCUS
+   ========================= */
+
+.time:focus {
+    outline: none;
+    border-color: #ffffff;
+    box-shadow: 0 0 15px #ffffff;
+}
+
+/* =========================
+   DISABLED
+   ========================= */
+
+.time:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    background: #444;
+    color: #999;
+    border-color: #666;
+    box-shadow: none;
+}
+
+/* =========================
+   BEFORE EFFECT
+   ========================= */
+
+.time::before {
+    content: "◷ ";
+}
+
+/* =========================
+   AFTER EFFECT
+   ========================= */
+
+.time::after {
+    content: " ◴";
+}
+
+/* =========================
+   ANIMACIÓN OPCIONAL
+   ========================= */
+
+.time.flash {
+    animation: flashTime 1s infinite alternate;
+}
+
+@keyframes flashTime {
+    from {
+        box-shadow: 0 0 5px #00ffcc;
+    }
+
+    to {
+        box-shadow: 0 0 25px #00ffcc;
+    }
+}
+
+/* =========================
+   TAMAÑOS
+   ========================= */
+
+.time.small {
+    font-size: 12px;
+    padding: 8px 16px;
+}
+
+.time.large {
+    font-size: 24px;
+    padding: 18px 36px;
+}
+
+/* =========================
+   COLORES EXTRA
+   ========================= */
+
+.time.red {
+    color: #ff4d4d;
+    border-color: #ff4d4d;
+}
+
+.time.red:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+.time.blue {
+    color: #66ccff;
+    border-color: #66ccff;
+}
+
+.time.blue:hover {
+    background: #66ccff;
+    color: #111;
+}

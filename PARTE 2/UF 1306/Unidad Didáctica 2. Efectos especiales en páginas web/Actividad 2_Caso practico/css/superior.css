@@ -1,0 +1,68 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.superior-container {
+    background-color: pink !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    overflow: hidden;
+    position: relative;
+    text-align: center;
+  
+    object-fit: cover;
+ 
+    z-index: -1;
+
+    
+}
+
+/* la imagen no era un requisito pero tenia que estar donde esta */
+.banner-image {
+    width: 80%;
+    height: 80%;
+    max-height: 280px;
+    object-fit: cover;
+    border: 3px solid #ADD8E6;
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(38, 9, 183, 0.6);
+    z-index: -1;
+    opacity: 0.9;
+    margin: auto;
+    margin-top: 5px;
+
+}
+
+   
+
+
+
+
+
+/* el enunciado exige que sea rosa el fondo del frame superior que le sienta muy mal   */
+body{
+
+    background-color: pink !important;
+}
+
+
+
+/* Incluir en el marco superior un texto de encabezado de página con fuente Arial, y Verdana como segunda opción, de tamaño 30px y texto centrado. */
+
+
+.facil {
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 30px;
+    text-align: center;
+    color: azure;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+}

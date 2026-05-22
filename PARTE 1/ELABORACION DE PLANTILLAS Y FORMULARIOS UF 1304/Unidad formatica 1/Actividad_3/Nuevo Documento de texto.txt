@@ -1,0 +1,29 @@
+FORMULARIO DE NUEVO USUARIO
+
+
+
+
+
+ENUNCIADO (DESCRIPCIÓN)
+
+
+Los formularios web son una forma muy común de establecer contacto e interactuar con los visitantes de un sitio web. Es importante conocerlos y utilizarlos adecuadamente.
+
+
+PREGUNTAS/ACTIVIDADES A REALIZAR
+
+Pregunta 1. Desarrolle una página web que contenga un formulario de registro de un nuevo usuario.
+
+a. Tendrá un campo de usuario que será de tipo email y obligatorio. Este campo tendrá el foco al cargar la página.
+
+b. Tendrá un campo para establecer un password, será obligatorio y de tamaño máximo de 8 caracteres.
+
+c. Tendrá un apartado Foto para subir un archivo de imagen.
+
+d. Incluirá un campo oculto con el valor “amigo”.
+
+e. Tendrá un botón para enviar y otro para borrar todo el formulario.
+
+f. Habrá un botón que está deshabilitado con el texto “Botón fuera de servicio”.
+
+g. Dados los siguientes atributos: onclick, onkeydown, onmousemove. ¿Qué tienen en común? ¿En qué consiste cada uno de ellos?

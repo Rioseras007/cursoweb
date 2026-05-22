@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Actividad 2_Caso práctico </title>
+
+    <style>
+        /* Fondo general */
+        body {
+            margin: 0;
+            padding: 40px;
+            background: #d6d6d6;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Hoja A4 */
+        .pagina-a4 {
+            width: 210mm;
+            min-height: 297mm;
+            background: white;
+            margin: auto;
+            padding: 20mm;
+            box-sizing: border-box;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Cabecera */
+        .cabecera {
+            border-bottom: 3px solid #222;
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+        }
+
+        .cabecera h1 {
+            margin: 0;
+            font-size: 32px;
+        }
+
+        .cabecera p {
+            margin-top: 5px;
+            color: #666;
+            font-size: 1.25rem;
+            margin-bottom: 20px;
+            margin-left: 10px;
+            margin-right: 10px;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        /* Contenido */
+        .contenido {
+            line-height: 1.7;
+            color: #222;
+        }
+
+        .contenido h2 {
+            border-left: 5px solid #444;
+            padding-left: 10px;
+            margin-top: 30px;
+        }
+
+        /* Pie */
+        .pie {
+            margin-top: 40px;
+            border-top: 1px solid #999;
+            padding-top: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        h2 {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 24px;
+            color: #333;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        h1{
+            font-size: 28px;
+            color: #222;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            align-items: center;
+            text-align: center;
+        }
+
+        h3{
+            font-size: 20px;
+            color: #444;
+            font-weight: bold;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        li{
+            font-size: 0.8rem;
+            color: #1e37f0;
+            margin-bottom: 10px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align:left;
+            text-decoration:none;
+
+        
+        }
+          
+
+
+        /* Estilos de botón personalizado */
+        .btn-primary {
+            transition: transform 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #be0d13;
+            border-color: #004a99;
+            transform: translateY(-1px);
+            box-shadow: 0 6px 14px rgba(0, 86, 179, 0.2);
+        }
+
+        .btn-primary:active,
+        .btn-primary:focus {
+            background-color: #5199f1;
+            border-color: #0c52a8;
+            transform: translateY(1px);
+            box-shadow: 0 4px 8px rgba(54, 203, 46, 0.6);
+            outline: yes;
+        }
+
+        .form-control {
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+        }
+
+        .form-control:hover {
+            background-color: #f8f9fa;
+            border-color: #80bdff;
+        }
+
+        .form-control:focus {
+            background-color: #ffffff;
+            border-color: #5a99dd;
+            box-shadow: 0 0 0 0.2rem rgba(90, 153, 221, 0.25);
+        }
+
+        .registro_alumnos {
+            background-color: #fff9c4;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #f0e68c;
+        }
+
+        /* Ajuste para imprimir */
+        @media print {
+
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .pagina-a4 {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: auto;
+            }
+
+            #registro_alumnos {
+                border-left: none;
+                padding-left: 0;
+                background-color: green;
+                width: 100%;
+            }
+
+       
+
+             .pie {
+                display: none;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="pagina-a4">
+
+        <div class="cabecera">
+            <h1>Actividad 2_Caso práctico</h1>
+            <p>Programación con lenguajes de guión en páginas web (UF1305) </p>
+            <p>Integración de componentes software en páginas web (MF0951_2) </p>
+            <p>Unidad Didáctica 1. Metodología de la programación </p>
+
+        </div>
+
+        <hr>
+        <div class="contenido">
+
+            <h2>Requisitos Ejercicio</h2>
+
+
+
+            <ul>
+                <li>a. Defina un objeto alumno, que tenga de propiedades: nombre, edad, y número de matrícula. Al
+                    constructor se le pasarán 2 parámetros: nombre y edad.</li>
+                <li>b. Declare un método “matricular” que permita asignar un número de matrícula a un alumno.</li>
+                <li>c. Declare un método “imprimir” que imprima por pantalla los datos de un alumno.</li>
+                <li>d. Integre el script creado en una página html.</li>
+                <li>e. Cree un objeto alumno de nombre “Juan Fernández”, de 15 años..</li>
+                <li>f. Asigne al alumno “Juan Fernández” el número de matrícula 27001.</li>
+                <li>g. Muestre por pantalla, en la página web, los datos del alumno usando el método “imprimir”. Realice
+                    una captura de pantalla.</li>
+                <li>h. Cree un nuevo alumno de nombre “María Jiménez” y 17 años, asígnele el número de matrícula 34002.
+                </li>
+                <li>i. Muestre por pantalla los datos de los 2 alumnos creados. Realice una captura de pantalla.</li>
+                <li>j. Compruebe que los datos se muestran bien en los navegadores Chrome, Internet Explorer y Firefox.
+                </li>
+                <li>k. Modifique el código para que haya un error, por ejemplo cambiar en nombre en la llamada al método
+                    “imprimir()” por “imprimiendo()”.</li>
+            </ul>
+
+   
+
+            <h2>Contenido (Registro de Alumnos)</h2>
+
+            <div class="registro_alumnos" id="registro_alumnos">
+                <hr class="my-4">
+                <form id="registroForm">
+                    <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="Icono de alumno" class="mb-3"
+                        width="100">
+                    <div class="form-group row">
+                        <label for="nombre_alumno" class="col-4 col-form-label">Nombre:</label>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-address-book"></i>
+                                    </div>
+                                </div>
+                                <input id="nombre_alumno" name="nombre_alumno" placeholder="Nombre alumno" type="text"
+                                    class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="apellido_alumno" class="col-4 col-form-label">Apellido:</label>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-address-book-o"></i>
+                                    </div>
+                                </div>
+                                <input id="apellido_alumno" name="apellido_alumno" placeholder="Apellido Alumno"
+                                    type="text" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="edad_alumno" class="col-4 col-form-label">Edad:</label>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-birthday-cake"></i>
+                                    </div>
+                                </div>
+                                <input id="edad_alumno" name="edad_alumno" placeholder="Edad Alumno" type="number"
+                                    class="form-control" required="required" min="0" max="120">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="num_matricula" class="col-4 col-form-label">Nº Matricula:</label>
+                        <div class="col-8">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <div class="input-group-text">
+                                        <i class="fa fa-dedent"></i>
+                                    </div>
+                                </div>
+                                <input id="num_matricula" name="num_matricula" placeholder="Número de matricula"
+                                    type="number" class="form-control" required="required">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="offset-4 col-8">
+                            <button name="submit" type="submit" class="btn btn-primary">Matricular Alumno</button>
+                        </div>
+                    </div>
+                </form>
+
+                <div id="alumnosSalida" class="mt-4"></div>
+            </div>
+
+            <script>
+                // a. Definir el objeto alumno
+                function Alumno(nombre, edad) {
+                    this.nombre = nombre;
+                    this.edad = edad;
+                    this.matricula = null;
+
+                    // b. Método para asignar número de matrícula
+                    this.matricular = function (numero) {
+                        this.matricula = numero;
+                    };
+
+                    // c. Método para imprimir los datos del alumno
+                    this.imprimir = function () {
+                        return `Nombre: ${this.nombre}, Edad: ${this.edad}, Matrícula: ${this.matricula}`;
+                    };
+                }
+
+                const alumnos = [];
+
+                // Alumnos por defecto
+                const juan = new Alumno('Juan Fernández', 15);
+                juan.matricular(27001);
+                alumnos.push(juan);
+
+               
+
+                function imprimir() {
+                    const salida = document.getElementById('alumnosSalida');
+                    if (alumnos.length === 0) {
+                        salida.innerHTML = '<p class="text-muted">No hay alumnos matriculados todavía.</p>';
+                        return;
+                    }
+
+                    salida.innerHTML = '<h3>Alumnos matriculados</h3>' + alumnos.map(function (alumno) {
+                        return `<p>${alumno.imprimir()}</p>`;
+                    }).join('');
+                }
+
+                function crearAlumnoDesdeFormulario(event) {
+                    event.preventDefault();
+
+                    const nombre = document.getElementById('nombre_alumno').value.trim();
+                    const apellido = document.getElementById('apellido_alumno').value.trim();
+                    const matricula = document.getElementById('num_matricula').value.trim();
+                    const edad = document.getElementById('edad_alumno').value.trim();
+
+                    if (!nombre || !apellido || !matricula || !edad) {
+                        alert('Por favor, rellene todos los campos.');
+                        return;
+                    }
+
+                    const edadNumero = Number(edad);
+                    if (Number.isNaN(edadNumero) || edadNumero < 0 || edadNumero > 120) {
+                        alert('Por favor, introduzca una edad válida entre 0 y 120.');
+                        return;
+                    }
+
+                    const alumno = new Alumno(`${nombre} ${apellido}`, edadNumero);
+                    alumno.matricular(matricula);
+                    alumnos.push(alumno);
+
+                    imprimir();
+                    document.getElementById('registroForm').reset();
+                }
+
+                document.getElementById('registroForm').addEventListener('submit', crearAlumnoDesdeFormulario);
+                imprimir();
+            </script>
+
+            <div class="pie">
+                ©️ Alfonso Rubio Rioseras -2026
+            </div>
+
+        </div>
+
+</body>
+
+</html>

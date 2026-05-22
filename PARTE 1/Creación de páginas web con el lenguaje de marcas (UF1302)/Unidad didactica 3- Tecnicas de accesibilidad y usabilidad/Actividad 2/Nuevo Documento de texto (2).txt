@@ -1,0 +1,10 @@
+1. Se desea construir un nuevo sitio web que es una tienda de venta de productos. Determine la arquitectura de la información del sitio web definiendo las categorías necesarias y asignando los productos a cada una de ellas. Represente un mapa del sitio web si se requiere que tenga las siguientes páginas:
+a. Página principal.
+
+b. Página que hable sobre la empresa.
+
+c. Página de contacto.
+
+d. Blog, donde se clasifican los artículos por años, empezando desde el 2012.
+
+e. Tienda donde se venden distintos productos por categorías, defina las categorías necesarias para los siguientes productos: Ordenadores, frigoríficos,libros de cocina, monitores, novelas, impresoras, cómics, tablets, microondas, tostadoras, televisores, freidoras.

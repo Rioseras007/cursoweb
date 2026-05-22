@@ -1,0 +1,175 @@
+/*
+Reset CSS v1.1/03/2009
+By Objetivo Creativo
+http://www.objetivocreativo.com/
+*/
+* {
+margin: 0;
+padding: 0;
+border: none;
+outline: none;
+background: transparent;
+font: 1em/1.2 Helvetica, Arial, sans-serif;
+text-transform: none;
+word-spacing: normal;
+letter-spacing: normal;
+direction: ltr;
+text-align: left;
+text-decoration: none;
+text-indent: 0;
+unicode-bidi: normal;
+position: static;
+top: auto;
+right: auto;
+bottom: auto;
+left: auto;
+clear: none;
+clip: auto;
+display: inline;
+overflow: scroll;
+visibility: visible;
+white-space: normal;
+z-index: auto;
+cursor: auto;
+vertical-align: baseline;
+}
+html, address,
+blockquote,
+body, dd, div,
+dl, dt, fieldset, form,
+frame, frameset,
+h1, h2, h3, h4,
+h5, h6, noframes,
+ol, p, ul, center,
+dir, hr, menu, pre { display: block; }
+li                 { display: list-item;}
+head               { display: none;}
+table              { display: table;}
+tr                 { display: table-row;}
+thead              { display: table-header-group;}
+tbody              { display: table-row-group;}
+tfoot              { display: table-footer-group;}
+col                { display: table-column;}
+colgroup           { display: table-column-group;}
+td, th             { display: table-cell;}
+caption            { display: table-caption;}
+html, body         { background: white; color: black;}
+a                  { color: blue;}
+th                 { font-weight: bolder; text-align: center;}
+caption            { text-align: center;}
+body               { margin: 0.5em; line-height: 1.12;}
+h1                 { font-size: 2em; margin: .67em 0;}
+h2                 { font-size: 1.5em; margin: .75em 0;}
+h3                 { font-size: 1.17em; margin: .83em 0;}
+h4, p,
+blockquote, ul,
+fieldset, form,
+ol, dl, dir,
+cite, q, address,
+menu, pre          { margin: 1.12em 0;}
+h5                 { font-size: .83em; margin: 1.5em 0;}
+h6                 { font-size: .75em; margin: 1.67em 0;}
+h1, h2, h3, h4,
+h5, h6, b,
+em, dt, strong     { font-weight: bolder;}
+blockquote         { margin-left: 2.5em; margin-right: 2.5em;}
+dd, blockquote,
+cite, q            { text-indent: 1em;}
+i, cite, em,
+var, address       { font-style: italic;}
+pre, tt, code,
+kbd, samp          { font-family: "Courier New", Courier, monospace;}
+pre                { white-space: pre;}
+button, textarea,
+input, object,
+select             { display: inline-block;}
+big                { font-size: 1.17em;}
+small, sub, sup    { font-size: .83em;}
+sub                { vertical-align: sub;}
+sup                { vertical-align: super;}
+table              { border-collapse: collapse; border-spacing: 0.13em; caption-side: top; empty-cells: show; table-layout: auto;}
+thead, tbody,
+tfoot              { vertical-align: middle;}
+td, th             { vertical-align: inherit;}
+s, strike, del     { text-decoration: line-through;}
+hr                 { border: 0.06em inset;}
+ol, ul, dir,
+menu, dd           { margin-left: 2.5em;}
+ul, ol             { list-style-position: outside;}
+ol                 { list-style-type: decimal;}
+ul                 { list-style-type: disc;}
+ol ul, ul ol,
+ul ul, ol ol       { margin-top: 0; margin-bottom: 0;}
+u, ins             { text-decoration: underline;}
+br:before          { content: "\A";}
+:before, :after    { white-space: pre-line;}
+center             { text-align: center;}
+abbr, acronym      { font-variant: small-caps; letter-spacing: 0.1em;}
+:link, :visited    { text-decoration: underline;}
+a img, :link img,
+:visited img       { border: none;}
+:focus             { border: none; outline: thin dotted invert;}
+blockquote, cite, q { quotes: "\00AB" "\00BB" "\0022" "\0022"; }
+blockquote:lang(en), cite:lang(en), q:lang(en) { quotes: "\0022" "\0022" "\0027" "\0027";}
+blockquote:lang(es), cite:lang(es), q:lang(es) { quotes: "\00AB" "\00BB" "\0022" "\0022";}
+blockquote:before, cite:before, q:before { content: open-quote;}
+blockquote:after, cite:after, q:after { content: close-quote;}
+BDO[DIR="ltr"]     { direction: ltr; unicode-bidi: bidi-override;}
+BDO[DIR="rtl"]     { direction: rtl; unicode-bidi: bidi-override;}
+*[DIR="ltr"]       { direction: ltr; unicode-bidi: embed;}
+*[DIR="rtl"]       { direction: rtl; unicode-bidi: embed;}
+@media print {
+* {
+font-family: "Times New Roman", Times, serif;
+orphans: 2;
+widows: 2;
+page-break-before: auto;
+page-break-after: auto;
+page-break-inside: auto;
+}
+a                { color: black;}
+h1               { page-break-before: always;}
+h1, h2, h3,
+h4, h5, h6       { font-family: Helvetica, Arial, sans-serif; page-break-after: avoid;}
+ul, ol, dl       { page-break-before: avoid;}
+}
+@media aural {
+* {
+volume: medium;
+speech-rate: medium;
+voice-family: female;
+pause: 0ms;
+pitch: medium;
+pitch-range: 50;
+stress: 50;
+richness: 50;
+speak-punctuation: none;
+speak-numeral: continuous;
+speak-header: once;
+}
+h1, h2, h3,
+h4, h5, h6         { voice-family: paul, male; stress: 20; richness: 90;}
+h1                 { pitch: x-low; pitch-range: 90;}
+h2                 { pitch: x-low; pitch-range: 89 }
+h3                 { pitch: low; pitch-range: 70;}
+h4                 { pitch: medium; pitch-range: 60;}
+h5                 { pitch: medium; pitch-range: 50;}
+h6                 { pitch: medium; pitch-range: 40;}
+li, dt, dd         { pitch: medium; richness: 60;}
+dt                 { stress: 8 }
+pre, code, tt      { pitch: medium; pitch-range: 0; stress: 0; richness: 80;}
+em                 { pitch: medium; pitch-range: 60; stress: 60; richness: 50;}
+strong             { pitch: medium; pitch-range: 60; stress: 90; richness: 90;}
+dfn                { pitch: high; pitch-range: 60; stress: 60;}
+s, strike          { richness: 0;}
+i                  { pitch: medium; pitch-range: 60; stress: 60; richness: 50;}
+b                  { pitch: medium; pitch-range: 60; stress: 90; richness: 90;}
+u                  { richness: 0;}
+a:link             { voice-family: harry, male;}
+a:visited          { voice-family: betty, female;}
+a:active           { voice-family: betty, female; pitch-range: 80; pitch: x-high;}
+}
+@media braille {
+h1, h2, h3,
+h4, h5, h6         { text-align: right; background: white; color: black;}
+}

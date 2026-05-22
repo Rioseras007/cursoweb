@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <!-- Título de la página y metadatos básicos -->
+    <title>Actividad 2: Trabajo con imágenes</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alfonso Rubio Rioseras">
+
+    <style>
+        /* Estilos generales para el posicionamiento de las imágenes */
+
+        /* Contenedor de la imagen original */
+        .original {
+            position: absolute;
+            top: 450px;
+            left: 100px;
+        }
+
+        /* Contenedor de la imagen reducida */
+        .reducida {
+            position: absolute;
+            top: 1350px;
+            left: 100px;
+        }
+
+        /* Contenedor de la imagen girada */
+        .girada {
+            position: absolute;
+            top: 1350px;
+            left: 400px;
+        }
+
+        /* Estilo para los párrafos de etiquetas de imagen */
+        p {
+            font-size: 32px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            align-items: center;
+        }
+
+        /* Estilo para el mensaje de disclaimer en la parte inferior */
+        .mensaje {
+            position: absolute;
+            top: 1650px;
+            left: 100px;
+            font-size: 12px;
+            font-style: italic;
+        }
+
+        /* Estilo para el encabezado principal de la página */
+        h1 {
+            font-size: 36px;
+            font-weight: bold;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        /* Estilos para el contenedor de preguntas en formato lista */
+        .preguntas {
+            margin: 20px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            border-left: 5px solid #333;
+            font-family: Arial, sans-serif;
+        }
+
+        .preguntas ol {
+            padding-left: 20px;
+        }
+
+        .preguntas li {
+            margin-bottom: 10px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="preguntas">
+        <h1>PREGUNTAS/ACTIVIDADES A REALIZAR</h1>
+        <ol>
+            <li>Cree una página web donde se muestren las 3 imágenes:
+                <ol type="a">
+                    <li>La imagen original, la imagen reducida a 100 px de ancho y la imagen reducida y girada 45
+                        grados.</li>
+                    <li>Documente la página web creada utilizando comentarios que no sean visibles para el usuario
+                        final.</li>
+                    <li>Compruebe el funcionamiento de la página web, en al menos 3 navegadores, y realice una captura
+                        de pantalla.
+                        El resultado debe ser el mismo, si no es así consulte las especificaciones de los navegadores y
+                        arregle los
+                        posibles errores.</li>
+                </ol>
+            </li>
+        </ol>
+    </div>
+
+    <!-- Encabezado principal -->
+    <h1>Actividad 2: Trabajo con imágenes</h1>
+
+    <!-- Sección de la Imagen Original -->
+    <div class="original">
+        <p>Imagen original</p>
+        <img src="img/original.jpg" alt="Imagen original" width="1280" height="720">
+    </div>
+
+    <!-- Sección de la Imagen Reducida -->
+    <div class="reducida">
+        <p>Imagen reducida</p>
+        <img src="img/reducida.jpg" alt="Imagen reducida" width="100" height="56">
+    </div>
+
+    <!-- Sección de la Imagen Girada 45 grados -->
+    <div class="girada">
+        <p>Imagen girada 45 grados</p>
+        <img src="img/girara45grados.jpg" alt="Imagen girada 45 grados" width="112" height="112">
+    </div>
+
+    <!-- Aviso de disclaimer -->
+    <div class="mensaje">
+        <p>Disclaimer: Esta es una actividad de práctica para trabajar con imágenes en HTML y CSS.
+            Ninguna de las personas o lugares representados en las imágenes son reales, y cualquier
+            similitud con personas o lugares reales es pura coincidencia.
+        </p>
+    </div>
+
+</body>
+
+</html>

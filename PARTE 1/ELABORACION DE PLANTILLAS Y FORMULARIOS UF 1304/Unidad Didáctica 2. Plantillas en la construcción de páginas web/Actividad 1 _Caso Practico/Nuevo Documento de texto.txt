@@ -1,0 +1,13 @@
+PREGUNTAS/ACTIVIDADES A REALIZAR
+
+
+
+Pregunta 1. Desarrolle una plantilla web que se utilizará para realizar exámenes. Consistirá en un formulario con 5 preguntas en total. Las preguntas tendrán 3 opciones posibles para elegir. Las primeras 4 preguntas serán de tipo test donde sólo existirá una respuesta correcta y 1 última pregunta con respuestas múltiples.
+
+La plantilla tendrá indicadores de inicio y fin de la plantilla.
+El formulario enviará los datos a una página de destino que habrá que especificar. Indicar que este valor es modificable.
+El formulario tendrá 2 zonas, cada una de las zonas agrupará los campos del formulario. La primera zona tendrá la leyenda "Datos del alumno” y contendrá un campo para que el usuario introduzca su nombre. Esta parte de la plantilla será una parte fija.
+Crear una segunda zona que tendrá la leyenda “Preguntas de examen” y agrupará las 5 preguntas con sus correspondientes opciones.
+Las primeras cuatro preguntas son de opción múltiple con una sola respuesta posible.
+La última pregunta es de respuesta múltiple permitiendo marcar varias respuestas correctas.
+Indica cuáles son los elementos esenciales que forman la estructura de una plantilla.

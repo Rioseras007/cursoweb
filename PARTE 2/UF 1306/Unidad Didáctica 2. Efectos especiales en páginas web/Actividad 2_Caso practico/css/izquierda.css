@@ -1,0 +1,21 @@
+body{
+    margin:0;
+    padding:20px;
+    background-color:gray !important;
+   
+   
+}
+
+/*un párrafo de texto con fuente de letra Arial o verdana, tamaño 
+20px, texto justificado y fondo  */
+
+.parafo{
+       
+          font-family: Arial, Helvetica, sans-serif !important;
+          font-size: 20px !important;
+          text-align: justify !important;
+        
+        
+
+}
+

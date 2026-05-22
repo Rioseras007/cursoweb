@@ -1,0 +1,51 @@
+<style>
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: white;
+    margin: 50px;
+    padding: 0;
+}
+.roja{
+    color: red;
+    background-color: darkgray;
+}   
+.amarilla {
+    color: blue;
+    background-color: yellow;
+}   
+.blanca {
+    color: black;
+    background-color: white;
+}
+
+td {
+  border-width: 2px;       /* Grosor del borde */
+  border-style: solid;     /* Tipo de borde: solid, dashed, dotted, etc. */
+  border-color: black;     /* Color del borde */
+}
+table {
+        border-collapse: collapse; /* Une los bordes de las celdas */
+        border-width: 3px;         /* Grosor del borde */
+        border-style: solid;       /* Tipo de borde (solid, dashed, dotted, etc.) */
+        border-color: black;        /* Color del borde */
+        margin-left: 100px;
+    }
+
+h1{
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-left: 100px;;
+
+}
+
+
+
+
+
+
+
+
+
+
+</style>    

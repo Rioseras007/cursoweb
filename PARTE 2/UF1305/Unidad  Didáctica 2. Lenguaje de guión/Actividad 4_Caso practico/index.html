@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
+    <meta name="author" content="Alfonso Rubio Rioseras">
+    <title>Actividad 4_Caso práctico</title>
+    <link rel="stylesheet" href="styles.css">
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function actualizarHora() {
+                const ahora = new Date();
+                let horas = ahora.getHours();
+                let minutos = ahora.getMinutes();
+                let segundos = ahora.getSeconds();
+
+                // Añadir cero delante si es menor de 10
+                horas = String(horas).padStart(2, '0');
+                minutos = String(minutos).padStart(2, '0');
+                segundos = String(segundos).padStart(2, '0');
+
+                const horaCompleta = `${horas}:${minutos}:${segundos}`;
+                document.getElementById("clock").textContent = horaCompleta;
+            }
+            // Ejecutar inmediatamente
+            actualizarHora();
+            mensajeBienvenida();
+            // Actualizar cada segundo
+            setInterval(actualizarHora, 1000);
+        });
+    </script>
+</head>
+
+<body>
+    <div class="pagina-a4">
+        <div class="cabecera">
+            <h1>Actividad 4_Caso práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+            <p>Unidad Didáctica 2. Lenguaje de guión</p>
+        </div>
+        <div class="contenido">
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+            <p id="pregunta-1">Pregunta 1. Elabora una página web donde se incluya código JavaScript que pedirá datos de
+                entrada al
+                usuario y devolverá una salida con el resultado de los datos procesados.</p>
+            <form id="formulario-respuestas" class="formulario-respuestas">
+                <ul class="preguntas">
+                    <li>
+                        <p>a.Realice una descripción de lo que son scripts inmediatos, diferidos e híbridos.</p>
+                        <label for="respuesta-a">Respuesta:</label>
+                        <textarea id="respuesta-a" name="respuesta-a" rows="18">SCRIPTS EN DESARROLLO WEB:
+Los scripts son programas en JavaScript que añaden interactividad y funciones dinámicas.
+
+1. SCRIPTS INMEDIATOS:
+   - Se ejecutan cuando el navegador los encuentra al cargar el HTML
+   - Pueden ralentizar la carga de la página
+
+2. SCRIPTS DIFERIDOS:
+   - Utilizan el atributo "defer"
+   - Permite que el navegador siga cargando contenido mientras descarga el script
+   - Se ejecutan solo cuando el documento ya está completamente cargado
+
+3. SCRIPTS HÍBRIDOS:
+   - Combinan distintas técnicas de carga y ejecución
+   - Mejoran el rendimiento y la experiencia del usuario
+   - Se utiliza cada tipo según las necesidades de la aplicación web</textarea>
+                    </li>
+                    <li>
+                        <p>b. Al cargar la página se mostrará un mensaje de alerta mostrando un mensaje de bienvenida,
+                            “Bienvenido a la página que realiza sumas”..</p>
+                        <label for="respuesta-b">Respuesta:</label>
+                        <textarea id="respuesta-b" name="respuesta-b"
+                            rows="6">Se muestra un mensaje de bienvenida al cargar la página.</textarea>
+                    </li>
+                    <li>
+                        <p>c. Se crearán 2 botones. Uno para introducir el primer número y otro para el segundo. Al
+                            pulsar cualquiera de los 2 botones se pedirá al usuario que introduzca un número para
+                            realizar la suma.</p>
+                        <label for="respuesta-c">Respuesta:</label>
+                        <textarea id="respuesta-c" name="respuesta-c"
+                            rows="10">Se ha creado un formulario con dos input de tipo número para introducir los valores a evaluar.</textarea>
+                    </li>
+                    <li>
+                        <p>d.Se pondrá otro botón para mostrar el resultado de la suma. Al pulsar este botón se
+                            calculará la suma de los datos introducidos y se mostrará el resultado por pantalla.</p>
+                        <label for="respuesta-d">Respuesta:</label>
+                        <textarea id="respuesta-d" name="respuesta-d"
+                            rows="10">Los resultados de las operaciones se muestran en la pantalla. Se muestran en los inputs correspondientes a cada operación. Y tambien dentro de la pantalla de la imagen de la calculadora en color verde</textarea>
+                    </li>
+                    <li>
+                        <p>e. Describe las funcionalidades adicionales implementadas en la calculadora más allá de la
+                            suma.</p>
+                        <label for="respuesta-e">Respuesta:</label>
+                        <textarea id="respuesta-e" name="respuesta-e" rows="22">Se han implementado las siguientes funcionalidades adicionales:
+
+1. Resta: Calcula la diferencia entre dos números mediante la función realizarResta()
+2. Multiplicación: Multiplica dos números usando la función realizarMultiplicacion()
+3. Raíz cuadrada: Calcula la raíz cuadrada del primer número con la función realizarRaiz()
+4. Reloj digital: Muestra la hora actualizada cada segundo en formato HH:MM:SS
+5. Información de tiempo: Botones para mostrar hora de carga y hora actual
+6. Limpiar resultados: Botón para vaciar todos los campos de resultado
+7. Audio de fondo: Reproductor de música que se activa con la primera interacción del usuario
+
+TIPO DE SCRIPTS UTILIZADOS:
+- Son scripts HÍBRIDOS porque combinan técnicas de carga inmediata con ejecución diferida
+- Utilizan DOMContentLoaded para esperar a que el DOM esté completamente cargado
+- Se definen inmediatamente en el HTML pero se ejecutan después del evento DOMContentLoaded
+- Esto mejora el rendimiento evitando acceder a elementos que aún no existen en el DOM</textarea>
+                    </li>
+
+
+
+
+                </ul>
+            </form>
+            <script>
+                // Funciones para las preguntas a,b,c,d,e y funcionalidades adicionales
+                var fechaCarga = new Date();
+                function salir() {
+                    alert("Hasta la próxima visita aprediz de Pitagoras");
+                    setTimeout(function () {
+                        // window.close() no funciona en navegadores modernos si la ventana no fue abierta con window.open()
+                        // Alternativa: redirigir o limpiar la página
+                        window.location.href = 'https://salida.com/'; // O ir a una página específica
+                    }, 2000);
+                }
+                function mostrarHoraActual() {
+                    var horaActual = new Date();
+                    alert("Son las " + horaActual.getHours() + " horas y " + horaActual.getMinutes() + " minutos");
+                }
+                function mensajeBienvenida() {
+                    alert("Bienvenido a la página que realiza sumas");
+                }
+                function mostrarHoraCarga() {
+                    alert("La página web se ha cargado a las " + fechaCarga.getHours() + " horas y " + fechaCarga.getMinutes() + " minutos");
+                }
+                function obtenerNumeros() {
+                    var n1 = parseFloat(document.getElementById('num_1').value);
+                    var n2 = parseFloat(document.getElementById('num_2').value);
+                    return {
+                        n1: isNaN(n1) ? 0 : n1,
+                        n2: isNaN(n2) ? 0 : n2
+                    };
+                }
+
+                function realizarSuma() {
+                    var nums = obtenerNumeros();
+                    var resultado = nums.n1 + nums.n2;
+                    document.getElementById('suma').value = resultado;
+                    document.getElementById('screen').textContent = 'Resultado: ' + resultado;
+                }
+
+                function realizarResta() {
+                    var nums = obtenerNumeros();
+                    var resultado = nums.n1 - nums.n2;
+                    document.getElementById('resta').value = resultado;
+                    document.getElementById('screen').textContent = 'Resultado: ' + resultado;
+                }
+
+                function realizarMultiplicacion() {
+                    var nums = obtenerNumeros();
+                    var resultado = nums.n1 * nums.n2;
+                    document.getElementById('multiplicacion').value = resultado;
+                    document.getElementById('screen').textContent = 'Resultado: ' + resultado;
+                }
+
+                function realizarRaiz() {
+                    var n1 = parseFloat(document.getElementById('num_1').value);
+                    if (isNaN(n1)) {
+                        document.getElementById('raiz').value = '';
+                        document.getElementById('screen').textContent = 'Resultado: ';
+                        return;
+                    }
+                    if (n1 < 0) {
+                        document.getElementById('raiz').value = 'Valor negativo';
+                        document.getElementById('screen').textContent = 'Resultado: Valor negativo';
+                        return;
+                    }
+                    var resultado = Math.sqrt(n1).toFixed(6).replace(/\.0+$/, '');
+                    document.getElementById('raiz').value = resultado;
+                    document.getElementById('screen').textContent = 'Resultado: ' + resultado;
+                }
+
+                function limpiarResultados() {
+                    document.getElementById('suma').value = '';
+                    document.getElementById('resta').value = '';
+                    document.getElementById('multiplicacion').value = '';
+                    document.getElementById('raiz').value = '';
+                    document.getElementById('screen').textContent = 'Resultado: ';
+                    document.getElementById('num_1').value = '';
+                    document.getElementById('num_2').value = '';
+                }
+            </script>
+        </div>
+        <div class="resultados">
+            <h2>SISTEMA de CALCULO</h2>
+            <div class="reloj" style="display: flex; flex-direction: column; gap: 15px; align-items: center;">
+                <div class="time" id="clock">00:00:00</div>
+                <button class="time" onclick="mostrarHoraCarga()"
+                    style="padding: 12px 20px; margin: 10px; white-space: nowrap; width: 500px;">Mostrar hora de
+                    calculo</button>
+                <button class="time" onclick="mostrarHoraActual()"
+                    style="padding: 12px 20px; margin: 10px; white-space: nowrap; width: 500px;">¿Qué hora es?</button>
+                <button class="time" onclick="salir()"
+                    style="padding: 12px 20px; margin: 10px; white-space: nowrap; width: 500px;">Salir
+                    Calculadora</button>
+                <button class="time" onclick="limpiarResultados()"
+                    style="padding: 12px 20px; margin: 10px; white-space: nowrap; width: 500px;">Reset Valores</button>
+            </div>
+            <div class="seccion-calculo">
+                <form id="formulario-suma" onsubmit="return false;">
+                    <div class="inputs-externos">
+                        <div class="form-group" style="display: flex; gap: 20px;">
+                            <div style="flex: 1;">
+                                <label for="num_1" class="ingreso">PRIMER NÚMERO</label>
+                                <input id="num_1" name="num_1" placeholder="Ej: 10" type="number" class="form-control">
+                            </div>
+                            <div style="flex: 1;">
+                                <label for="num_2" class="ingreso">SEGUNDO NÚMERO</label>
+                                <input id="num_2" name="num_2" placeholder="Ej: 5" type="number" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+
+            </div>
+            <p class="instruccion">Pulsa el botón del cálculo que quieras realizar: sumar, restar,
+                multiplicar o raíz cuadrada.</p>
+
+            <div class="calculadora-container">
+                <img src="img/CALCULADORA.png" alt="Calculadora" width="400">
+                <!-- Pantalla de la calculadora -->
+                <label id="screen" class="screen-label">Resultado: </label>
+                <input id="suma" name="suma" readonly placeholder="Suma" type="text" class="pantalla-calc">
+                <input id="resta" name="resta" readonly placeholder="Resta" type="text" class="pantalla-calc">
+                <input id="multiplicacion" name="multiplicacion" readonly placeholder="Multiplicación" type="text"
+                    class="pantalla-calc">
+                <input id="raiz" name="raiz" readonly placeholder="Raíz cuadrada (num 1)" type="text"
+                    class="pantalla-calc">
+                <div class="botones-calculo">
+                    <button id="btn-sumar" type="button" class="boton-igual-invisible"
+                        onclick="realizarSuma()">Sumar</button>
+                    <button id="btn-restar" type="button" class="boton-igual-invisible"
+                        onclick="realizarResta()">Restar</button>
+                    <button id="btn-multiplicar" type="button" class="boton-igual-invisible"
+                        onclick="realizarMultiplicacion()">Multiplicar</button>
+                    <button id="btn-raiz" type="button" class="boton-igual-invisible"
+                        onclick="realizarRaiz()">Raíz</button>
+                </div>
+            </div>
+            </form>
+        </div>
+
+    </div>
+
+    <div class="mision">
+        <h3>Banda Sonora Pagina</h3>
+        <audio controls loop id="audioPlayer">
+            <source src="img/tema.mp3" type="audio/mpeg">
+            Tu navegador no soporta la reproducción de audio.
+        </audio>
+        <p><small>Nota: Escucha la música de fondo.</small></p>
+    </div>
+    </div>
+    <div class="pie">
+        © Alfonso Rubio Rioseras 2026 Actividad 4_Caso práctico. Todos los derechos reservados.
+    </div>
+    </div>
+
+
+    <script>
+        var audioPlayer = document.getElementById('audioPlayer');
+        var audioIniciado = false;
+
+        function iniciarMusica() {
+            if (!audioIniciado) {
+                // 1. Mostrar la sección primero
+                var mision = document.querySelector('.mision');
+                mision.style.opacity = '1';
+                mision.style.pointerEvents = 'auto';
+
+                // 2. Asegurar volumen y reproducir
+                audioPlayer.volume = 1.0;
+                audioPlayer.play().then(function () {
+                    audioIniciado = true;
+                    console.log("Audio iniciado y reproductor visible.");
+                }).catch(function (error) {
+                    console.log("El navegador bloqueó el autoplay. Esperando interacción...");
+                    // Si falla, volvemos a ocultar para no confundir
+                    mision.style.opacity = '0';
+                });
+            }
+        }
+
+        // Iniciar la música al primer clic en cualquier parte de la página
+        // Esta es la forma más fiable de cumplir con las políticas de los navegadores
+        document.addEventListener('click', function () {
+            iniciarMusica();
+        }, { once: true });
+    </script>
+</body>
+
+</html>

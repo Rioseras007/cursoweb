@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playwrite+DE+SAS:wght@100..400&display=swap" rel="stylesheet">
+   <script src="script.js" defer></script>
+   <meta name="author" content="Alfonso Rubio Rioseras">
+   <meta name="description" content="Actividad 2_Caso práctico. Integración de componentes software en páginas web (MF0951_2). Programación con lenguajes de guión en páginas web (UF1305). Unidad Didáctica 6. Los eventos del lenguaje de guión.">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <title> Actividad 2_Caso práctico</title>
+
+   
+
+  
+</head>
+
+<body>
+
+    <div class="pagina-a4">
+
+        <div class="cabecera">
+            <h1> Actividad 2_Caso práctico</h1>
+            <p>Integración de componentes software en páginas web (MF0951_2)</p>
+            <p>Programación con lenguajes de guión en páginas web (UF1305)</p>
+            <p>Unidad Didáctica 6. Los eventos del lenguaje de guión</p>
+
+        </div>
+
+        <div class="contenido">
+
+            <h2>PREGUNTAS/ACTIVIDADES A REALIZAR</h2>
+
+            <p> <b>Pregunta 1</b>  Creación de una aplicación que cambia el color de una caja al pinchar sobre ella con el ratón.</p>
+
+
+            <ul>
+
+                <li>a. Incluya en la página un div de 300x300 píxeles con color de fondo verde.</li>
+                <li>b. Cree una función que ponga el color de fondo del div en color rojo y otra función que ponga el color de fondo del div en color verde.que muestre el valor del contador. Cada vez que se pulse el botón se incrementará el  valor de ese contador y se mostrará su valor en la propia página web.</li>
+                
+              
+                  <p> <b>Pregunta 2</b> Creación de una página web y asignación de eventos. Cree una página web con un formulario 
+                    donde se pida el nombre, la edad, y el sexo, utilizando un selector que permita elegir entre hombre y mujer. 
+                    Añada los eventos que se piden.</p>
+
+                    <li>a. ¿Qué evento utilizaría si se quiere que aparezca un mensaje de alerta indicando “página cargada” en el momento que se cargue la página web? Añada el evento a la página web.</li>
+                    <textarea class="respuesta-textarea" rows="2">Respuesta: Evento load (o el atributo onload en el body)</textarea>
+                   
+                    <li>b. ¿Qué evento utilizaría si se quiere que al tener el foco en el campo de texto para el nombre se resalte su etiqueta correspondiente de “nombre”?. Introduzca los cambios en la página web.</li>
+                    <textarea class="respuesta-textarea" rows="2">Respuesta: Evento focus (o el atributo onfocus)</textarea>
+                    
+                    <li>c. Ahora se quiere que al quitar el foco del campo de texto nombre se vuelva a dejar la etiqueta como estaba. ¿Qué evento se debe utilizar? Realice los cambios en la página web.</li>
+                    <textarea class="respuesta-textarea" rows="2">Respuesta: Evento blur (o el atributo onblur)</textarea>
+
+                    <li>d. ¿Qué evento se utilizaría si se desea que en el momento de cambiar el valor de “sexo” cambien los colores de las letras? si se selecciona “hombre” se pongan las letras de color azul y si se selecciona “mujer” se pondrán de color rosa.</li>
+                    <textarea class="respuesta-textarea" rows="2">Respuesta: Evento change (o el atributo onchange)</textarea>
+
+                    <li>e. ¿Qué evento se usaría si se desea que al pulsar la tecla “w” se abra la página de google en el navegador? Introduzca este evento en la página web.</li>
+                    <textarea class="respuesta-textarea" rows="2">Respuesta: Evento keydown, keypress o keyup (se usa keydown habitualmente)</textarea>
+                    </ul>
+                
+                    <hr>
+                <div ><h2>Banda sonora gentileza de Suno</h2>
+                  <iframe src="https://suno.com/embed/7d77aa4f-c08e-4911-bc4a-840bdd7ca11f" width="600" height="240" frameborder="3" allow="autoplay; encrypted-media; fullscreen" allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"><a href="https://suno.com/song/7d77aa4f-c08e-4911-bc4a-840bdd7ca11f">Listen on Suno</a></iframe>
+                  
+              
+
+           
+           
+
+            <h2>Datos del navegador</h2>
+            <div class="datos-navegador">
+          
+            <button  class="btn-elegante" onclick="propiedadesNavegador()">Propiedades del navegador</button>
+            <p><b>Fecha actual:</b> <span id="fechaActual"></span></p>
+            <p><b>Hora actual:</b> <span id="horaActual"></span></p>
+            <p><b>Código del navegador:</b> <span id="codigoNavegador"></span></p>
+            <p><b>Plataforma:</b> <span id="plataforma"></span></p>
+            <p><b>Cookies habilitadas:</b> <span id="cookiesHabilitadas"></span></p>
+            </div>
+
+        
+
+            <div class="divdinamico" id="dinamico" onclick="ponerRojo()" onmouseleave="ponerVerde()"><p>Este el el div que cambia de color y tiene 300px de ancho x 300px alto. Cuando hace el usuario click con  el ratón se pone rojo y vuelve a estar verde al salir</p></div>
+            
+            <hr>
+
+            <div><button  class="btn-elegante" type="button" onclick="IncrementarContador()">contador</button></div>
+
+            <hr>
+            <div id="incremento" class="btn-elegante"></div>
+
+            <hr> <br>
+
+            <div class="formulario-contenedor my-4 p-4 border rounded bg-light" id="formulario-contenedor"> 
+              <h2 class="mb-4">Formulario de Registro</h2>
+              <form id="formulario">
+                  <div class="mb-3">
+                      <label for="nombre" id="lblNombre" class="form-label">Nombre:</label>
+                      <input type="text" id="nombre" name="nombre" class="form-control" required>
+                  </div>
+          
+                  <div class="mb-3">
+                      <label for="edad" class="form-label">Edad:</label>
+                      <input type="number" id="edad" name="edad" min="1" class="form-control" required>
+                  </div>
+          
+                  <div class="mb-4">
+                      <label for="sexo" class="form-label">Sexo:</label>
+                      <select id="sexo" name="sexo" class="form-select" required>
+                          <option value="">Seleccione...</option>
+                          <option value="Hombre">Hombre</option>
+                          <option value="Mujer">Mujer</option>
+                          <option value="HombreT">Hombre Trans</option>
+                          <option value="MujerT">Mujer Trans</option>
+                          <option value="HombreB">Hombre Binario</option>
+                          <option value="MujerB">Mujer Binaria</option>
+                      </select>
+                  </div>
+          
+                  <button type="submit" class="btn btn-primary btn-elegante w-100">Enviar</button>
+                  <div class="mensaje mt-3 fw-bold text-center" id="mensaje"></div>
+              </form>
+
+            </div>
+
+            <div id ="goolge">
+              <p>Pulse la tecla <kbd> W </kbd> o <kbd> w </kbd> para abrir la página de Google</p>
+            </div>  
+             
+
+        </div>
+
+       
+
+        <div class="pie"> © Alfonso Rubio Rioseras 2026 Actividad 2_Caso práctico. Todos los derechos reservados.</div>
+            <div class="social-icon">
+               
+                <div class="modern-social">
+                  <a href="https://www.facebook.com/AlfonsoRubioRioseras" target="_blank" class="social-link facebook"
+                    title="Facebook" aria-label="Ir al perfil de Facebook"><i class="bi bi-facebook"></i></a>
+                  <a href="https://instagram.com" target="_blank" class="social-link instagram" title="Instagram"
+                    aria-label="Ir al perfil de Instagram"><i class="bi bi-instagram"></i></a>
+                  <a href="https://x.com/alfrubrio" target="_blank" class="social-link x-twitter" title="X (Twitter)"
+                    aria-label="Ir al perfil de X (Twitter)"><i class="bi bi-twitter-x"></i></a>
+                  <a href="https://www.youtube.com/@AlfonsoRubioRioseras" target="_blank" class="social-link youtube"
+                    title="YouTube" aria-label="Ir al canal de YouTube"><i class="bi bi-youtube"></i></a>
+                  <a href="https://www.tiktok.com/@alfonsorubio007" target="_blank" class="social-link tiktok" title="TikTok"
+                    aria-label="Ir al perfil de TikTok"><i class="bi bi-tiktok"></i></a>
+                  <a href="https://discord.com/" target="_blank" class="social-link discord" title="Discord"
+                    aria-label="Unirse al servidor de Discord"><i class="bi bi-discord"></i></a>
+                  <a href="https://web.whatsapp.com/" target="_blank" class="social-link whatsapp" title="WhatsApp"
+                    aria-label="Contactar por WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                  <a href="https://www.linkedin.com/in/alfonsorubiorioseras/" target="_blank" class="social-link linkedin"
+                    title="LinkedIn" aria-label="Ir al perfil de LinkedIn"><i class="bi bi-linkedin"></i></a>
+                  <a href="https://github.com/Rioseras007" target="_blank" class="social-link github" title="GitHub"
+                    aria-label="Ir al perfil de GitHub"><i class="bi bi-github"></i></a>
+                  <a href="https://es.pinterest.com/alfonsorubiorioseras/" target="_blank" class="social-link pinterest"
+                    title="Pinterest" aria-label="Ir al perfil de Pinterest"><i class="bi bi-pinterest"></i></a>
+                </div>
+        </div>
+
+    </div>
+
+  
+
+</body>
+
+</html>

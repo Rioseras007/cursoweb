@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Alfonso Rubio Rioseras">
+    <title>Simulador de lotería</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="app">
+        <header class="hero">
+            <p class="eyebrow">Actividad 4 · Caso práctico</p>
+            <h1>Simulador de lotería</h1>
+            <p class="hero-copy">
+                Genera números de 5 cifras y comprueba premios según las coincidencias
+                indicadas en el enunciado. El simulador usa ventanas emergentes para
+                respetar los requisitos de la actividad.
+            </p>
+            <div class="hero-actions">
+                <button id="generateButton" class="button button-primary" type="button">
+                    Generar número aleatorio
+                </button>
+                <button id="checkButton" class="button button-secondary" type="button">
+                    Comprobar número
+                </button>
+            </div>
+        </header>
+
+        <section class="panel-grid" aria-label="Panel principal del simulador">
+            <article class="panel">
+                <p class="panel-label">Último número aleatorio</p>
+                <div class="ticket ticket-large" id="generatedNumberDisplay" aria-live="polite">
+                    <span class="digit">-</span>
+                    <span class="digit">-</span>
+                    <span class="digit">-</span>
+                    <span class="digit">-</span>
+                    <span class="digit">-</span>
+                </div>
+                <p id="generatedMessage" class="panel-copy">
+                    Pulsa el botón para generar un número aleatorio de 5 cifras.
+                </p>
+            </article>
+
+            <article class="panel">
+                <p class="panel-label">Última comprobación</p>
+                <div id="resultCard" class="result-card result-idle" aria-live="polite">
+                    <p class="result-label">Resultado</p>
+                    <h2 id="resultTitle">Pendiente de comprobación</h2>
+                    <p id="resultDescription">
+                        Al pulsar “Comprobar número” se pedirán el número premiado y el
+                        número jugado mediante ventanas de diálogo.
+                    </p>
+                </div>
+            </article>
+        </section>
+
+        <div class="boletos-strip" aria-label="Boletos de lotería">
+            <div class="boletos-header">
+                <p class="eyebrow">Boletos</p>
+                <h2>Números sobre los boletos</h2>
+            </div>
+
+            <div class="comparison-grid">
+                <div>
+                    <h2>Número premiado</h2>
+                    <figure class="ticket-stage ticket-stage-premiado">
+                        <img
+                            class="ticket-art"
+                            src="img/boleto premiado.png"
+                            alt="Boleto premiado de la lotería"
+                        >
+                        <div class="ticket ticket-overlay" id="winningTicket" aria-live="polite">
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                        </div>
+                    </figure>
+                </div>
+                <div>
+                    <h2>Número jugado</h2>
+                    <figure class="ticket-stage ticket-stage-jugado">
+                        <img
+                            class="ticket-art"
+                            src="img/boleto comprado.png"
+                            alt="Boleto comprado de la lotería"
+                        >
+                        <div class="ticket ticket-overlay" id="playedTicket" aria-live="polite">
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                            <span class="digit">-</span>
+                        </div>
+                    </figure>
+                </div>
+            </div>
+        </div>
+
+        <section class="rules">
+            <div class="rules-header">
+                <p class="eyebrow">Tabla de premios</p>
+                <h2>Cómo se calcula el premio</h2>
+            </div>
+            <div class="rules-grid">
+                <article class="rule-card">
+                    <p class="rule-amount">1 €</p>
+                    <p>Misma primera cifra y/o misma última cifra.</p>
+                </article>
+                <article class="rule-card">
+                    <p class="rule-amount">5 €</p>
+                    <p>Mismas 2 últimas cifras.</p>
+                </article>
+                <article class="rule-card">
+                    <p class="rule-amount">50 €</p>
+                    <p>Mismas 3 últimas cifras.</p>
+                </article>
+                <article class="rule-card">
+                    <p class="rule-amount">500 €</p>
+                    <p>Mismas 4 últimas cifras.</p>
+                </article>
+                <article class="rule-card">
+                    <p class="rule-amount">5000 €</p>
+                    <p>Coinciden las 5 cifras del número premiado.</p>
+                </article>
+                <article class="rule-card">
+                    <p class="rule-amount">0 €</p>
+                    <p>No premiado en cualquier otro caso.</p>
+                </article>
+            </div>
+        </section>
+
+        <section id="soundtrackSection" class="soundtrack soundtrack-hidden" aria-hidden="true">
+            <div>
+                <p class="eyebrow">Extra opcional</p>
+                <h2>Banda sonora de la página</h2>
+                <p>El reproductor sigue disponible por si quieres mantener el ambiente del proyecto.</p>
+            </div>
+            <audio id="soundtrackPlayer" controls loop preload="auto">
+                <source src="img/tema.mp3" type="audio/mpeg">
+                Tu navegador no soporta la reproducción de audio.
+            </audio>
+        </section>
+    </main>
+</body>
+</html>

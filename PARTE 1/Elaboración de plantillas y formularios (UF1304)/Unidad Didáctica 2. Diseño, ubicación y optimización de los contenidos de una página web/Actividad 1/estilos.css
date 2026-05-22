@@ -1,0 +1,71 @@
+header{
+    background-color: brown;
+    color: white;
+    width: 100%;
+    text-align: center;
+}
+
+body {
+    background-color: silver;
+}
+
+ul li {
+    list-style: none; /* Quita la viñeta por defecto */
+    position: relative;
+}
+
+ul li::before {
+    content: "➡️"; /* aquí pones el carácter que quieras */
+    color: gold;  /* color de la viñeta */
+    position: absolute;
+    left: -1.5em; /* separa la viñeta del texto */
+}
+
+
+
+
+nav{
+    background-color: lightcyan;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a{
+    background-color: khaki;
+    border: 2px dotted black;
+    text-decoration: none;
+    color: black;
+    padding: 8px 15px;
+    margin: 5px;
+    display: inline-block;
+}
+
+nav a:hover{
+    color: red;
+}
+
+article h2{
+    background-color: lightyellow;
+}
+
+article p{
+    background-color: pink;
+}
+
+article p::first-letter{
+    font-size: xx-large;
+    color: red;
+    font-weight: bold;
+}
+
+
+
+footer{
+    background-color: brown;
+    color: white;
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    border-radius: 15px;
+    padding: 10px;
+}
