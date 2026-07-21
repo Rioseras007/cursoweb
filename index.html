@@ -369,6 +369,34 @@
         linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 250, 244, 0.92)),
         linear-gradient(135deg, rgba(13, 92, 99, 0.06), transparent 55%);
       box-shadow: 0 14px 26px rgba(12, 28, 37, 0.06);
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .activity-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 20px 36px rgba(12, 28, 37, 0.12);
+    }
+
+    .card-thumbnail {
+      position: relative;
+      width: 100%;
+      height: 150px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: rgba(12, 28, 37, 0.04);
+      border: 1px solid rgba(12, 28, 37, 0.08);
+    }
+
+    .card-thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      transition: transform 300ms ease;
+    }
+
+    .activity-card:hover .card-thumbnail img {
+      transform: scale(1.06);
     }
 
     .card-top {
@@ -951,6 +979,19 @@
               return rankDocument(left.path) - rankDocument(right.path);
             });
 
+          const imageExtensions = [".png", ".jpg", ".jpeg", ".svg", ".webp", ".avif"];
+          const imgFiles = activity.files.filter((file) => imageExtensions.includes(file.ext));
+          const screenshots = imgFiles.filter((file) => !/fondo/i.test(getBaseName(file.path)));
+          let thumbnailUrl;
+          if (screenshots.length > 0) {
+            thumbnailUrl = encodeRepoPath(screenshots[0].path);
+          } else if (imgFiles.length > 0) {
+            thumbnailUrl = encodeRepoPath(imgFiles[0].path);
+          } else {
+            const safeName = activity.root.replace(/[^a-zA-Z0-9_-]/g, '_').replace(/_+/g, '_');
+            thumbnailUrl = `assets/thumbnails/thumb_${safeName}.svg`;
+          }
+
           const displayTitle = formatLabel(activity.activityFolder);
           const searchIndex = normalizeText([
             activity.part,
@@ -967,6 +1008,7 @@
             moduleCode: extractModuleCode(activity.module),
             primaryFile,
             secondaryFiles,
+            thumbnailUrl,
             htmlCount: htmlFiles.length,
             documentCount: documentFiles.length,
             hasHtml: htmlFiles.length > 0,
@@ -1038,9 +1080,15 @@
       const badgeClass = activity.hasHtml ? "web" : "docs";
       const primaryLink = primaryFile ? encodeRepoPath(primaryFile.path) : "#";
       const primaryAttributes = primaryFile ? getLinkAttributes(primaryFile) : `href="${primaryLink}"`;
+      const thumbnailHtml = activity.thumbnailUrl ? `
+        <div class="card-thumbnail">
+          <img src="${escapeHtml(activity.thumbnailUrl)}" alt="${escapeHtml(activity.displayTitle)}" loading="lazy">
+        </div>
+      ` : "";
 
       return `
         <article class="activity-card">
+          ${thumbnailHtml}
           <div class="card-top">
             <span class="card-part">${escapeHtml(activity.part)}</span>
             <span class="card-badge ${badgeClass}">${badgeLabel}</span>
