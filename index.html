@@ -985,19 +985,30 @@
           const safeName = activity.root.replace(/[^a-zA-Z0-9_-]/g, '_').replace(/_+/g, '_');
           const fallbackThumbnailUrl = `assets/thumbnails/thumb_${safeName}.svg`;
 
-          const imageExtensions = [".png", ".jpg", ".jpeg", ".svg", ".webp", ".avif"];
+          const imageExtensions = [".png", ".jpg", ".jpeg", ".webp", ".avif"];
           const imgFiles = activity.files.filter((file) => imageExtensions.includes(file.ext));
-          const screenshots = imgFiles.filter((file) => {
-            const base = getBaseName(file.path);
-            if (/fondo/i.test(base)) return false;
-            if (/captura|pantalla|screenshot|calculadora|portada|cabezera|boleto/i.test(base)) return true;
-            if (file.path.includes("/capturas/")) return true;
-            const rel = file.path.substring(activity.root.length + 1);
-            return !rel.includes("/");
+
+          // Score images: higher = better thumbnail candidate
+          function scoreThumbnail(filePath) {
+            const base = getBaseName(filePath).toLowerCase();
+            if (/captura|pantalla|screenshot/.test(base)) return 100;
+            if (filePath.includes('/capturas/')) return 90;
+            if (/portada|boleto|cabezera/.test(base)) return 80;
+            const rel = filePath.substring(activity.root.length + 1);
+            if (!rel.includes('/')) return 70; // direct child of activity folder
+            if (/^img\/[^/]+$/.test(rel)) return 60; // in img/ subfolder
+            if (/calculadora|banner|logo/.test(base)) return 50;
+            return 10; // anything else (fondo, etc.)
+          }
+
+          imgFiles.sort((a, b) => {
+            const diff = scoreThumbnail(b.path) - scoreThumbnail(a.path);
+            return diff !== 0 ? diff : a.path.localeCompare(b.path);
           });
+
           let thumbnailUrl;
-          if (screenshots.length > 0) {
-            thumbnailUrl = encodeRepoPath(screenshots[0].path);
+          if (imgFiles.length > 0) {
+            thumbnailUrl = encodeRepoPath(imgFiles[0].path);
           } else {
             thumbnailUrl = fallbackThumbnailUrl;
           }
