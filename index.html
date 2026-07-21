@@ -979,6 +979,9 @@
               return rankDocument(left.path) - rankDocument(right.path);
             });
 
+          const safeName = activity.root.replace(/[^a-zA-Z0-9_-]/g, '_').replace(/_+/g, '_');
+          const fallbackThumbnailUrl = `assets/thumbnails/thumb_${safeName}.svg`;
+
           const imageExtensions = [".png", ".jpg", ".jpeg", ".svg", ".webp", ".avif"];
           const imgFiles = activity.files.filter((file) => imageExtensions.includes(file.ext));
           const screenshots = imgFiles.filter((file) => !/fondo/i.test(getBaseName(file.path)));
@@ -988,8 +991,7 @@
           } else if (imgFiles.length > 0) {
             thumbnailUrl = encodeRepoPath(imgFiles[0].path);
           } else {
-            const safeName = activity.root.replace(/[^a-zA-Z0-9_-]/g, '_').replace(/_+/g, '_');
-            thumbnailUrl = `assets/thumbnails/thumb_${safeName}.svg`;
+            thumbnailUrl = fallbackThumbnailUrl;
           }
 
           const displayTitle = formatLabel(activity.activityFolder);
@@ -1009,6 +1011,7 @@
             primaryFile,
             secondaryFiles,
             thumbnailUrl,
+            fallbackThumbnailUrl,
             htmlCount: htmlFiles.length,
             documentCount: documentFiles.length,
             hasHtml: htmlFiles.length > 0,
@@ -1080,9 +1083,10 @@
       const badgeClass = activity.hasHtml ? "web" : "docs";
       const primaryLink = primaryFile ? encodeRepoPath(primaryFile.path) : "#";
       const primaryAttributes = primaryFile ? getLinkAttributes(primaryFile) : `href="${primaryLink}"`;
+      const fallbackAttr = activity.fallbackThumbnailUrl ? `onerror="this.onerror=null;this.src='${escapeHtml(activity.fallbackThumbnailUrl)}';"` : "";
       const thumbnailHtml = activity.thumbnailUrl ? `
         <div class="card-thumbnail">
-          <img src="${escapeHtml(activity.thumbnailUrl)}" alt="${escapeHtml(activity.displayTitle)}" loading="lazy">
+          <img src="${escapeHtml(activity.thumbnailUrl)}" alt="${escapeHtml(activity.displayTitle)}" loading="lazy" ${fallbackAttr}>
         </div>
       ` : "";
 
