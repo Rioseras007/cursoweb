@@ -786,7 +786,10 @@
     }
 
     function encodeRepoPath(path) {
-      return path.split("/").map((segment) => encodeURIComponent(segment)).join("/");
+      return path
+        .split("/")
+        .map((segment) => encodeURIComponent(segment).replace(/%28/g, "(").replace(/%29/g, ")").replace(/%27/g, "'"))
+        .join("/");
     }
 
     function getExtension(path) {
@@ -984,12 +987,17 @@
 
           const imageExtensions = [".png", ".jpg", ".jpeg", ".svg", ".webp", ".avif"];
           const imgFiles = activity.files.filter((file) => imageExtensions.includes(file.ext));
-          const screenshots = imgFiles.filter((file) => !/fondo/i.test(getBaseName(file.path)));
+          const screenshots = imgFiles.filter((file) => {
+            const base = getBaseName(file.path);
+            if (/fondo/i.test(base)) return false;
+            if (/captura|pantalla|screenshot|calculadora|portada|cabezera|boleto/i.test(base)) return true;
+            if (file.path.includes("/capturas/")) return true;
+            const rel = file.path.substring(activity.root.length + 1);
+            return !rel.includes("/");
+          });
           let thumbnailUrl;
           if (screenshots.length > 0) {
             thumbnailUrl = encodeRepoPath(screenshots[0].path);
-          } else if (imgFiles.length > 0) {
-            thumbnailUrl = encodeRepoPath(imgFiles[0].path);
           } else {
             thumbnailUrl = fallbackThumbnailUrl;
           }
