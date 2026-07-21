@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <title>Informe - Actividad 2: Posicionamiento en Buscadores</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Fira+Mono:wght@400;500&display=swap');
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8f9fc;
+            color: #1a1a2e;
+            line-height: 1.7;
+            padding: 40px;
+        }
+
+        .portada {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            border-radius: 16px;
+            padding: 60px 50px;
+            margin-bottom: 40px;
+            page-break-after: always;
+        }
+
+        .portada .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.15);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 30px;
+            padding: 6px 18px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 30px;
+        }
+
+        .portada h1 {
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .portada h2 {
+            font-size: 20px;
+            font-weight: 300;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .portada .meta-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .portada .meta-item {
+            background: rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 16px 20px;
+        }
+
+        .portada .meta-item .label {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            opacity: 0.6;
+            margin-bottom: 4px;
+        }
+
+        .portada .meta-item .value {
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .portada .divider {
+            border: none;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            margin: 30px 0;
+        }
+
+        .section {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            page-break-inside: avoid;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #f0f2f8;
+        }
+
+        .section-number {
+            width: 44px;
+            height: 44px;
+            background: linear-gradient(135deg, #0f3460, #533483);
+            color: white;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #0f3460;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        .point {
+            margin-bottom: 28px;
+            padding-bottom: 28px;
+            border-bottom: 1px solid #f5f5f5;
+        }
+
+        .point:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .point-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+
+        .point-letter {
+            width: 28px;
+            height: 28px;
+            background: linear-gradient(135deg, #533483, #e94560);
+            color: white;
+            border-radius: 8px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .point-title {
+            font-weight: 600;
+            font-size: 15px;
+            color: #1a1a2e;
+        }
+
+        .point-desc {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.7;
+        }
+
+        .code-block {
+            background: #1a1a2e;
+            border-radius: 10px;
+            padding: 18px 20px;
+            font-family: 'Fira Mono', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            overflow-x: auto;
+            border-left: 4px solid #533483;
+        }
+
+        .code-block .tag { color: #7dd3fc; }
+        .code-block .attr { color: #86efac; }
+        .code-block .val { color: #fcd34d; }
+        .code-block .comment { color: #6b7280; font-style: italic; }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #f0f4ff, #f8f0ff);
+            border: 1px solid #c7d2fe;
+            border-radius: 10px;
+            padding: 14px 18px;
+            margin-top: 12px;
+            font-size: 13px;
+            color: #4338ca;
+        }
+
+        .highlight-box strong {
+            color: #312e81;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .tag-chip {
+            background: #e0f2fe;
+            color: #0369a1;
+            border-radius: 20px;
+            padding: 4px 14px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .tag-chip.phrase {
+            background: #f0fdf4;
+            color: #166534;
+        }
+
+        .intro-text {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 28px;
+            padding: 20px;
+            background: #f8faff;
+            border-radius: 10px;
+            border-left: 4px solid #0f3460;
+        }
+
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-size: 13px;
+        }
+
+        .summary-table th {
+            background: #1a1a2e;
+            color: white;
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .summary-table th:first-child { border-radius: 8px 0 0 0; }
+        .summary-table th:last-child { border-radius: 0 8px 0 0; }
+
+        .summary-table td {
+            padding: 12px 16px;
+            border-bottom: 1px solid #f0f0f0;
+            color: #444;
+        }
+
+        .summary-table tr:nth-child(even) td { background: #f8f9fc; }
+        .summary-table tr:last-child td:first-child { border-radius: 0 0 0 8px; }
+        .summary-table tr:last-child td:last-child { border-radius: 0 0 8px 0; }
+
+        .status-ok {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            color: #16a34a;
+            font-weight: 600;
+        }
+
+        .status-ok::before {
+            content: '✓';
+            width: 18px;
+            height: 18px;
+            background: #dcfce7;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 12px;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        @media print {
+            body { background: white; padding: 20px; }
+            .portada { page-break-after: always; }
+            .section { box-shadow: none; border: 1px solid #eee; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- PORTADA -->
+    <div class="portada">
+        <div class="badge">Informe de actividad</div>
+        <h1>Posicionamiento en Buscadores (SEO)</h1>
+        <h2>Optimización de una página web de juegos de cartas<br>para su correcta indexación por buscadores</h2>
+        <hr class="divider" />
+        <div class="meta-grid">
+            <div class="meta-item">
+                <div class="label">Módulo Formativo</div>
+                <div class="value">Publicación de páginas web (MF0952_2)</div>
+            </div>
+            <div class="meta-item">
+                <div class="label">Unidad Didáctica</div>
+                <div class="value">UD 3 – Publicación de páginas web</div>
+            </div>
+            <div class="meta-item">
+                <div class="label">Actividad</div>
+                <div class="value">Actividad 2 – Caso Práctico</div>
+            </div>
+            <div class="meta-item">
+                <div class="label">Fecha límite</div>
+                <div class="value">27/02/2027</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INTRODUCCIÓN -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #0f3460, #533483);">→</div>
+            <div>
+                <div class="section-title">Introducción y objetivo</div>
+                <div class="section-subtitle">Descripción general de la tarea realizada</div>
+            </div>
+        </div>
+        <p class="intro-text">
+            El enunciado proporciona un fragmento de código HTML correspondiente a una página web sobre juegos de cartas.
+            Dicho código carece de los elementos necesarios para que los motores de búsqueda puedan indexarla correctamente.
+            El objetivo de esta actividad es <strong>crear un nuevo archivo HTML</strong> (<code>index.html</code>) a partir del original
+            (<code>index_orginal.html</code>), incorporando todas las mejoras de SEO on-page indicadas en los siete apartados
+            de la Pregunta 1, sin modificar el archivo original.
+        </p>
+
+        <table class="summary-table">
+            <thead>
+                <tr>
+                    <th>Apartado</th>
+                    <th>Descripción</th>
+                    <th>Elemento HTML utilizado</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>a</strong></td>
+                    <td>Idioma de la página</td>
+                    <td><code>&lt;html lang="es"&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>b</strong></td>
+                    <td>Título descriptivo</td>
+                    <td><code>&lt;title&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>c</strong></td>
+                    <td>Descripción de la página</td>
+                    <td><code>&lt;meta name="description"&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>d</strong></td>
+                    <td>Autor: Juan Palomo</td>
+                    <td><code>&lt;meta name="author"&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>e</strong></td>
+                    <td>Identificación de imagen</td>
+                    <td>Atributo <code>alt</code> en <code>&lt;img&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>f</strong></td>
+                    <td>Palabras clave</td>
+                    <td><code>&lt;meta name="keywords"&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+                <tr>
+                    <td><strong>g</strong></td>
+                    <td>Frases clave</td>
+                    <td><code>&lt;meta name="keywords"&gt;</code></td>
+                    <td><span class="status-ok">Completado</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- DESARROLLO PUNTO A PUNTO -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number">1</div>
+            <div>
+                <div class="section-title">Pregunta 1 – Optimización SEO del código HTML</div>
+                <div class="section-subtitle">Explicación detallada de cada apartado implementado</div>
+            </div>
+        </div>
+
+        <!-- APARTADO A -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">a</span>
+                <span class="point-title">Indicar que la página está en español</span>
+            </div>
+            <p class="point-desc">
+                El idioma de una página web se declara en la etiqueta de apertura <code>&lt;html&gt;</code> mediante
+                el atributo <strong>lang</strong>. Este atributo es fundamental para el SEO porque informa a los
+                motores de búsqueda en qué idioma está escrita la página, lo que influye en los resultados de
+                búsqueda segmentados por idioma y región. También ayuda a lectores de pantalla y herramientas
+                de accesibilidad. Para indicar español se utiliza el código <strong>es</strong>.
+            </p>
+            <div class="code-block">
+<span class="comment">&lt;!-- Código ORIGINAL --&gt;</span>
+<span class="tag">&lt;html&gt;</span>
+
+<span class="comment">&lt;!-- Código MODIFICADO (apartado a) --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"es"</span><span class="tag">&gt;</span>
+            </div>
+            <div class="highlight-box">
+                <strong>Elemento utilizado:</strong> Atributo <code>lang</code> en la etiqueta <code>&lt;html&gt;</code><br>
+                <strong>Valor:</strong> <code>es</code> (código ISO 639-1 para el idioma español)
+            </div>
+        </div>
+
+        <!-- APARTADO B -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">b</span>
+                <span class="point-title">Título descriptivo de la página web</span>
+            </div>
+            <p class="point-desc">
+                El elemento <code>&lt;title&gt;</code> es uno de los factores de posicionamiento más importantes en SEO.
+                Aparece en la pestaña del navegador, en los resultados de búsqueda (SERP) como el enlace principal
+                azul, y es utilizado por los buscadores para entender el tema de la página. Un buen título debe
+                ser descriptivo, contener las palabras clave principales y tener entre 50-65 caracteres.
+                Se ha creado un título que describe claramente el contenido de la página.
+            </p>
+            <div class="code-block">
+<span class="comment">&lt;!-- Código ORIGINAL: no tenía etiqueta title --&gt;</span>
+<span class="comment">&lt;!-- (ausente) --&gt;</span>
+
+<span class="comment">&lt;!-- Código MODIFICADO (apartado b) --&gt;</span>
+<span class="tag">&lt;title&gt;</span>Los mejores juegos de cartas - Reglas y trucos de juegos de naipes<span class="tag">&lt;/title&gt;</span>
+            </div>
+            <div class="highlight-box">
+                <strong>Elemento utilizado:</strong> Etiqueta <code>&lt;title&gt;</code> dentro del <code>&lt;head&gt;</code><br>
+                <strong>Ubicación:</strong> Siempre dentro de <code>&lt;head&gt;</code>, visible en la barra de título del navegador y en buscadores
+            </div>
+        </div>
+
+        <!-- APARTADO C -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">c</span>
+                <span class="point-title">Descripción breve de la página</span>
+            </div>
+            <p class="point-desc">
+                La meta etiqueta <strong>description</strong> proporciona un resumen del contenido de la página.
+                Aunque ya no influye directamente en el ranking de búsqueda, los motores de búsqueda la
+                utilizan frecuentemente como fragmento (snippet) que aparece bajo el título en los resultados.
+                Una buena descripción aumenta la tasa de clics (CTR). Debe tener entre 150-160 caracteres,
+                ser informativa y contener las palabras clave más relevantes.
+            </p>
+            <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"description"</span>
+      <span class="attr">content</span>=<span class="val">"Descubre los mejores juegos de cartas y naipes.
+      Aprende las reglas de los juegos de cartas más divertidos,
+      tanto para un solo jugador como para varios.
+      Historia y curiosidades de las barajas."</span> <span class="tag">/&gt;</span>
+            </div>
+            <div class="highlight-box">
+                <strong>Elemento utilizado:</strong> <code>&lt;meta name="description" content="..."&gt;</code><br>
+                <strong>Importancia:</strong> Aparece como texto descriptivo en los resultados de búsqueda (snippet), mejorando el CTR
+            </div>
+        </div>
+
+        <!-- APARTADO D -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">d</span>
+                <span class="point-title">Información del autor: Juan Palomo</span>
+            </div>
+            <p class="point-desc">
+                La meta etiqueta <strong>author</strong> permite identificar al creador del contenido de la página web.
+                Aunque su impacto directo en el posicionamiento es limitado, es una buena práctica de marcado
+                semántico. Sirve para acreditar la autoría del contenido y puede ser útil para herramientas
+                de análisis, gestores de contenido y lectores RSS. El enunciado especifica que el autor
+                es <strong>Juan Palomo</strong>.
+            </p>
+            <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"author"</span> <span class="attr">content</span>=<span class="val">"Juan Palomo"</span> <span class="tag">/&gt;</span>
+            </div>
+            <div class="highlight-box">
+                <strong>Elemento utilizado:</strong> <code>&lt;meta name="author" content="Juan Palomo"&gt;</code><br>
+                <strong>Propósito:</strong> Indica quién es el responsable del contenido publicado en la página
+            </div>
+        </div>
+
+        <!-- APARTADO E -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">e</span>
+                <span class="point-title">Identificación de la imagen para buscadores</span>
+            </div>
+            <p class="point-desc">
+                Las imágenes no pueden ser "leídas" directamente por los motores de búsqueda. Para que los
+                buscadores puedan identificar e indexar una imagen, es imprescindible utilizar el atributo
+                <strong>alt</strong> (texto alternativo) en la etiqueta <code>&lt;img&gt;</code>. Este atributo
+                también es fundamental para la accesibilidad web (usuarios con discapacidad visual). El
+                texto alternativo debe describir con precisión el contenido de la imagen. Además, en el
+                código original se observa un error tipográfico (<code>imgsrc</code> en lugar de
+                <code>img src</code>) que también se ha corregido.
+            </p>
+            <div class="code-block">
+<span class="comment">&lt;!-- Código ORIGINAL (con error tipográfico) --&gt;</span>
+<span class="tag">&lt;imgsrc</span>=<span class="val">"baraja.png"</span> <span class="tag">/&gt;</span>
+
+<span class="comment">&lt;!-- Código MODIFICADO (apartado e) --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"baraja.png"</span>
+     <span class="attr">alt</span>=<span class="val">"Baraja española de naipes utilizada en los juegos de cartas tradicionales"</span> <span class="tag">/&gt;</span>
+            </div>
+            <div class="highlight-box">
+                <strong>Elemento utilizado:</strong> Atributo <code>alt</code> en la etiqueta <code>&lt;img&gt;</code><br>
+                <strong>Doble beneficio:</strong> Mejora el posicionamiento en búsqueda de imágenes (Google Images) y cumple con estándares de accesibilidad web (WCAG)
+            </div>
+        </div>
+
+        <!-- APARTADO F -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">f</span>
+                <span class="point-title">Palabras clave</span>
+            </div>
+            <p class="point-desc">
+                La meta etiqueta <strong>keywords</strong> permite declarar las palabras clave relacionadas
+                con el contenido de la página. Aunque Google ya no las utiliza directamente para el ranking
+                (desde 2009), otros buscadores como Bing o Yandex aún las consideran, y es una buena
+                práctica de documentación. Las palabras clave especificadas en el enunciado son:
+            </p>
+            <div class="tag-list">
+                <span class="tag-chip">juegos</span>
+                <span class="tag-chip">cartas</span>
+                <span class="tag-chip">jugar</span>
+                <span class="tag-chip">divertido</span>
+                <span class="tag-chip">mejores</span>
+            </div>
+        </div>
+
+        <!-- APARTADO G -->
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter">g</span>
+                <span class="point-title">Frases clave</span>
+            </div>
+            <p class="point-desc">
+                Las frases clave (también llamadas <em>long-tail keywords</em>) son combinaciones de palabras
+                que los usuarios emplean en sus búsquedas. Son más específicas que las palabras clave
+                individuales y suelen tener menor competencia pero mayor intención de búsqueda. Se añaden
+                igualmente en el atributo <code>content</code> de la meta etiqueta <code>keywords</code>,
+                separadas por comas. Las frases clave especificadas en el enunciado son:
+            </p>
+            <div class="tag-list">
+                <span class="tag-chip phrase">juegos de cartas</span>
+                <span class="tag-chip phrase">juegos divertidos</span>
+                <span class="tag-chip phrase">los mejores juegos de cartas</span>
+            </div>
+            <p class="point-desc" style="margin-top:14px;">
+                Tanto las palabras clave (apartado f) como las frases clave (apartado g) se han incluido
+                en una única etiqueta <code>&lt;meta name="keywords"&gt;</code>, separadas por comas:
+            </p>
+            <div class="code-block">
+<span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"keywords"</span>
+      <span class="attr">content</span>=<span class="val">"juegos, cartas, jugar, divertido, mejores,
+      juegos de cartas, juegos divertidos,
+      los mejores juegos de cartas"</span> <span class="tag">/&gt;</span>
+            </div>
+            <div class="highlight-box">
+                <strong>Elemento utilizado:</strong> <code>&lt;meta name="keywords" content="..."&gt;</code><br>
+                <strong>Nota:</strong> Se combina la lista de palabras clave (f) y frases clave (g) en un único atributo <code>content</code>, separadas por comas
+            </div>
+        </div>
+    </div>
+
+    <!-- CÓDIGO FINAL COMPLETO -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #166534, #15803d);">✓</div>
+            <div>
+                <div class="section-title">Resultado: Código HTML final (index.html)</div>
+                <div class="section-subtitle">Fragmento del &lt;head&gt; con todas las mejoras SEO implementadas</div>
+            </div>
+        </div>
+        <p class="point-desc">
+            A continuación se muestra la sección <code>&lt;head&gt;</code> del archivo <code>index.html</code>
+            resultante, donde se concentran todos los cambios realizados. El cuerpo (<code>&lt;body&gt;</code>)
+            mantiene la estructura original, añadiendo únicamente el atributo <code>alt</code> en la imagen:
+        </p>
+        <div class="code-block">
+<span class="comment">&lt;!-- a. Idioma español --&gt;</span>
+<span class="tag">&lt;html</span> <span class="attr">lang</span>=<span class="val">"es"</span><span class="tag">&gt;</span>
+
+<span class="tag">&lt;head&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">charset</span>=<span class="val">"utf-8"</span> <span class="tag">/&gt;</span>
+
+  <span class="comment">&lt;!-- b. Título descriptivo --&gt;</span>
+  <span class="tag">&lt;title&gt;</span>Los mejores juegos de cartas - Reglas y trucos de juegos de naipes<span class="tag">&lt;/title&gt;</span>
+
+  <span class="comment">&lt;!-- c. Descripción de la página --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"description"</span>
+        <span class="attr">content</span>=<span class="val">"Descubre los mejores juegos de cartas y naipes..."</span> <span class="tag">/&gt;</span>
+
+  <span class="comment">&lt;!-- d. Autor de la página --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"author"</span> <span class="attr">content</span>=<span class="val">"Juan Palomo"</span> <span class="tag">/&gt;</span>
+
+  <span class="comment">&lt;!-- f. Palabras clave + g. Frases clave --&gt;</span>
+  <span class="tag">&lt;meta</span> <span class="attr">name</span>=<span class="val">"keywords"</span>
+        <span class="attr">content</span>=<span class="val">"juegos, cartas, jugar, divertido, mejores,
+        juegos de cartas, juegos divertidos,
+        los mejores juegos de cartas"</span> <span class="tag">/&gt;</span>
+
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"normalize.css"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">href</span>=<span class="val">'http://fonts.googleapis.com/css?family=Open+Sans'</span>
+        <span class="attr">rel</span>=<span class="val">'stylesheet'</span> <span class="attr">type</span>=<span class="val">'text/css'</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;link</span> <span class="attr">rel</span>=<span class="val">"stylesheet"</span> <span class="attr">href</span>=<span class="val">"estilos.css"</span> <span class="tag">/&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="val">"prefixfree.min.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="val">"jquery.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+  <span class="tag">&lt;script</span> <span class="attr">src</span>=<span class="val">"codiguito.js"</span><span class="tag">&gt;&lt;/script&gt;</span>
+<span class="tag">&lt;/head&gt;</span>
+
+<span class="comment">&lt;!-- En el body, apartado e: imagen con atributo alt --&gt;</span>
+<span class="tag">&lt;img</span> <span class="attr">src</span>=<span class="val">"baraja.png"</span>
+     <span class="attr">alt</span>=<span class="val">"Baraja española de naipes utilizada en los juegos de cartas tradicionales"</span> <span class="tag">/&gt;</span>
+        </div>
+    </div>
+
+    <!-- CONCLUSIÓN -->
+    <div class="section">
+        <div class="section-header">
+            <div class="section-number" style="background: linear-gradient(135deg, #b45309, #d97706);">★</div>
+            <div>
+                <div class="section-title">Conclusión</div>
+                <div class="section-subtitle">Resumen de los beneficios SEO obtenidos</div>
+            </div>
+        </div>
+        <p class="point-desc">
+            Tras aplicar todas las modificaciones indicadas en el enunciado, el archivo <strong>index.html</strong>
+            cuenta ahora con los elementos mínimos necesarios para ser correctamente indexado por los motores
+            de búsqueda. Las mejoras implementadas se pueden clasificar en tres categorías:
+        </p>
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter" style="background: linear-gradient(135deg, #0369a1, #0284c7);">1</span>
+                <span class="point-title">Metadatos del documento</span>
+            </div>
+            <p class="point-desc">
+                Se han añadido las meta etiquetas <code>description</code>, <code>author</code> y <code>keywords</code>
+                que proporcionan información estructurada sobre el contenido, el autor y las temáticas de la página.
+                Además, se ha añadido el elemento <code>&lt;title&gt;</code> y se ha declarado el idioma con
+                <code>lang="es"</code>.
+            </p>
+        </div>
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter" style="background: linear-gradient(135deg, #166534, #15803d);">2</span>
+                <span class="point-title">Accesibilidad e indexación de imágenes</span>
+            </div>
+            <p class="point-desc">
+                La incorporación del atributo <code>alt</code> en la imagen permite que los buscadores comprendan
+                su contenido visual, mejorando el posicionamiento en búsquedas de imágenes y cumpliendo con los
+                estándares de accesibilidad web (WCAG 2.1).
+            </p>
+        </div>
+        <div class="point">
+            <div class="point-label">
+                <span class="point-letter" style="background: linear-gradient(135deg, #7c3aed, #6d28d9);">3</span>
+                <span class="point-title">Estrategia de palabras y frases clave</span>
+            </div>
+            <p class="point-desc">
+                La definición de palabras clave individuales y frases clave (long-tail keywords) orienta a los
+                buscadores sobre las búsquedas para las que la página es relevante, contribuyendo a una estrategia
+                SEO coherente con el contenido del sitio.
+            </p>
+        </div>
+    </div>
+
+    <div class="footer">
+        Informe generado para: Actividad 2 – Caso Práctico | MF0952_2 – Publicación de páginas web<br>
+        Archivo entregado: <strong>index.html</strong> (basado en index_orginal.html sin modificarlo)
+    </div>
+
+</body>
+</html>

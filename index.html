@@ -585,7 +585,7 @@
         <p class="eyebrow">Curso online de páginas web</p>
         <h1>Mapa visual de todas las actividades</h1>
         <p>
-          Esta portada reúne las prácticas de <strong>PARTE 1</strong> y <strong>PARTE 2</strong> en un solo panel. Puedes buscar por tema,
+          Esta portada reúne las prácticas de <strong>PARTE 1</strong>, <strong>PARTE 2</strong> y <strong>PARTE 3</strong> en un solo panel. Puedes buscar por tema,
           filtrar por bloque y abrir directamente las páginas HTML o los archivos PDF y ZIP asociados a cada entrega.
         </p>
         <div class="hero-actions">
@@ -621,6 +621,7 @@
         <button class="filter-chip" type="button" data-filter="docs">Solo archivos</button>
         <button class="filter-chip" type="button" data-filter="PARTE 1">PARTE 1</button>
         <button class="filter-chip" type="button" data-filter="PARTE 2">PARTE 2</button>
+        <button class="filter-chip" type="button" data-filter="PARTE 3">PARTE 3</button>
       </div>
     </section>
 
@@ -632,6 +633,7 @@
     </p>
   </main>
 
+  <script src="catalog-tree.js"></script>
   <script>
     const REPO_DEFAULTS = {
       owner: "Rioseras007",
@@ -695,7 +697,16 @@
       }
     }
 
+    const embeddedRepoTree = window.__COURSEWEB_REPO_TREE__ && Array.isArray(window.__COURSEWEB_REPO_TREE__.tree)
+      ? window.__COURSEWEB_REPO_TREE__
+      : null;
+
     async function loadRepoTree(repo) {
+      if (embeddedRepoTree) {
+        repoStatusElement.textContent = "Catálogo cargado desde el índice local del proyecto.";
+        return embeddedRepoTree;
+      }
+
       const endpoint = `https://api.github.com/repos/${repo.owner}/${repo.repo}/git/trees/${repo.branch}?recursive=1`;
       const cacheKey = cacheKeyForRepo(repo);
       const cached = readCache(cacheKey);
@@ -766,7 +777,7 @@
     function getActivityRootMeta(path) {
       const segments = path.split("/");
 
-      if (!/^PARTE [12]$/.test(segments[0])) {
+      if (!/^PARTE \d+$/.test(segments[0])) {
         return null;
       }
 
@@ -780,25 +791,34 @@
         root: segments.slice(0, activityIndex + 1).join("/"),
         part: segments[0],
         module: segments[1] || "Módulo",
-        unit: segments[activityIndex - 1] || "Unidad",
+        unit: formatUnitLabel(segments[activityIndex - 1] || "Unidad"),
         activityFolder: segments[activityIndex]
       };
     }
 
     function formatLabel(text) {
       return String(text || "")
-        .replace(/^UF\d+_UD\s*\d+#/i, "")
-        .replace(/^Actvidad/i, "Actividad")
+        .replace(/^[A-Z]{2}\s*\d+(?:_\d+)?_UD\s*\d+\s*#\s*/i, "")
+        .replace(/^Acti?vidad/i, "Actividad")
         .replace(/[_#]+/g, " ")
         .replace(/\s+/g, " ")
+        .replace(/^Actividad\s*(\d+)\s+(.+)$/i, "Actividad $1 - $2")
         .trim();
     }
 
+    function formatUnitLabel(text) {
+      const value = String(text || "").replace(/[_]+/g, " ").replace(/\s+/g, " ").trim();
+
+      if (/^Unidad\s+didactica\s*(\d+)$/i.test(value)) {
+        return value.replace(/^Unidad\s+didactica\s*(\d+)$/i, "Unidad didáctica $1");
+      }
+
+      return value;
+    }
     function extractModuleCode(moduleName) {
-      const match = String(moduleName || "").match(/UF\s*\d+/i);
+      const match = String(moduleName || "").match(/\b(?:UF|MF)\s*\d+(?:_\d+)?\b/i);
       return match ? match[0].replace(/\s+/g, "") : "Módulo";
     }
-
     function rankHtmlFile(path) {
       const fileName = getBaseName(path).toLowerCase();
 
@@ -1075,7 +1095,7 @@
     function matchesFilter(activity) {
       if (state.filter === "html") return activity.hasHtml;
       if (state.filter === "docs") return !activity.hasHtml;
-      if (state.filter === "PARTE 1" || state.filter === "PARTE 2") return activity.part === state.filter;
+      if (state.filter.startsWith("PARTE ")) return activity.part === state.filter;
       return true;
     }
 

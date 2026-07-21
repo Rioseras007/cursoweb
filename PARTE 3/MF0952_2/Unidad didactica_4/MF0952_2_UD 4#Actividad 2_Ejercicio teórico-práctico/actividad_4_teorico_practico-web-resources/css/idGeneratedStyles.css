@@ -1,0 +1,89 @@
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, pre, code, blockquote {
+	margin:0;
+	padding:0;
+	border-width:0;
+}
+body {
+	-epub-hyphens:auto;
+}
+div.Marco-de-texto-b-sico {
+	border-style:solid;
+}
+p.P-rrafo-b-sico {
+	color:#000000;
+	font-family:"Minion Pro", serif;
+	font-size:12px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.2;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.ParaOverride-1 {
+	text-align:center;
+}
+span.CharOverride-1 {
+	font-family:"Berlin Sans FB", sans-serif;
+	font-size:17px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-2 {
+	font-size:18px;
+}
+span.CharOverride-3 {
+	font-size:20px;
+}
+span.CharOverride-4 {
+	font-size:24px;
+}
+span.CharOverride-5 {
+	font-size:21px;
+}
+#_idContainer000 {
+	display:inline-block;
+	height:266px;
+	width:485px;
+}
+#_idContainer009 {
+	display:inline-block;
+	height:288px;
+	width:497px;
+}
+#_idContainer011 {
+	display:inline-block;
+	height:277px;
+	width:490px;
+}
+#_idContainer014 {
+	display:inline-block;
+	height:283px;
+	width:482px;
+}
+#_idContainer015 {
+	display:inline-block;
+	height:271px;
+	width:482px;
+}
+img._idGenObjectAttribute-1 {
+	height:100.00%;
+	min-width:100%;
+	width:100.00%;
+}
+div._idGenObjectStyleOverride-1 {
+	border-width:0px;
+}
+div._idGenObjectLayout-1 {
+	text-align:center;
+}

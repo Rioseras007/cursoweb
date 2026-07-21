@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Actividad 2 – Servidor Remoto FTP | MF0952_2</title>
+  <meta name="description" content="Actividad 2 - Caso práctico sobre transferencia de archivos mediante cliente FTP. Unidad Didáctica 2. Módulo formativo MF0952_2." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    /* ── RESET & TOKENS ── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg-base:        #0a0d14;
+      --bg-surface:     #111622;
+      --bg-card:        #161d2e;
+      --bg-card-hover:  #1c253a;
+      --accent-blue:    #3b82f6;
+      --accent-cyan:    #06b6d4;
+      --accent-violet:  #8b5cf6;
+      --accent-green:   #10b981;
+      --accent-amber:   #f59e0b;
+      --accent-rose:    #f43f5e;
+      --text-primary:   #f0f4ff;
+      --text-secondary: #8fa3c8;
+      --text-muted:     #4a5a78;
+      --border:         rgba(59,130,246,0.15);
+      --border-bright:  rgba(59,130,246,0.4);
+      --glow-blue:      0 0 40px rgba(59,130,246,0.25);
+      --glow-cyan:      0 0 40px rgba(6,182,212,0.2);
+      --radius-sm:      8px;
+      --radius-md:      14px;
+      --radius-lg:      22px;
+      --radius-xl:      32px;
+      --font-body:      'Inter', system-ui, sans-serif;
+      --font-mono:      'JetBrains Mono', monospace;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--bg-base);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── BACKGROUND MESH ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 20% 10%, rgba(59,130,246,0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 60% at 80% 80%, rgba(139,92,246,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 50% 50%, rgba(6,182,212,0.04) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      position: relative;
+      padding: 0;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .hero-banner {
+      width: 100%;
+      max-height: 380px;
+      object-fit: cover;
+      object-position: center 30%;
+      display: block;
+      filter: brightness(0.55) saturate(1.3);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(10,13,20,0) 0%,
+        rgba(10,13,20,0.3) 40%,
+        rgba(10,13,20,0.85) 80%,
+        var(--bg-base) 100%
+      );
+    }
+
+    .hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0; right: 0;
+      padding: 2.5rem clamp(1.5rem, 5vw, 6rem) 3rem;
+    }
+
+    .badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .6rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .3rem .85rem;
+      border-radius: 999px;
+      font-size: .72rem;
+      font-weight: 600;
+      letter-spacing: .05em;
+      text-transform: uppercase;
+      border: 1px solid;
+    }
+    .badge-blue   { background: rgba(59,130,246,0.15); color: #93c5fd; border-color: rgba(59,130,246,0.35); }
+    .badge-violet { background: rgba(139,92,246,0.15); color: #c4b5fd; border-color: rgba(139,92,246,0.35); }
+    .badge-cyan   { background: rgba(6,182,212,0.15);  color: #67e8f9; border-color: rgba(6,182,212,0.35); }
+
+    .hero-title {
+      font-size: clamp(2rem, 5vw, 3.4rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -.02em;
+      background: linear-gradient(135deg, #f0f4ff 0%, #93c5fd 50%, #67e8f9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: .5rem;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(.95rem, 2vw, 1.15rem);
+      color: var(--text-secondary);
+      font-weight: 400;
+    }
+
+    /* ── NAV / TOC ── */
+    .toc-bar {
+      position: relative;
+      z-index: 10;
+      background: rgba(17,22,34,0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      padding: 0 clamp(1rem, 4vw, 5rem);
+      display: flex;
+      gap: .25rem;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .toc-bar::-webkit-scrollbar { display: none; }
+
+    .toc-link {
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .85rem 1.1rem;
+      font-size: .82rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color .2s, border-color .2s;
+    }
+    .toc-link:hover { color: var(--text-primary); border-color: var(--accent-blue); }
+    .toc-icon { font-size: 1rem; }
+
+    /* ── LAYOUT ── */
+    .main-container {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 3rem clamp(1.25rem, 5vw, 3rem) 6rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* ── META CARD (alumno/fecha) ── */
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    @media (max-width: 540px) { .meta-grid { grid-template-columns: 1fr; } }
+
+    .meta-item {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.1rem 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      transition: border-color .25s, background .25s;
+    }
+    .meta-item:hover { border-color: var(--border-bright); background: var(--bg-card-hover); }
+
+    .meta-icon {
+      width: 42px; height: 42px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .meta-icon-blue   { background: rgba(59,130,246,0.15); }
+    .meta-icon-violet { background: rgba(139,92,246,0.15); }
+
+    .meta-label { font-size: .72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .07em; }
+    .meta-value { font-size: .97rem; color: var(--text-primary); font-weight: 500; margin-top: .15rem; }
+
+    /* ── SECTION BLOCK ── */
+    .section-block { display: flex; flex-direction: column; gap: 1.5rem; }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .section-icon-wrap {
+      width: 48px; height: 48px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .icon-blue   { background: linear-gradient(135deg, rgba(59,130,246,0.2), rgba(59,130,246,0.08)); border: 1px solid rgba(59,130,246,0.3); }
+    .icon-cyan   { background: linear-gradient(135deg, rgba(6,182,212,0.2),  rgba(6,182,212,0.08));  border: 1px solid rgba(6,182,212,0.3); }
+    .icon-violet { background: linear-gradient(135deg, rgba(139,92,246,0.2), rgba(139,92,246,0.08)); border: 1px solid rgba(139,92,246,0.3); }
+    .icon-green  { background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(16,185,129,0.08)); border: 1px solid rgba(16,185,129,0.3); }
+    .icon-amber  { background: linear-gradient(135deg, rgba(245,158,11,0.2), rgba(245,158,11,0.08));  border: 1px solid rgba(245,158,11,0.3); }
+
+    .section-title-group { display: flex; flex-direction: column; gap: .2rem; }
+    .section-part { font-size: .72rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: .08em; }
+    .section-title { font-size: 1.25rem; font-weight: 700; color: var(--text-primary); line-height: 1.3; }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: border-color .25s, background .25s, transform .25s, box-shadow .25s;
+    }
+    .card:hover {
+      border-color: var(--border-bright);
+      background: var(--bg-card-hover);
+      transform: translateY(-2px);
+      box-shadow: var(--glow-blue);
+    }
+
+    /* ── INTRO BOX ── */
+    .intro-box {
+      background: linear-gradient(135deg, rgba(6,182,212,0.08) 0%, rgba(59,130,246,0.06) 100%);
+      border: 1px solid rgba(6,182,212,0.25);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .intro-box::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 2rem; right: 2rem;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent);
+    }
+    .intro-box p { color: var(--text-secondary); font-size: .98rem; margin-bottom: .5rem; }
+    .intro-box p:last-child { margin-bottom: 0; }
+
+    /* ── QUESTION CARDS ── */
+    .question-list { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .question-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .question-card:hover { border-color: var(--border-bright); box-shadow: 0 4px 24px rgba(59,130,246,0.1); }
+
+    .question-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 1.25rem 1.5rem;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .q-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      border-radius: 8px;
+      font-size: .82rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      font-family: var(--font-mono);
+    }
+    .q-label-blue   { background: rgba(59,130,246,0.2); color: #93c5fd; }
+    .q-label-cyan   { background: rgba(6,182,212,0.2);  color: #67e8f9; }
+    .q-label-violet { background: rgba(139,92,246,0.2); color: #c4b5fd; }
+    .q-label-green  { background: rgba(16,185,129,0.2); color: #6ee7b7; }
+    .q-label-amber  { background: rgba(245,158,11,0.2); color: #fcd34d; }
+
+    .question-text { font-size: .93rem; font-weight: 600; color: var(--text-primary); line-height: 1.5; flex: 1; padding-top: .15rem; }
+
+    .question-body { padding: 0 1.5rem 1.5rem 4rem; }
+    .question-body p {
+      font-size: .91rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: .85rem;
+    }
+    .question-body p:last-child { margin-bottom: 0; }
+
+    /* ── CONNECTION DATA BOX ── */
+    .conn-box {
+      background: rgba(17,22,34,0.8);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .5rem;
+    }
+
+    .conn-row {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: .6rem .8rem;
+      border-radius: var(--radius-sm);
+      transition: background .2s;
+    }
+    .conn-row:hover { background: rgba(59,130,246,0.07); }
+    .conn-key {
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      color: var(--accent-cyan);
+      font-weight: 500;
+      min-width: 130px;
+      flex-shrink: 0;
+    }
+    .conn-val {
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      color: var(--text-primary);
+    }
+
+    /* ── CODE BLOCK ── */
+    .code-block {
+      background: #090d18;
+      border: 1px solid rgba(59,130,246,0.2);
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1.5rem;
+      font-family: var(--font-mono);
+      font-size: .85rem;
+      color: #67e8f9;
+      position: relative;
+      overflow-x: auto;
+    }
+    .code-block::before {
+      content: 'CONSOLA FTP';
+      position: absolute;
+      top: .75rem; right: 1rem;
+      font-size: .65rem;
+      color: var(--text-muted);
+      letter-spacing: .1em;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .gallery-item {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+    }
+    .gallery-item:hover {
+      transform: translateY(-4px) scale(1.01);
+      box-shadow: 0 12px 40px rgba(59,130,246,0.2);
+      border-color: var(--border-bright);
+    }
+    .gallery-item img { width: 100%; display: block; }
+    .gallery-caption {
+      padding: .75rem 1rem;
+      font-size: .78rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── DOWNLOADS SECTION ── */
+    .downloads-section {
+      background: linear-gradient(135deg, rgba(139,92,246,0.07) 0%, rgba(59,130,246,0.06) 100%);
+      border: 1px solid rgba(139,92,246,0.25);
+      border-radius: var(--radius-xl);
+      padding: 2.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .downloads-section::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: 3rem; right: 3rem;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent-violet), transparent);
+    }
+
+    .downloads-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: .4rem;
+      display: flex;
+      align-items: center;
+      gap: .65rem;
+    }
+    .downloads-desc {
+      color: var(--text-secondary);
+      font-size: .9rem;
+      margin-bottom: 2rem;
+    }
+
+    .downloads-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .dl-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      text-align: center;
+      transition: transform .25s, box-shadow .25s, border-color .25s, background .25s;
+      cursor: pointer;
+    }
+    .dl-card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+    }
+
+    .dl-icon-wrap {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-md);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem;
+      transition: transform .25s;
+    }
+    .dl-card:hover .dl-icon-wrap { transform: scale(1.1) rotate(-3deg); }
+
+    .dl-icon-pdf   { background: linear-gradient(135deg, #7f1d1d, #dc2626); box-shadow: 0 4px 20px rgba(220,38,38,0.3); }
+    .dl-icon-zip   { background: linear-gradient(135deg, #78350f, #f59e0b); box-shadow: 0 4px 20px rgba(245,158,11,0.3); }
+    .dl-icon-indd  { background: linear-gradient(135deg, #581c87, #9333ea); box-shadow: 0 4px 20px rgba(147,51,234,0.3); }
+    .dl-icon-html  { background: linear-gradient(135deg, #1e3a5f, #3b82f6); box-shadow: 0 4px 20px rgba(59,130,246,0.3); }
+
+    .dl-name { font-size: .9rem; font-weight: 600; color: var(--text-primary); }
+    .dl-ext  { font-size: .75rem; color: var(--text-muted); font-family: var(--font-mono); margin-top: -.4rem; }
+
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      padding: .45rem 1.1rem;
+      border-radius: 999px;
+      font-size: .76rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: opacity .2s;
+    }
+    .dl-btn:hover { opacity: .85; }
+    .btn-pdf   { background: rgba(220,38,38,0.2);  color: #fca5a5; border: 1px solid rgba(220,38,38,0.4); }
+    .btn-zip   { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.4); }
+    .btn-indd  { background: rgba(147,51,234,0.2); color: #d8b4fe; border: 1px solid rgba(147,51,234,0.4); }
+    .btn-html  { background: rgba(59,130,246,0.2); color: #93c5fd; border: 1px solid rgba(59,130,246,0.4); }
+
+    /* ── ERROR CODES TABLE ── */
+    .error-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: .87rem;
+    }
+    .error-table th {
+      text-align: left;
+      padding: .75rem 1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: .72rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      border-bottom: 1px solid var(--border);
+    }
+    .error-table td {
+      padding: .85rem 1rem;
+      border-bottom: 1px solid rgba(59,130,246,0.06);
+      color: var(--text-secondary);
+      vertical-align: top;
+    }
+    .error-table tr:hover td { background: rgba(59,130,246,0.04); }
+    .error-table tr:last-child td { border-bottom: none; }
+
+    .code-pill {
+      display: inline-block;
+      font-family: var(--font-mono);
+      font-size: .78rem;
+      font-weight: 700;
+      padding: .2rem .6rem;
+      border-radius: 6px;
+    }
+    .code-220 { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .code-230 { background: rgba(16,185,129,0.15); color: #6ee7b7; }
+    .code-331 { background: rgba(245,158,11,0.15); color: #fcd34d; }
+    .code-226 { background: rgba(59,130,246,0.15); color: #93c5fd; }
+    .code-257 { background: rgba(59,130,246,0.15); color: #93c5fd; }
+    .code-530 { background: rgba(244,63,94,0.15);  color: #fda4af; }
+    .code-550 { background: rgba(244,63,94,0.15);  color: #fda4af; }
+    .code-425 { background: rgba(244,63,94,0.15);  color: #fda4af; }
+    .code-421 { background: rgba(244,63,94,0.15);  color: #fda4af; }
+
+    /* ── FOOTER ── */
+    .footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: .82rem;
+    }
+
+    /* ── UTILITIES ── */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--border-bright), transparent);
+      margin: .5rem 0;
+    }
+
+    .highlight-text {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .5s ease, transform .5s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .hero-banner { max-height: 220px; }
+      .hero-content { padding: 1.5rem 1.5rem 2rem; }
+      .card { padding: 1.5rem; }
+      .downloads-section { padding: 1.75rem; }
+      .question-body { padding: 0 1rem 1.25rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║         HERO SECTION         ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<header class="hero">
+  <div class="hero-inner">
+    <img
+      class="hero-banner"
+      src="actividad2_caso_practico-web-resources/image/FTP.png"
+      alt="Servidor FTP remoto – vista de conexión FileZilla"
+    />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="badge-row">
+        <span class="badge badge-violet">MF0952_2</span>
+        <span class="badge badge-blue">Unidad Didáctica 2</span>
+        <span class="badge badge-cyan">Actividad 2 · Caso Práctico</span>
+      </div>
+      <h1 class="hero-title">Servidor Remoto<br/>Transferencia FTP</h1>
+      <p class="hero-subtitle">Herramientas de transferencia de archivos · Publicación de páginas web</p>
+    </div>
+  </div>
+</header>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║          NAV / TOC           ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<nav class="toc-bar" aria-label="Secciones del documento">
+  <a class="toc-link" href="#info"><span class="toc-icon">👤</span>Información</a>
+  <a class="toc-link" href="#intro"><span class="toc-icon">📋</span>Introducción</a>
+  <a class="toc-link" href="#parte1"><span class="toc-icon">🖥️</span>Parte 1 · FileZilla</a>
+  <a class="toc-link" href="#parte2"><span class="toc-icon">💾</span>Parte 2 · Conexión Guardada</a>
+  <a class="toc-link" href="#parte3"><span class="toc-icon">⌨️</span>Parte 3 · Consola FTP</a>
+  <a class="toc-link" href="#parte4"><span class="toc-icon">🔍</span>Parte 4 · Análisis</a>
+  <a class="toc-link" href="#archivos"><span class="toc-icon">📦</span>Archivos</a>
+</nav>
+
+<!-- ╔══════════════════════════════╗ -->
+<!-- ║        MAIN CONTAINER        ║ -->
+<!-- ╚══════════════════════════════╝ -->
+<main class="main-container">
+
+  <!-- ── METADATA ── -->
+  <section id="info" class="fade-in">
+    <div class="meta-grid">
+      <div class="meta-item">
+        <div class="meta-icon meta-icon-blue">👨‍🎓</div>
+        <div>
+          <div class="meta-label">Alumno</div>
+          <div class="meta-value">Alfonso Rubio Rioseras</div>
+        </div>
+      </div>
+      <div class="meta-item">
+        <div class="meta-icon meta-icon-violet">📅</div>
+        <div>
+          <div class="meta-label">Fecha de entrega</div>
+          <div class="meta-value">Julio 2026</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── INTRODUCCIÓN ── -->
+  <section id="intro" class="section-block fade-in">
+    <div class="section-header">
+      <div class="section-icon-wrap icon-cyan">📋</div>
+      <div class="section-title-group">
+        <span class="section-part">Presentación</span>
+        <h2 class="section-title">Introducción</h2>
+      </div>
+    </div>
+
+    <div class="intro-box">
+      <p>En esta actividad vas a practicar la transferencia de archivos mediante clientes FTP,
+        usando servidores públicos fiables y actualizados para garantizar la accesibilidad.</p>
+      <p>Trabajarás con <strong>FileZilla</strong>, un cliente FTP gráfico, y también con la
+        consola para familiarizarte con el modo texto.</p>
+      <p>Más allá de la ejecución, deberás analizar y explicar los procesos, comandos y posibles
+        problemas para afianzar tu comprensión.</p>
+    </div>
+
+    <!-- Instrucciones previas -->
+    <div class="card">
+      <h3 style="font-size:1rem; font-weight:700; margin-bottom:1rem; color:var(--text-primary);">
+        Instrucciones previas
+      </h3>
+      <p style="color:var(--text-secondary); font-size:.91rem; margin-bottom:1rem;">
+        Antes de comenzar, sigue estos pasos de preparación:
+      </p>
+      <ol style="color:var(--text-secondary); font-size:.91rem; line-height:2; padding-left:1.5rem;">
+        <li>Accede a <span class="highlight-text">filezilla-project.org</span> y descarga la versión para tu SO.</li>
+        <li>Instala y ejecuta FileZilla en tu equipo.</li>
+        <li>Conecta al servidor público de Tele2 para pruebas.</li>
+      </ol>
+
+      <div style="margin-top:1.5rem;">
+        <div class="conn-box">
+          <div class="conn-row">
+            <span class="conn-key">Dirección:</span>
+            <span class="conn-val">ftp.speedtest.tele2.net</span>
+          </div>
+          <div class="conn-row">
+            <span class="conn-key">Puerto:</span>
+            <span class="conn-val">21</span>
+          </div>
+          <div class="conn-row">
+            <span class="conn-key">Usuario:</span>
+            <span class="conn-val">anonymous</span>
+          </div>
+          <div class="conn-row">
+            <span class="conn-key">Contraseña:</span>
+            <span class="conn-val">(vacío o correo electrónico)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── PARTE 1 ── -->
+  <section id="parte1" class="section-block fade-in">
+    <div class="section-header">
+      <div class="section-icon-wrap icon-blue">🖥️</div>
+      <div class="section-title-group">
+        <span class="section-part">Parte 1</span>
+        <h2 class="section-title">Cliente FTP Gráfico · FileZilla</h2>
+      </div>
+    </div>
+
+    <div class="question-list">
+
+      <!-- a) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-blue">a)</div>
+          <div class="question-text">Describe detalladamente cómo configuraste la conexión rápida en FileZilla para conectarte al servidor. ¿Qué opciones elegiste y por qué?</div>
+        </div>
+        <div class="question-body">
+          <p>Para establecer una conexión rápida en FileZilla es necesario utilizar la barra denominada <strong>"Conexión rápida"</strong>, situada en la parte superior de la ventana principal del programa. Esta opción permite conectarse a un servidor FTP sin necesidad de guardar previamente la configuración en el Gestor de Sitios, siendo especialmente útil para conexiones ocasionales o pruebas de acceso.</p>
+          <p>El primer campo que debe completarse es el <strong>Servidor (Host)</strong>, donde se introduce el nombre del dominio o la dirección IP del servidor FTP. A continuación, en el campo <strong>Nombre de usuario</strong>, se escribe la cuenta proporcionada por el administrador. En el campo <strong>Contraseña</strong> se introduce la clave correspondiente, mientras que el campo <strong>Puerto</strong> puede dejarse vacío para utilizar el puerto predeterminado 21.</p>
+          <p>Una vez introducidos estos datos, se pulsa el botón "Conexión rápida" para que FileZilla establezca la comunicación. Durante el proceso, el programa realiza la autenticación del usuario y, si las credenciales son correctas, muestra el contenido del servidor remoto en el panel derecho de la interfaz.</p>
+          <p>Aunque la conexión rápida resulta sencilla y eficaz, presenta algunas limitaciones: no permite configurar opciones avanzadas como el tipo de protocolo (FTP, FTPS o SFTP), el modo de cifrado, el modo de transferencia (activo o pasivo) o claves de autenticación. Por este motivo, para conexiones habituales o más complejas es recomendable utilizar el <strong>Gestor de Sitios</strong>.</p>
+        </div>
+      </div>
+
+      <!-- b) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-cyan">b)</div>
+          <div class="question-text">¿Qué mensajes de bienvenida o información inicial muestra FileZilla al establecer la conexión? Explica el significado de los mensajes principales.</div>
+        </div>
+        <div class="question-body">
+          <p>Al establecer una conexión con un servidor FTP, FileZilla muestra en la <strong>ventana de registro de mensajes</strong> una serie de respuestas enviadas por el cliente y el servidor. Cada línea refleja una etapa del proceso de comunicación.</p>
+
+          <table class="error-table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Mensaje</th>
+                <th>Significado</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><span class="code-pill code-220">220</span></td>
+                <td>Welcome to FTP Server</td>
+                <td>El servidor está disponible y preparado para aceptar conexiones.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill code-331">331</span></td>
+                <td>Password required</td>
+                <td>El nombre de usuario es válido y se solicita la contraseña.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill code-230">230</span></td>
+                <td>Logged on</td>
+                <td>Autenticación correcta. El usuario tiene acceso al servidor.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill code-257">257</span></td>
+                <td>"/upload" is your current directory</td>
+                <td>Respuesta al comando PWD; indica el directorio de trabajo actual.</td>
+              </tr>
+              <tr>
+                <td><span class="code-pill code-226">226</span></td>
+                <td>Directory listing successful</td>
+                <td>Listado de directorio completado correctamente.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- c) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-violet">c)</div>
+          <div class="question-text">Navega por el servidor remoto y describe la estructura general de directorios y tipos de archivos que encuentras. ¿Qué utilidad pueden tener en un entorno real?</div>
+        </div>
+        <div class="question-body">
+          <p>Cuando se accede a un servidor remoto mediante FTP, la estructura de directorios depende de la finalidad del servidor y de los permisos asignados al usuario. En los servidores web es habitual encontrar una organización jerárquica como la siguiente:</p>
+          <p>Normalmente existe un directorio principal como <span class="highlight-text">public_html</span>, <span class="highlight-text">htdocs</span> o <span class="highlight-text">www</span> que contiene todos los archivos públicos accesibles desde Internet. Dentro de este directorio suelen existir subcarpetas organizadas por tipo de contenido: <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">images/</code>, <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">css/</code>, <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">js/</code>, <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">uploads/</code>...</p>
+          <p>En el servidor de pruebas Tele2 se encuentran principalmente archivos comprimidos de distintos tamaños (1KB.zip, 1MB.zip, 100MB.zip) destinados a realizar pruebas de velocidad de descarga y comprobar el rendimiento de la conexión.</p>
+          <p>En un entorno profesional, cada archivo cumple una función esencial: los archivos HTML, CSS y JavaScript permiten construir la interfaz de usuario; los archivos PHP gestionan la lógica de negocio; y los archivos de configuración como <code style="font-family:var(--font-mono); color:var(--accent-amber); font-size:.85rem;">.htaccess</code> y <code style="font-family:var(--font-mono); color:var(--accent-amber); font-size:.85rem;">robots.txt</code> garantizan el correcto funcionamiento, la seguridad y el posicionamiento del sitio.</p>
+        </div>
+      </div>
+
+      <!-- d) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-green">d)</div>
+          <div class="question-text">Elige un archivo disponible en el servidor y explica cómo lo transferiste. ¿Qué indicadores te confirmó FileZilla durante la transferencia?</div>
+        </div>
+        <div class="question-body">
+          <p>La transferencia de un archivo mediante FileZilla se realiza estableciendo previamente una conexión con el servidor FTP y seleccionando el archivo que se desea descargar. Para subir un archivo al servidor, el usuario navega por el <strong>panel izquierdo</strong> (archivos locales) y localiza la carpeta de destino en el <strong>panel derecho</strong> (servidor remoto).</p>
+          <p>La transferencia puede iniciarse arrastrando el archivo entre paneles o haciendo clic con el botón derecho y seleccionando <strong>"Subir"</strong> o <strong>"Descargar"</strong>.</p>
+          <p>Durante el proceso, FileZilla proporciona varios indicadores: en la parte inferior aparece la <strong>cola de transferencia</strong> mostrando nombre del archivo, tamaño, velocidad de transferencia, porcentaje completado y tiempo estimado. Además, en el registro de mensajes aparecen las respuestas del servidor, incluyendo el código <span class="code-pill code-226" style="font-size:.75rem;">226</span> al finalizar correctamente.</p>
+          <p>Finalmente, el archivo desaparece de la cola activa y pasa al apartado <strong>"Transferencias satisfactorias"</strong>, confirmando que el proceso ha concluido sin errores.</p>
+        </div>
+      </div>
+
+      <!-- e) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-amber">e)</div>
+          <div class="question-text">Explica cómo se puede configurar una conexión guardada en FileZilla, indicando qué datos son imprescindibles para conectar correctamente en sesiones futuras.</div>
+        </div>
+        <div class="question-body">
+          <p>Una conexión guardada en FileZilla se configura mediante el <strong>Gestor de Sitios</strong>, accesible desde <em>Archivo → Gestor de Sitios</em> o pulsando el primer icono de la barra de herramientas. A continuación se selecciona <strong>Nuevo sitio</strong> y se asigna un nombre descriptivo.</p>
+          <p>Los datos imprescindibles para que la conexión funcione correctamente son:</p>
+          <div class="conn-box" style="margin-top:.5rem;">
+            <div class="conn-row"><span class="conn-key">Servidor (Host):</span><span class="conn-val">nombre de dominio o IP del servidor FTP</span></div>
+            <div class="conn-row"><span class="conn-key">Protocolo:</span><span class="conn-val">FTP, SFTP o FTPS</span></div>
+            <div class="conn-row"><span class="conn-key">Puerto:</span><span class="conn-val">21 (FTP), 22 (SFTP), 990 (FTPS)</span></div>
+            <div class="conn-row"><span class="conn-key">Tipo de acceso:</span><span class="conn-val">Normal / Anónimo / Interactivo</span></div>
+            <div class="conn-row"><span class="conn-key">Nombre de usuario:</span><span class="conn-val">cuenta autorizada</span></div>
+            <div class="conn-row"><span class="conn-key">Contraseña:</span><span class="conn-val">clave asociada al usuario</span></div>
+          </div>
+          <p style="margin-top:1rem;">Una vez guardada la configuración, bastará con abrir el Gestor de Sitios, seleccionar el servidor almacenado y pulsar <strong>Conectar</strong>.</p>
+        </div>
+      </div>
+
+    </div><!-- /question-list -->
+  </section>
+
+  <!-- ── PARTE 2 ── -->
+  <section id="parte2" class="section-block fade-in">
+    <div class="section-header">
+      <div class="section-icon-wrap icon-green">💾</div>
+      <div class="section-title-group">
+        <span class="section-part">Parte 2</span>
+        <h2 class="section-title">Configuración de Conexión Guardada</h2>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3 style="font-size:.95rem; font-weight:700; margin-bottom:1.25rem; color:var(--text-primary);">
+        Datos de la conexión <strong>ConexionFutura</strong>
+      </h3>
+      <div class="conn-box">
+        <div class="conn-row"><span class="conn-key">Nombre:</span><span class="conn-val">ConexionFutura</span></div>
+        <div class="conn-row"><span class="conn-key">Dirección:</span><span class="conn-val">ftp.dlptest.com</span></div>
+        <div class="conn-row"><span class="conn-key">Puerto:</span><span class="conn-val">21</span></div>
+        <div class="conn-row"><span class="conn-key">Usuario:</span><span class="conn-val">dlpuser</span></div>
+        <div class="conn-row"><span class="conn-key">Contraseña:</span><span class="conn-val">rNrKYTX9g7z3RgJRmxWuGHbeu</span></div>
+      </div>
+    </div>
+
+    <!-- Capturas de pantalla -->
+    <div class="gallery-grid">
+      <div class="gallery-item">
+        <img
+          src="actividad2_caso_practico-web-resources/image/captura.png"
+          alt="Captura FileZilla – Gestor de Sitios con la conexión ConexionFutura"
+        />
+        <div class="gallery-caption">📸 Gestor de Sitios – ConexionFutura configurada</div>
+      </div>
+      <div class="gallery-item">
+        <img
+          src="actividad2_caso_practico-web-resources/image/captura2.png"
+          alt="Captura FileZilla – Conexión establecida con ftp.dlptest.com"
+        />
+        <div class="gallery-caption">📸 Conexión establecida con ftp.dlptest.com</div>
+      </div>
+    </div>
+
+    <div class="question-list">
+
+      <!-- a) pasos -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-blue">a)</div>
+          <div class="question-text">Explica los pasos que seguiste para crear esta conexión guardada en FileZilla.</div>
+        </div>
+        <div class="question-body">
+          <p>Para crear la conexión guardada se accede al menú <em>Archivo → Gestor de Sitios</em>. Una vez abierto, se hace clic en <strong>Nuevo sitio</strong> y se asigna el nombre <em>ConexionFutura</em>.</p>
+          <p>A continuación, se introducen todos los datos: servidor <strong>ftp.dlptest.com</strong>, protocolo <strong>FTP</strong>, puerto <strong>21</strong>, tipo de acceso <strong>Normal</strong>, usuario <strong>dlpuser</strong> y contraseña. Se puede configurar opcionalmente el directorio remoto inicial, el modo de transferencia (activo/pasivo) o el límite de conexiones simultáneas.</p>
+          <p>Una vez completada la configuración, se pulsa <strong>Conectar</strong> para verificar que todos los datos son correctos. Si la conexión se establece satisfactoriamente, FileZilla guardará automáticamente la configuración, permitiendo reutilizarla sin volver a introducir los datos.</p>
+        </div>
+      </div>
+
+      <!-- b) mensajes -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-cyan">b)</div>
+          <div class="question-text">Durante la conexión, ¿qué mensajes o avisos relevantes se muestran en el registro de FileZilla? Interpreta su significado.</div>
+        </div>
+        <div class="question-body">
+          <p>Durante una conexión FTP, FileZilla muestra en la <strong>ventana de Registro de mensajes</strong> todas las operaciones que realiza el cliente y las respuestas enviadas por el servidor. Su interpretación resulta fundamental para el diagnóstico y la administración.</p>
+          <p>Al iniciar la conexión aparecen mensajes de resolución de dirección y conexión. El servidor responde con el <span class="code-pill code-220" style="font-size:.75rem;">220</span> confirmando disponibilidad. Tras enviar usuario (USER) y contraseña (PASS), el servidor responde con <span class="code-pill code-331" style="font-size:.75rem;">331</span> y finalmente con <span class="code-pill code-230" style="font-size:.75rem;">230 Logged on</span>.</p>
+          <p>Durante la sesión pueden aparecer otros mensajes habituales: <strong>PWD</strong> para conocer el directorio actual (<span class="code-pill code-257" style="font-size:.75rem;">257</span>), <strong>TYPE I</strong> para establecer modo binario y <strong>PASV</strong> para activar el modo pasivo.</p>
+        </div>
+      </div>
+
+      <!-- c) fallos -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-violet">c)</div>
+          <div class="question-text">Supón que la conexión falla. Describe al menos tres posibles causas relacionadas con la configuración y cómo las solucionarías.</div>
+        </div>
+        <div class="question-body">
+          <table class="error-table">
+            <thead>
+              <tr><th>Causa</th><th>Código</th><th>Solución</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Credenciales incorrectas</strong><br/>Usuario o contraseña erróneos.</td>
+                <td><span class="code-pill code-530">530</span></td>
+                <td>Verificar usuario y contraseña, comprobar mayúsculas o restablecer desde el servidor.</td>
+              </tr>
+              <tr>
+                <td><strong>Protocolo o puerto incorrecto</strong><br/>Ej.: FTP en puerto 22 (que es SFTP).</td>
+                <td>–</td>
+                <td>Revisar con el administrador el protocolo y puerto correctos; ajustar en FileZilla.</td>
+              </tr>
+              <tr>
+                <td><strong>Modo activo bloqueado por firewall</strong><br/>El router/cortafuegos bloquea la conexión de datos.</td>
+                <td><span class="code-pill code-425">425</span></td>
+                <td>Cambiar a modo pasivo (PASV) en FileZilla y abrir los puertos necesarios.</td>
+              </tr>
+              <tr>
+                <td><strong>Permisos insuficientes</strong><br/>El usuario no tiene acceso al directorio.</td>
+                <td><span class="code-pill code-550">550</span></td>
+                <td>Revisar los permisos asignados al usuario en el servidor y ajustarlos.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PARTE 3 ── -->
+  <section id="parte3" class="section-block fade-in">
+    <div class="section-header">
+      <div class="section-icon-wrap icon-violet">⌨️</div>
+      <div class="section-title-group">
+        <span class="section-part">Parte 3</span>
+        <h2 class="section-title">Uso de FTP mediante Consola</h2>
+      </div>
+    </div>
+
+    <div class="code-block">ftp ftp.speedtest.tele2.net</div>
+
+    <div class="question-list">
+
+      <!-- a) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-blue">a)</div>
+          <div class="question-text">¿Qué mensajes aparecen durante la conexión? Explica qué significan los mensajes relacionados con el acceso anónimo.</div>
+        </div>
+        <div class="question-body">
+          <p>Al conectar con <code style="font-family:var(--font-mono); font-size:.85rem; color:var(--accent-cyan);">ftp ftp.speedtest.tele2.net</code>, el cliente FTP muestra una serie de mensajes que indican el estado de la conexión.</p>
+          <p>El código <span class="code-pill code-220" style="font-size:.75rem;">220</span> confirma que el servidor está disponible. Se utiliza el usuario <strong>anonymous</strong> para acceder como invitado. El servidor responde con <span class="code-pill code-331" style="font-size:.75rem;">331</span>, indicando que se necesita contraseña (en el acceso anónimo suele ser un correo o simplemente Enter). Finalmente, el código <span class="code-pill code-230" style="font-size:.75rem;">230 Login successful</span> confirma la autenticación correcta.</p>
+        </div>
+      </div>
+
+      <!-- b) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-cyan">b)</div>
+          <div class="question-text">Una vez conectado, indica el comando para listar los archivos y carpetas. ¿Qué resultado obtienes y cómo interpretas la información mostrada?</div>
+        </div>
+        <div class="question-body">
+          <p>Para visualizar el contenido del servidor se utilizan los comandos <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">ls</code> o <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">dir</code>, que muestran el listado de archivos y directorios disponibles.</p>
+          <p>La información presentada incluye el tipo de elemento (archivo o carpeta), los permisos de acceso, el tamaño y el nombre de cada archivo. En el servidor de Tele2 se encuentran archivos comprimidos de distintos tamaños como <code style="font-family:var(--font-mono); font-size:.85rem; color:var(--accent-amber);">1KB.zip</code>, <code style="font-family:var(--font-mono); font-size:.85rem; color:var(--accent-amber);">1MB.zip</code> o <code style="font-family:var(--font-mono); font-size:.85rem; color:var(--accent-amber);">100MB.zip</code>, destinados a pruebas de velocidad de descarga.</p>
+        </div>
+      </div>
+
+      <!-- c) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-violet">c)</div>
+          <div class="question-text">Explica cómo descargarías un archivo llamado "1KB.zip" desde el servidor y qué pasos seguirías para verificar que la transferencia fue exitosa.</div>
+        </div>
+        <div class="question-body">
+          <div class="code-block" style="margin-bottom:1rem;">get 1KB.zip</div>
+          <p>La descarga se realiza mediante el comando <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">get 1KB.zip</code>, que copia el archivo desde el servidor al equipo local. Al finalizar, el servidor responde con <span class="code-pill code-226" style="font-size:.75rem;">226 Transfer complete</span>.</p>
+          <p>Para comprobar que la descarga ha sido satisfactoria se recomienda: verificar que el archivo aparece en el directorio local, confirmar que su tamaño coincide con el original y asegurarse de que puede abrirse sin errores.</p>
+        </div>
+      </div>
+
+      <!-- d) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-green">d)</div>
+          <div class="question-text">Describe el comando que usarías para subir un archivo local llamado "miweb.html" al servidor si tuvieras permisos de escritura.</div>
+        </div>
+        <div class="question-body">
+          <div class="code-block" style="margin-bottom:1rem;">put miweb.html</div>
+          <p>Si el usuario dispusiera de permisos de escritura, la subida del archivo se realizaría mediante el comando <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">put miweb.html</code>. Este comando transfiere el archivo desde el equipo local al servidor remoto.</p>
+          <p>No obstante, el servidor público de Tele2 está destinado exclusivamente a pruebas de descarga, por lo que normalmente no permite la carga de archivos por parte de los usuarios.</p>
+        </div>
+      </div>
+
+      <!-- e) -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-amber">e)</div>
+          <div class="question-text">Finalmente, indica cómo desconectarte del servidor FTP.</div>
+        </div>
+        <div class="question-body">
+          <div class="code-block" style="margin-bottom:1rem;">bye     # o también: quit  /  exit</div>
+          <p>Para finalizar la sesión FTP de forma segura se utilizan los comandos <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">bye</code>, <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">quit</code> o <code style="font-family:var(--font-mono); color:var(--accent-cyan); font-size:.85rem;">exit</code>. Tras ejecutar cualquiera de ellos, el servidor responde normalmente con el código <span class="code-pill code-226" style="font-size:.75rem; background:rgba(16,185,129,0.15); color:#6ee7b7;">221 Goodbye</span>, que confirma que la conexión se ha cerrado correctamente.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── PARTE 4 ── -->
+  <section id="parte4" class="section-block fade-in">
+    <div class="section-header">
+      <div class="section-icon-wrap icon-amber">🔍</div>
+      <div class="section-title-group">
+        <span class="section-part">Parte 4</span>
+        <h2 class="section-title">Análisis y Reflexión</h2>
+      </div>
+    </div>
+
+    <div class="question-list">
+
+      <!-- 1 -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-blue">1.</div>
+          <div class="question-text">¿Cuáles son las ventajas y limitaciones del uso de FTP para la transferencia de archivos en comparación con otros protocolos o servicios actuales?</div>
+        </div>
+        <div class="question-body">
+          <p>FTP continúa siendo ampliamente utilizado para la transferencia de archivos gracias a su sencillez, rapidez y gran compatibilidad con diferentes sistemas operativos y servidores. Permite gestionar archivos de forma eficiente, facilitando tareas como la carga, descarga, modificación o eliminación de contenido remoto, siendo especialmente útil para la administración de servidores web.</p>
+          <p>Su principal limitación es la <strong>falta de seguridad</strong> en su versión tradicional, ya que tanto las credenciales de acceso como los datos se transmiten sin cifrado. Además, su configuración puede resultar más compleja en redes protegidas por cortafuegos y carece de funciones habituales en las soluciones actuales como sincronización automática, control de versiones o colaboración en tiempo real.</p>
+          <p>En comparación con protocolos modernos como <strong>SFTP</strong> o <strong>FTPS</strong>, FTP ofrece una implementación más sencilla, pero con un nivel de seguridad considerablemente inferior. Frente a servicios en la nube como Google Drive o Dropbox, presenta menos funcionalidades para el trabajo colaborativo, aunque sigue siendo eficiente para entornos técnicos y servidores dedicados.</p>
+        </div>
+      </div>
+
+      <!-- 2 -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-cyan">2.</div>
+          <div class="question-text">Analiza el papel que tiene la seguridad en las conexiones FTP. ¿Qué riesgos existen y qué medidas se pueden tomar para mitigarlos?</div>
+        </div>
+        <div class="question-body">
+          <p>La seguridad constituye uno de los aspectos más críticos en las conexiones FTP, ya que el protocolo fue diseñado en una época en la que las amenazas informáticas eran mucho menores. FTP transmite tanto las credenciales como los datos en <strong>texto plano</strong>, lo que significa que pueden ser interceptados por un atacante en redes inseguras.</p>
+          <p>Entre los principales riesgos se encuentran: interceptación de credenciales mediante <strong>sniffing</strong>, acceso no autorizado al servidor, modificación o robo de archivos durante la transferencia, y ataques de <strong>fuerza bruta</strong> para descubrir contraseñas.</p>
+          <p>Para reducir estos riesgos es recomendable:</p>
+          <ul style="color:var(--text-secondary); font-size:.91rem; line-height:2; padding-left:1.5rem; margin-bottom:.5rem;">
+            <li>Sustituir FTP tradicional por <strong>SFTP o FTPS</strong>, que incorporan cifrado.</li>
+            <li>Utilizar contraseñas robustas y autenticación de dos factores.</li>
+            <li>Limitar los permisos de acceso según el principio de <em>mínimo privilegio</em>.</li>
+            <li>Restringir el acceso mediante cortafuegos o listas de IP autorizadas.</li>
+            <li>Mantener el servidor actualizado y realizar copias de seguridad periódicas.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3 -->
+      <div class="question-card">
+        <div class="question-header">
+          <div class="q-label q-label-violet">3.</div>
+          <div class="question-text">En caso de que una transferencia falle a mitad del proceso, ¿qué procedimientos seguirías para detectar y corregir el problema?</div>
+        </div>
+        <div class="question-body">
+          <p>Cuando una transferencia de archivos falla a mitad del proceso, es fundamental seguir un <strong>procedimiento sistemático</strong> que permita identificar la causa del problema y restablecer la comunicación de forma segura.</p>
+          <p>El primer paso consiste en comprobar el estado de la <strong>conexión de red</strong>, verificando que tanto el equipo cliente como el servidor mantienen conectividad. A continuación, es conveniente revisar los <strong>mensajes de error</strong> del cliente FTP y los registros del servidor.</p>
+          <p>Una vez identificado el problema, debe comprobarse que las <strong>credenciales son correctas</strong>, que el usuario dispone de permisos necesarios, que existe espacio de almacenamiento suficiente y que los cortafuegos no bloquean los puertos FTP.</p>
+          <p>Si el fallo está relacionado con una interrupción temporal, muchos clientes FTP permiten <strong>reanudar automáticamente</strong> la transferencia desde el punto de interrupción. Tras finalizar, es recomendable verificar la integridad del archivo mediante comparación de tamaño o funciones hash como <strong>MD5</strong> o <strong>SHA-256</strong>.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── ARCHIVOS DEL PROYECTO ── -->
+  <section id="archivos" class="fade-in">
+    <div class="downloads-section">
+      <h2 class="downloads-title">
+        <span>📦</span> Archivos del Proyecto
+      </h2>
+      <p class="downloads-desc">
+        Documentación completa de la actividad. Descarga los recursos en el formato que necesites.
+      </p>
+
+      <div class="downloads-grid">
+
+        <!-- PDF -->
+        <div class="dl-card" id="dl-pdf">
+          <div class="dl-icon-wrap dl-icon-pdf">📄</div>
+          <div>
+            <div class="dl-name">Enunciado</div>
+            <div class="dl-ext">enunciado.pdf</div>
+          </div>
+          <a href="enunciado.pdf" class="dl-btn btn-pdf" download="enunciado.pdf" id="btn-enunciado-pdf">
+            ⬇ Descargar PDF
+          </a>
+        </div>
+
+        <!-- ZIP -->
+        <div class="dl-card" id="dl-zip">
+          <div class="dl-icon-wrap dl-icon-zip">🗜️</div>
+          <div>
+            <div class="dl-name">Proyecto completo</div>
+            <div class="dl-ext">actividad2_caso_practico.zip</div>
+          </div>
+          <a href="actividad2_caso_practico.zip" class="dl-btn btn-zip" download="actividad2_caso_practico.zip" id="btn-actividad-zip">
+            ⬇ Descargar ZIP
+          </a>
+        </div>
+
+        <!-- InDesign -->
+        <div class="dl-card" id="dl-indd">
+          <div class="dl-icon-wrap dl-icon-indd">🎨</div>
+          <div>
+            <div class="dl-name">Maquetación InDesign</div>
+            <div class="dl-ext">actividad2_caso_practico.indd</div>
+          </div>
+          <a href="actividad2_caso_practico.indd" class="dl-btn btn-indd" download="actividad2_caso_practico.indd" id="btn-actividad-indd">
+            ⬇ Descargar INDD
+          </a>
+        </div>
+
+        <!-- HTML original -->
+        <div class="dl-card" id="dl-html">
+          <div class="dl-icon-wrap dl-icon-html">🌐</div>
+          <div>
+            <div class="dl-name">Documento original</div>
+            <div class="dl-ext">actividad2_caso_practico.html</div>
+          </div>
+          <a href="actividad2_caso_practico.html" class="dl-btn btn-html" id="btn-actividad-html">
+            👁 Ver original
+          </a>
+        </div>
+
+      </div><!-- /downloads-grid -->
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <p>
+    <strong style="color:var(--text-secondary);">Alfonso Rubio Rioseras</strong>
+    &nbsp;·&nbsp; MF0952_2 · Publicación de Páginas Web
+    &nbsp;·&nbsp; Unidad Didáctica 2 · Actividad 2 · Caso Práctico
+    &nbsp;·&nbsp; Julio 2026
+  </p>
+</footer>
+
+<script>
+  // ── Scroll fade-in animation ──
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // ── Highlight active TOC link ──
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const tocLinks = document.querySelectorAll('.toc-link');
+
+  const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        tocLinks.forEach(l => l.style.borderColor = 'transparent');
+        const link = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+        if (link) {
+          link.style.color = 'var(--text-primary)';
+          link.style.borderColor = 'var(--accent-blue)';
+        }
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+
+  sections.forEach(s => sectionObserver.observe(s));
+</script>
+
+</body>
+</html>

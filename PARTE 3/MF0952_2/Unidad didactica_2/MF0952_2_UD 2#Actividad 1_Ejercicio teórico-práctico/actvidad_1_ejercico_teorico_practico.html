@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Actividad 1 - Ejercicio teórico-práctico sobre transferencia de archivos FTP. MF0952_2 Publicación de páginas web.">
+    <title>Actividad 1 - Transferencia de Archivos FTP</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="actvidad-web-resources/css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div class="page-container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <p class="subtitle">Módulo formativo: Publicación de páginas web (MF0952_2)</p>
+                    <h1>TRANSFERENCIA DE ARCHIVOS</h1>
+                    <h2>Unidad Didáctica 2. Herramientas de transferencias de archivos</h2>
+                    <p class="activity-type">Actividad 1_Ejercicio teórico-práctico</p>
+                </div>
+                <div class="student-card">
+                    <div class="avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div class="student-info">
+                        <p class="student-name">Alfonso Rubio Rioseras</p>
+                        <p class="student-date">Julio 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-image-container">
+                <img class="header-image" src="actvidad-web-resources/image/FTP.png" alt="FTP - Transferencia de Archivos" />
+            </div>
+        </header>
+
+        <main class="content-area">
+
+            <!-- Recursos de la Actividad -->
+            <article class="question-card resources-card" style="border-left: 4px solid var(--accent-hover);">
+                <div class="question-header" style="margin-bottom: 1rem; border-bottom: none; padding-bottom: 0;">
+                    <div class="icon-circle" style="margin-bottom: 0; margin-right: 1rem; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(59, 130, 246, 0.2); border-radius: 8px; color: var(--accent-hover);">📁</div>
+                    <h4 style="display: flex; align-items: center; margin: 0;">Archivos y Recursos de la Actividad</h4>
+                </div>
+                <div class="question-body">
+                    <p>Descarga los archivos originales asociados a esta actividad:</p>
+                    <div class="download-grid">
+                        <a href="actvidad_1_ejercico_teoricopractico.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">📄</span> Actividad (PDF)
+                        </a>
+                        <a href="enunciado.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">📋</span> Enunciado (PDF)
+                        </a>
+                        <a href="MF0952_2_UD 2#Actividad 1_Ejercicio teórico-práctico.zip" download class="download-btn">
+                            <span class="btn-icon">🗜️</span> Paquete (ZIP)
+                        </a>
+                        <a href="actvidad.indd" download class="download-btn">
+                            <span class="btn-icon">🖋️</span> InDesign (INDD)
+                        </a>
+                        <a href="AprendaLinux.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">🐧</span> AprendaLinux (PDF)
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Enunciado -->
+            <div class="example-box" style="margin-top: 2rem;">
+                <h4 style="color: #10b981; margin-bottom: 1rem;">Enunciado (Descripción)</h4>
+                <p>Cuando se desarrolla una página web se suele subir a un servidor conectado a internet. Para realizar esa transferencia de archivos y subir los datos a internet existen varias herramientas, aunque la más común y conocida es usar el protocolo FTP.</p>
+                <p>En el siguiente enlace se puede encontrar el programa FileZilla, que es de los más utilizados en la actualidad:</p>
+                <p><a href="https://filezilla-project.org/" target="_blank" style="color: #10b981;">https://filezilla-project.org/</a></p>
+            </div>
+
+            <div class="section-title">
+                <h3>Preguntas y actividades a realizar</h3>
+            </div>
+
+            <!-- Pregunta 1 -->
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">1</span>
+                    <h4>Responda a las siguientes preguntas:</h4>
+                </div>
+                <div class="question-body">
+
+                    <!-- Pregunta 1a -->
+                    <h5 style="color: var(--accent-hover); margin-bottom: 1rem;">a. ¿Qué datos son necesarios para conectar a un servidor FTP?</h5>
+                    <div class="info-box">
+                        <p>Para establecer una conexión con un servidor FTP (File Transfer Protocol) es necesario disponer de una serie de datos que permitan identificar tanto el servidor como al usuario autorizado. Los parámetros básicos son la <strong>dirección del servidor</strong> (nombre de dominio o dirección IP), el <strong>nombre de usuario</strong>, la <strong>contraseña</strong> y el <strong>puerto de comunicación</strong>. De forma predeterminada, el protocolo FTP utiliza el puerto 21, aunque algunos servidores pueden emplear otros puertos por motivos de seguridad o configuración.</p>
+                        <p>Además de estos datos, es importante conocer el tipo de conexión que utiliza el servidor. Actualmente es recomendable emplear protocolos seguros como <strong>FTPS</strong> o <strong>SFTP</strong>, ya que cifran la información transmitida y protegen las credenciales de acceso frente a posibles interceptaciones. Asimismo, la mayoría de los clientes FTP utilizan el modo de conexión pasivo (PASV), que facilita la comunicación cuando el equipo cliente se encuentra detrás de un cortafuegos o un router.</p>
+                        <p>Como ejemplo práctico, un administrador de un sitio web podría proporcionar los siguientes datos para acceder al servidor: servidor <strong>ftp.ejemplo.com</strong>, usuario <strong>webadmin</strong>, contraseña <strong>************</strong> y puerto <strong>21</strong>. Introduciendo esta información en un cliente FTP, como FileZilla o WinSCP, el usuario podrá establecer la conexión y realizar operaciones de transferencia de archivos.</p>
+                    </div>
+
+                    <div class="grid-2-col" style="margin-top: 1.5rem;">
+                        <div class="badge-item">
+                            <span class="badge">Parámetros Básicos</span>
+                            <ul style="margin-top: 0.75rem;">
+                                <li>🌐 Dirección del servidor (dominio o IP)</li>
+                                <li>👤 Nombre de usuario</li>
+                                <li>🔑 Contraseña</li>
+                                <li>🔌 Puerto (por defecto: <code>21</code>)</li>
+                            </ul>
+                        </div>
+                        <div class="badge-item">
+                            <span class="badge" style="background: #8b5cf6;">Protocolos Seguros</span>
+                            <ul style="margin-top: 0.75rem;">
+                                <li>🔒 <strong>FTPS</strong> – FTP sobre SSL/TLS</li>
+                                <li>🔐 <strong>SFTP</strong> – FTP sobre SSH</li>
+                                <li>↔️ Modo pasivo (PASV) recomendado</li>
+                                <li>🛡️ Protección frente a interceptaciones</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="conclusion-box" style="margin-top: 1.5rem;">
+                        <p>En conclusión, disponer de los parámetros de conexión adecuados constituye un requisito indispensable para acceder a un servidor FTP de forma correcta y segura. El conocimiento de estos datos, junto con el uso de protocolos de transferencia seguros, garantiza una administración eficiente y contribuye a proteger la información intercambiada entre el cliente y el servidor.</p>
+                    </div>
+
+                    <!-- Pregunta 1b -->
+                    <h5 style="color: var(--accent-hover); margin: 2rem 0 1rem;">b. Busque información sobre 2 alternativas de clientes FTP y compare sus principales características.</h5>
+
+                    <p>Además de FileZilla, existen numerosos clientes FTP que permiten gestionar la transferencia de archivos entre un equipo local y un servidor remoto. Dos de las alternativas más utilizadas son <strong>WinSCP</strong> y <strong>Cyberduck</strong>.</p>
+
+                    <div class="grid-2-col">
+                        <div class="badge-item">
+                            <span class="badge" style="background: #0ea5e9;">WinSCP</span>
+                            <p style="margin-top: 0.75rem;">Cliente gratuito y de código abierto exclusivo para <strong>Windows</strong>. Destaca por:</p>
+                            <ul>
+                                <li>Soporte de FTP, FTPS, SFTP, SCP y WebDAV</li>
+                                <li>Sincronización automática de directorios</li>
+                                <li>Edición de archivos directamente en el servidor</li>
+                                <li>Automatización mediante scripts</li>
+                                <li>Integración completa con el explorador de Windows</li>
+                            </ul>
+                        </div>
+                        <div class="badge-item">
+                            <span class="badge" style="background: #f59e0b;">Cyberduck</span>
+                            <p style="margin-top: 0.75rem;">Popular para <strong>Windows y macOS</strong>. Destaca por:</p>
+                            <ul>
+                                <li>Soporte de FTP, FTPS, SFTP</li>
+                                <li>Conexión a Amazon S3, Google Drive, Azure, Dropbox</li>
+                                <li>Interfaz sencilla e intuitiva</li>
+                                <li>Cifrado mediante Cryptomator</li>
+                                <li>Sistema de marcadores de acceso rápido</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 1rem;">La siguiente tabla compara las principales características de ambos clientes respecto a FileZilla:</p>
+
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <img src="actvidad-web-resources/image/image.png" alt="Tabla comparativa de clientes FTP" class="screenshot-img" />
+                    </div>
+
+                    <div class="conclusion-box">
+                        <p><strong>WinSCP</strong> constituye una excelente alternativa para usuarios de Windows que requieren funciones avanzadas de administración y automatización, mientras que <strong>Cyberduck</strong> destaca por su facilidad de uso y por su capacidad para gestionar tanto servidores FTP como servicios de almacenamiento en la nube. La elección entre uno u otro dependerá de las necesidades específicas del usuario y del entorno de trabajo.</p>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Pregunta 2 -->
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">2</span>
+                    <h4>Conexión a un servidor FTP mediante navegador web.</h4>
+                </div>
+                <div class="question-body">
+
+                    <div class="example-box">
+                        <h4 style="color: #10b981; margin-bottom: 1rem;">Enunciado</h4>
+                        <p>Se conectará a un servidor de FTP utilizando un navegador web:</p>
+                        <ul>
+                            <li><strong>a.</strong> Conecte al servidor FTP de acceso libre RedIRIS, la red española para Interconexión de los Recursos Informáticos de las universidades y centros de investigación. Su dirección es: <a href="ftp://ftp.cica.es/" target="_blank" style="color: #10b981;">ftp://ftp.cica.es/</a></li>
+                            <li><strong>b.</strong> Entre en la carpeta <code>Guadalinex</code> y después en las subcarpetas <code>descargas</code> y <code>documentos</code>.</li>
+                            <li><strong>c.</strong> Descargue en su equipo el documento llamado <code>AprendaLinux.pdf</code>.</li>
+                        </ul>
+                    </div>
+
+                    <h5 style="color: var(--accent-hover); margin: 1.5rem 0 1rem;">Resolución</h5>
+                    <p>He utilizado el cliente FTP <strong>FileZilla versión 3.69.5</strong> para descargar el archivo solicitado, que se entrega junto con el resto de la actividad. A continuación se muestra la captura del proceso de descarga:</p>
+
+                    <div style="text-align: center; margin: 1.5rem 0;">
+                        <img src="actvidad-web-resources/image/captura.png" alt="Captura de FileZilla descargando AprendaLinux.pdf" class="screenshot-img" />
+                    </div>
+
+                    <div class="grid-2-col" style="margin-top: 1.5rem;">
+                        <div class="badge-item">
+                            <span class="badge" style="background: #10b981;">Ruta en el servidor</span>
+                            <ul style="margin-top: 0.75rem;">
+                                <li>🖥️ Servidor: <code>ftp.cica.es</code></li>
+                                <li>📂 <code>/Guadalinex/</code></li>
+                                <li>📂 <code>/descargas/</code></li>
+                                <li>📂 <code>/documentos/</code></li>
+                                <li>📄 <code>AprendaLinux.pdf</code></li>
+                            </ul>
+                        </div>
+                        <div class="badge-item">
+                            <span class="badge" style="background: #8b5cf6;">Cliente utilizado</span>
+                            <ul style="margin-top: 0.75rem;">
+                                <li>🛠️ FileZilla v3.69.5</li>
+                                <li>🔓 Acceso anónimo (FTP libre)</li>
+                                <li>🌐 Red RedIRIS</li>
+                                <li>✅ Descarga completada correctamente</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </article>
+
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2026 Alfonso Rubio Rioseras - MF0952_2_UD 2#Actividad 1</p>
+        </footer>
+    </div>
+
+</body>
+</html>

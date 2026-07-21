@@ -1,0 +1,112 @@
+body, div, dl, dt, dd, h1, h2, h3, h4, h5, h6, p, pre, code, blockquote {
+	margin:0;
+	padding:0;
+	border-width:0;
+}
+body {
+	-epub-hyphens:auto;
+}
+div.Marco-gr-fico-b-sico {
+	border-color:#000000;
+	border-width:1px;
+	border-style:solid;
+}
+div.Marco-de-texto-b-sico {
+	border-style:solid;
+}
+p.P-rrafo-b-sico {
+	color:#000000;
+	font-family:"Minion Pro", serif;
+	font-size:12px;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:normal;
+	line-height:1.2;
+	margin-bottom:0;
+	margin-left:0;
+	margin-right:0;
+	margin-top:0;
+	orphans:1;
+	page-break-after:auto;
+	page-break-before:auto;
+	text-align:left;
+	text-decoration:none;
+	text-indent:0;
+	text-transform:none;
+	widows:1;
+}
+p.ParaOverride-1 {
+	text-align:center;
+}
+span.CharOverride-1 {
+	font-family:"Berlin Sans FB", sans-serif;
+	font-size:17px;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-2 {
+	font-size:18px;
+}
+span.CharOverride-3 {
+	font-size:20px;
+}
+span.CharOverride-4 {
+	font-size:24px;
+}
+span.CharOverride-5 {
+	font-size:21px;
+}
+span.CharOverride-6 {
+	font-family:"Lucida Sans Unicode", sans-serif;
+	font-style:normal;
+	font-weight:normal;
+}
+span.CharOverride-7 {
+	font-size:29px;
+}
+#_idContainer000 {
+	display:inline-block;
+	height:750px;
+	position:relative;
+	width:503px;
+}
+#_idContainer001 {
+	display:inline-block;
+	height:213px;
+	width:458px;
+}
+#_idContainer008, #_idContainer013, #_idContainer014, #_idContainer017, #_idContainer018, #_idContainer020, #_idContainer022, #_idContainer024 {
+	display:inline-block;
+	height:279px;
+	width:478px;
+}
+#_idContainer025 {
+	display:inline-block;
+	height:1px;
+	position:relative;
+	width:113px;
+}
+#_idContainer026 {
+	display:inline-block;
+	height:8px;
+	position:relative;
+	width:8px;
+}
+img._idGenObjectAttribute-1 {
+	height:100.00%;
+	min-width:100%;
+	width:100.00%;
+}
+div._idGenObjectStyleOverride-1 {
+	border-width:6px;
+}
+div._idGenObjectStyleOverride-2 {
+	border-width:0px;
+}
+div._idGenObjectStyleOverride-3 {
+	background-color:#1c2b33;
+	border-width:0px;
+}
+div._idGenObjectLayout-1 {
+	text-align:center;
+}

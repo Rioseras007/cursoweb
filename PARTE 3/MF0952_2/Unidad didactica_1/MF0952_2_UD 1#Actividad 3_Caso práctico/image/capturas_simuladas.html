@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Actividad 3 - Caso práctico (Capturas)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1, h3 {
+            color: #2c3e50;
+        }
+        .terminal {
+            background-color: #2b2b2b;
+            color: #a9b7c6;
+            font-family: 'Consolas', 'Courier New', Courier, monospace;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            margin-bottom: 30px;
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .prompt {
+            color: #98c379;
+        }
+        .command {
+            color: #e06c75;
+        }
+        .output {
+            color: #abb2bf;
+        }
+        @media print {
+            body {
+                background-color: white;
+                margin: 0;
+            }
+            .terminal {
+                box-shadow: none;
+                border: 1px solid #ccc;
+                background-color: #f9f9f9;
+                color: #000;
+                page-break-inside: avoid;
+            }
+            .prompt { color: #008000; }
+            .command { color: #0000ff; }
+            .output { color: #333; }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Actividad 3 - Caso práctico (Capturas de Terminal)</h1>
+    <p>A continuación se muestran las capturas simuladas de cada comando ejecutado en la terminal.</p>
+
+    <h3>a. Acceda a una terminal.</h3>
+    <p><em>(Apertura de la terminal en el sistema operativo Linux)</em></p>
+    <div class="terminal"><span class="prompt">usuario@linux:~$</span> <span class="output"></span></div>
+
+    <h3>b. Compruebe en qué ruta nos encontramos al abrir la terminal.</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~$</span> <span class="command">pwd</span>
+<span class="output">/home/usuario</span></div>
+
+    <h3>c. Cree una nueva carpeta llamada "www".</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~$</span> <span class="command">mkdir www</span></div>
+
+    <h3>d. Dentro de la carpeta "www" cree las subcarpetas "img", "js", "css" y "datos".</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~$</span> <span class="command">cd www</span>
+<span class="prompt">usuario@linux:~/www$</span> <span class="command">mkdir img js css datos</span></div>
+
+    <h3>e. Mostrar que se han creado listando el contenido de la carpeta www.</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~/www$</span> <span class="command">ls -l</span>
+<span class="output">total 16
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 css
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 datos
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 img
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 js</span></div>
+
+    <h3>f. Copie la carpeta "img" a la carpeta "datos" y muestre el resultado.</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~/www$</span> <span class="command">cp -r img datos/</span>
+<span class="prompt">usuario@linux:~/www$</span> <span class="command">ls -l datos/</span>
+<span class="output">total 4
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:01 img</span></div>
+
+    <h3>g. Cambie el nombre a la carpeta "datos" por "datosmalos" y muestre el resultado.</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~/www$</span> <span class="command">mv datos datosmalos</span>
+<span class="prompt">usuario@linux:~/www$</span> <span class="command">ls -l</span>
+<span class="output">total 16
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 css
+drwxr-xr-x 3 usuario usuario 4096 feb 27 10:01 datosmalos
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 img
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 js</span></div>
+
+    <h3>h. Muestre los permisos de la carpeta "datosmalos".</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~/www$</span> <span class="command">ls -ld datosmalos</span>
+<span class="output">drwxr-xr-x 3 usuario usuario 4096 feb 27 10:01 datosmalos</span></div>
+
+    <h3>i. Modifique los permisos de "datosmalos" de forma que sólo el propietario del archivo tenga permisos de escritura y no los tengan los del grupo y los otros.</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~/www$</span> <span class="command">chmod go-w datosmalos</span>
+<span class="prompt">usuario@linux:~/www$</span> <span class="command">ls -ld datosmalos</span>
+<span class="output">drwxr-xr-x 3 usuario usuario 4096 feb 27 10:01 datosmalos</span></div>
+
+    <h3>j. Borre definitivamente la carpeta "datosmalos".</h3>
+    <div class="terminal"><span class="prompt">usuario@linux:~/www$</span> <span class="command">rm -rf datosmalos</span>
+<span class="prompt">usuario@linux:~/www$</span> <span class="command">ls -l</span>
+<span class="output">total 12
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 css
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 img
+drwxr-xr-x 2 usuario usuario 4096 feb 27 10:00 js</span></div>
+
+</body>
+</html>

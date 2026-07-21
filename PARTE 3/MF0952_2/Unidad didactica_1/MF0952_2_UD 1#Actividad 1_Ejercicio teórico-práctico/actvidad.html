@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 1 - Seguridad y Restricciones de Acceso</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="actvidad-web-resources/css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div class="page-container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <p class="subtitle">Módulo formativo: Publicación de páginas web (MF0952_2)</p>
+                    <h1>SEGURIDAD Y RESTRICCIONES DE ACCESO A ARCHIVOS</h1>
+                    <h2>Unidad Didáctica 1. Características de seguridad en la publicación de páginas web</h2>
+                    <p class="activity-type">Actividad 1 - Ejercicio teórico-práctico</p>
+                </div>
+                <div class="student-card">
+                    <div class="avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div class="student-info">
+                        <p class="student-name">Alfonso Rubio Rioseras</p>
+                        <p class="student-date">Julio 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-image-container">
+                <img class="header-image" src="actvidad-web-resources/image/image.jpg" alt="Ilustración de seguridad" />
+            </div>
+        </header>
+
+        <main class="content-area">
+            
+            <article class="question-card resources-card" style="border-left: 4px solid var(--accent-hover);">
+                <div class="question-header" style="margin-bottom: 1rem; border-bottom: none; padding-bottom: 0;">
+                    <div class="icon-circle" style="margin-bottom: 0; margin-right: 1rem; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(59, 130, 246, 0.2); border-radius: 8px; color: var(--accent-hover);">📁</div>
+                    <h4 style="display: flex; align-items: center; margin: 0;">Archivos y Recursos de la Actividad</h4>
+                </div>
+                <div class="question-body">
+                    <p>Descarga los archivos originales asociados a esta actividad:</p>
+                    <div class="download-grid">
+                        <a href="MF0952_2_UD%201%23Actividad%201_Ejercicio%20te%C3%B3rico-pr%C3%A1ctico.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">📄</span> Actividad (PDF)
+                        </a>
+                        <a href="enunciado.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">📋</span> Enunciado (PDF)
+                        </a>
+                        <a href="actvidad.indd" download class="download-btn">
+                            <span class="btn-icon">🎨</span> Original (InDesign)
+                        </a>
+                        <a href="MF0952_2_UD%201%23Actividad%201_Ejercicio%20te%C3%B3rico-pr%C3%A1ctico.zip" download class="download-btn">
+                            <span class="btn-icon">🗜️</span> Paquete (ZIP)
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <div class="section-title">
+                <h3>Preguntas y actividades a realizar</h3>
+            </div>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">a</span>
+                    <h4>Explique la diferencia entre la seguridad física y seguridad lógica o de administración.</h4>
+                </div>
+                <div class="question-body">
+                    <p>Cuando estamos en el ámbito de publicación de páginas web, la seguridad se suele dividir en dos grandes ámbitos: seguridad física y seguridad lógica (o de administración). Ambas son igual de importantes, pero protegen aspectos diferentes.</p>
+                    
+                    <div class="grid-2-col">
+                        <div class="info-box">
+                            <h5>Seguridad Física</h5>
+                            <p>Consiste en proteger el hardware donde se aloja la página web (servidores, ordenadores y equipos de red).</p>
+                            <h6>Ejemplos de medidas:</h6>
+                            <ul>
+                                <li>Servidores ubicados en salas con acceso restringido.</li>
+                                <li>Cámaras de vigilancia y sistemas de alarma.</li>
+                                <li>Cerraduras electrónicas o tarjetas de acceso.</li>
+                                <li>Protección contra incendios y sistemas de alimentación ininterrumpida (SAI/UPS).</li>
+                                <li>Control de temperatura y humedad del centro de datos.</li>
+                            </ul>
+                            <h6>Ejemplos de riesgos:</h6>
+                            <ul>
+                                <li>Robo de servidores o sabotajes.</li>
+                                <li>Cortes eléctricos, incendios o inundaciones.</li>
+                                <li>Daños accidentales en el hardware.</li>
+                            </ul>
+                            <p class="small-text">Con ello intentamos reducir riesgos conscientes de que la seguridad absoluta no existe, salvo la seguridad de que un día quizás lejano dejaremos de respirar para siempre.</p>
+                        </div>
+                        <div class="info-box">
+                            <h5>Seguridad Lógica</h5>
+                            <p>Protege la información y los recursos digitales de la página web. Su objetivo es garantizar que solo las personas autorizadas puedan acceder o modificar el sitio.</p>
+                            <h6>Ejemplos de medidas (Control de usuarios):</h6>
+                            <ul>
+                                <li>Crear cuentas individuales.</li>
+                                <li>Asignar roles (administrador, editor, autor...).</li>
+                                <li>Eliminar usuarios que ya no trabajan en el proyecto.</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="conclusion-box">
+                        <h5>Resumen de diferencias</h5>
+                        <p><strong>Seguridad física:</strong> protege los equipos e instalaciones donde funciona la página web.</p>
+                        <p><strong>Seguridad lógica o de administración:</strong> protege el software, los datos, las cuentas de usuario y los permisos de acceso, evitando que personas no autorizadas puedan consultar, modificar o eliminar la información.</p>
+                        <p>En una página web profesional, ambas deben trabajar conjuntamente: no sirve de mucho tener un servidor perfectamente protegido físicamente si cualquiera puede acceder al panel de administración con una contraseña débil, ni tener una excelente seguridad lógica si el servidor puede ser robado o dañado físicamente.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">b</span>
+                    <h4>¿Cómo se puede proteger la información contenida en un servidor para no perderla en caso de ocurrir algún desastre? ¿Qué herramientas se pueden usar?</h4>
+                </div>
+                <div class="question-body">
+                    <p>Para proteger la información almacenada en un servidor frente a desastres naturales o incidentes provocados por personas, es necesario combinar medidas preventivas y de recuperación. El objetivo es garantizar que los datos puedan recuperarse incluso si el servidor queda inutilizado.</p>
+                    
+                    <ol class="custom-list">
+                        <li>
+                            <strong>Realizar copias de seguridad (Backups)</strong>
+                            <p>Es la medida más importante. Hacer copias de seguridad de forma periódica (diarias, semanales o mensuales, según la importancia de los datos). Automatizar el proceso para evitar olvidos y comprobar periódicamente que las copias pueden restaurarse correctamente.</p>
+                        </li>
+                        <li>
+                            <strong>Almacenar las copias en ubicaciones diferentes</strong>
+                            <p>No es recomendable guardar las copias únicamente en el mismo servidor. Se pueden almacenar en un servidor distinto, disco duro externo, sistema de almacenamiento en red (NAS) o servicios de almacenamiento en la nube. De este modo, si el servidor principal se destruye, los datos seguirán estando disponibles.</p>
+                        </li>
+                        <li>
+                            <strong>Aplicar la regla 3-2-1</strong>
+                            <p>Es una de las mejores prácticas en seguridad informática: 3 copias de los datos, 2 soportes diferentes (por ejemplo, disco duro y nube), 1 copia fuera de la ubicación principal.</p>
+                        </li>
+                        <li>
+                            <strong>Utilizar sistemas de alimentación ininterrumpida (SAI/UPS)</strong>
+                            <p>Un SAI proporciona energía durante un corte eléctrico, permitiendo apagar el servidor de forma segura y evitando daños en los datos.</p>
+                        </li>
+                        <li>
+                            <strong>Proteger el servidor físicamente</strong>
+                            <p>Control de acceso a la sala de servidores, cámaras de vigilancia, sistemas contra incendios, protección frente a inundaciones y control de temperatura y humedad.</p>
+                        </li>
+                        <li>
+                            <strong>Proteger el servidor frente a ataques</strong>
+                            <p>Firewall, antivirus y antimalware, actualizaciones periódicas del sistema operativo y software, contraseñas seguras, autenticación en dos factores (2FA) y gestión adecuada de permisos de usuarios.</p>
+                        </li>
+                        <li>
+                            <strong>Cifrar la información</strong>
+                            <p>El cifrado protege los datos para que, aunque alguien robe los discos o acceda a las copias de seguridad, no pueda leer la información sin la clave correspondiente.</p>
+                        </li>
+                        <li>
+                            <strong>Disponer de un plan de recuperación ante desastres</strong>
+                            <p>Establece cómo actuar si ocurre un incidente grave. Debe incluir procedimiento para restaurar copias de seguridad, tiempo máximo aceptable para recuperar el servicio, responsables de cada tarea y recursos necesarios para volver a poner el servidor en funcionamiento.</p>
+                        </li>
+                    </ol>
+
+                    <div class="conclusion-box highlight">
+                        <h5>Conclusión</h5>
+                        <p>La mejor forma de evitar la pérdida de información es combinar copias de seguridad periódicas, almacenamiento en diferentes ubicaciones, protección física y lógica del servidor y un plan de recuperación ante desastres. Así, aunque ocurra un incendio, una inundación, un robo, un fallo del hardware o un ciberataque, será posible restaurar los datos y reanudar el servicio con rapidez.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">c</span>
+                    <h4>¿Cómo se pueden proteger los archivos contenidos en un servidor para que no sean accesibles ni modificables por cualquier usuario?</h4>
+                </div>
+                <div class="question-body">
+                    <p>Para evitar que cualquier usuario pueda acceder o modificar los archivos de un servidor, es necesario aplicar medidas de control de acceso y seguridad. Estas medidas garantizan que solo las personas autorizadas puedan consultar, modificar o eliminar la información.</p>
+
+                    <ol class="custom-list">
+                        <li>
+                            <strong>Configurar permisos de archivos y carpetas</strong>
+                            <p>Cada archivo y directorio debe tener permisos adecuados para controlar quién puede leer el archivo, escribir o modificar su contenido, o ejecutarlo. En servidores Linux, se utilizan permisos como 644 para archivos y 755 para directorios, evitando conceder permisos de escritura a usuarios no autorizados.</p>
+                        </li>
+                        <li>
+                            <strong>Crear usuarios y grupos</strong>
+                            <p>Cada persona debe disponer de una cuenta propia. Los permisos se asignan según el rol que desempeñe. Ejemplo: Administrador (acceso total), Editor (puede modificar contenidos), Usuario (solo puede consultar).</p>
+                        </li>
+                        <li>
+                            <strong>Utilizar autenticación segura</strong>
+                            <p>Solo usuarios autorizados deben acceder mediante contraseñas robustas, autenticación en dos factores (2FA), cambio periódico de credenciales y acceso mediante claves SSH en lugar de contraseñas cuando sea posible.</p>
+                        </li>
+                        <li>
+                            <strong>Cifrar la información</strong>
+                            <p>El cifrado protege los archivos (uso de HTTPS mediante certificados SSL/TLS, cifrado de contraseñas y datos sensibles) para que no se pueda leer su contenido sin la clave de descifrado.</p>
+                        </li>
+                        <li>
+                            <strong>Mantener el servidor actualizado</strong>
+                            <p>Mantener actualizado el sistema operativo, servidor web (Apache, Nginx...), gestor de contenidos y plugins/temas para corregir vulnerabilidades.</p>
+                        </li>
+                        <li>
+                            <strong>Utilizar un firewall y protección de ataques</strong>
+                            <p>El firewall controla qué conexiones pueden acceder al servidor. También usar antivirus, sistemas de detección de intrusos y protección contra ataques DDoS y de fuerza bruta.</p>
+                        </li>
+                        <li>
+                            <strong>Registrar la actividad</strong>
+                            <p>Mantener registros (logs) de las acciones realizadas por los usuarios para detectar accesos sospechosos o modificaciones no autorizadas.</p>
+                        </li>
+                    </ol>
+
+                    <div class="example-box">
+                        <h5>Ejemplo práctico</h5>
+                        <p>Una empresa aloja su página web en un servidor:</p>
+                        <ul>
+                            <li>El administrador tiene permisos completos sobre todos los archivos.</li>
+                            <li>Los editores solo pueden modificar el contenido de la web.</li>
+                            <li>Los visitantes únicamente pueden visualizar las páginas publicadas, sin acceso a los archivos del servidor.</li>
+                            <li>El acceso al servidor requiere una contraseña segura y autenticación en dos factores.</li>
+                            <li>Un firewall bloquea conexiones no autorizadas y se realizan copias de seguridad diarias.</li>
+                        </ul>
+                    </div>
+
+                    <div class="conclusion-box">
+                        <h5>Conclusión</h5>
+                        <p>La protección de los archivos en un servidor se basa en asignar permisos adecuados, controlar la identidad de los usuarios mediante autenticación, cifrar la información, mantener el sistema actualizado, filtrar los accesos con un firewall y realizar copias de seguridad periódicas. La combinación de estas medidas garantiza la confidencialidad, integridad y disponibilidad de la información almacenada.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">d</span>
+                    <h4>Muestre la estructura de carpetas de su sistema operativo, realizando una captura de pantalla.</h4>
+                </div>
+                <div class="question-body text-center">
+                    <img class="screenshot-img" src="actvidad-web-resources/image/Captura_de_pantalla_2026-07-07_123655.png" alt="Captura de pantalla de la estructura de carpetas" />
+                </div>
+            </article>
+
+            <div class="section-title" style="margin-top: 3rem;">
+                <h3>Pregunta 2.</h3>
+            </div>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">e</span>
+                    <h4>¿Cuáles son y en qúe consisten los permisos especiales en Linux?</h4>
+                </div>
+                <div class="question-body">
+                    <p>Los permisos especiales en Linux son tres mecanismos que complementan los permisos tradicionales de lectura (r), escritura (w) y ejecución (x), proporcionando un mayor control sobre el acceso y la ejecución de archivos y directorios.</p>
+                    
+                    <div class="badge-list">
+                        <div class="badge-item">
+                            <span class="badge">SUID (Set User ID)</span>
+                            <p>Permite que un archivo ejecutable se ejecute con los permisos de su propietario en lugar de los del usuario que lo ejecuta. Se utiliza, por ejemplo, en el comando <code>passwd</code>, que necesita modificar archivos del sistema propiedad del usuario root.</p>
+                        </div>
+                        <div class="badge-item">
+                            <span class="badge">SGID (Set Group ID)</span>
+                            <p>En archivos hace que el programa se ejecute con los permisos del grupo propietario y, en directorios, provoca que todos los archivos y subdirectorios creados dentro de ellos hereden automáticamente el mismo grupo, lo que facilita el trabajo colaborativo entre varios usuarios.</p>
+                        </div>
+                        <div class="badge-item">
+                            <span class="badge">Sticky Bit</span>
+                            <p>Se aplica principalmente a directorios compartidos y permite que solo el propietario de un archivo, el propietario del directorio o el administrador del sistema (root) puedan eliminar o renombrar los archivos contenidos en él, evitando que otros usuarios borren archivos ajenos.</p>
+                        </div>
+                    </div>
+                    
+                    <p>En conjunto, estos permisos especiales aumentan la seguridad y el control de acceso en los sistemas Linux, permitiendo administrar de forma más eficiente los recursos y proteger la información almacenada.</p>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">f</span>
+                    <h4>¿Qué son los permisos de acceso y quiénes pueden asignarlo? Explique los niveles de acceso a la información: owner, group y others, que existen en Linux.</h4>
+                </div>
+                <div class="question-body">
+                    <p>Los permisos de acceso en Linux son un conjunto de reglas que determinan qué acciones puede realizar cada usuario sobre un archivo o directorio. Estos permisos permiten controlar quién puede leer, modificar o ejecutar un archivo, garantizando la seguridad y la integridad de la información almacenada en el sistema.</p>
+                    <p>Los permisos pueden ser asignados o modificados por el propietario del archivo (<strong>owner</strong>) y por el administrador del sistema (<strong>usuario root</strong>), siendo este último quien tiene control total sobre todos los archivos y directorios del sistema.</p>
+                    
+                    <h5>Niveles de acceso a la información en Linux</h5>
+                    <div class="grid-3-col">
+                        <div class="info-box center-text">
+                            <div class="icon-circle">👤</div>
+                            <h6>Owner (Propietario)</h6>
+                            <p>Es el usuario dueño del archivo o directorio y normalmente dispone de los permisos más amplios.</p>
+                        </div>
+                        <div class="info-box center-text">
+                            <div class="icon-circle">👥</div>
+                            <h6>Group (Grupo)</h6>
+                            <p>Corresponde al grupo de usuarios al que pertenece el archivo y cuyos miembros comparten los permisos asignados a dicho grupo.</p>
+                        </div>
+                        <div class="info-box center-text">
+                            <div class="icon-circle">🌍</div>
+                            <h6>Others (Otros)</h6>
+                            <p>Engloba a todos los usuarios del sistema que no son ni el propietario ni pertenecen al grupo del archivo.</p>
+                        </div>
+                    </div>
+
+                    <h5>Tipos de permisos por nivel</h5>
+                    <ul class="permissions-list">
+                        <li><strong>Lectura (Read - r):</strong> Permite visualizar el contenido de un archivo o listar el contenido de un directorio.</li>
+                        <li><strong>Escritura (Write - w):</strong> Autoriza modificar o eliminar un archivo, así como crear o borrar archivos dentro de un directorio.</li>
+                        <li><strong>Ejecución (Execute - x):</strong> Permite ejecutar un archivo como un programa o acceder al contenido de un directorio.</li>
+                    </ul>
+
+                    <p>Gracias a esta estructura de permisos, Linux ofrece un sistema flexible y seguro para controlar el acceso a la información y proteger los recursos del sistema frente a accesos o modificaciones no autorizadas.</p>
+                </div>
+            </article>
+
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2026 Alfonso Rubio Rioseras - MF0952_2_UD 1#Actividad 1</p>
+        </footer>
+    </div>
+
+</body>
+</html>

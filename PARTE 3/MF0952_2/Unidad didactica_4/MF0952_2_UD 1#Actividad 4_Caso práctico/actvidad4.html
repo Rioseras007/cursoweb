@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es-ES">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 4 - Caso Práctico</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="actvidad4-web-resources/css/styles.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+
+    <div class="page-container">
+        <header class="main-header">
+            <div class="header-content">
+                <div class="header-text">
+                    <p class="subtitle">Módulo formativo: Publicación de páginas web (MF0952_2)</p>
+                    <h1>PERMISOS DE SERVIDOR WEB</h1>
+                    <h2>Unidad Didáctica 1. Características de seguridad en la publicación de páginas web</h2>
+                    <p class="activity-type">Actividad 4_Caso práctico</p>
+                </div>
+                <div class="student-card">
+                    <div class="avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                    </div>
+                    <div class="student-info">
+                        <p class="student-name">Alfonso Rubio Rioseras</p>
+                        <p class="student-date">Julio 2026</p>
+                    </div>
+                </div>
+            </div>
+            <div class="header-image-container">
+                <img class="header-image" src="actvidad4-web-resources/image/portada.png" alt="Portada" />
+            </div>
+        </header>
+
+        <main class="content-area">
+            
+            <article class="question-card resources-card" style="border-left: 4px solid var(--accent-hover);">
+                <div class="question-header" style="margin-bottom: 1rem; border-bottom: none; padding-bottom: 0;">
+                    <div class="icon-circle" style="margin-bottom: 0; margin-right: 1rem; font-size: 1.5rem; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: rgba(59, 130, 246, 0.2); border-radius: 8px; color: var(--accent-hover);">📁</div>
+                    <h4 style="display: flex; align-items: center; margin: 0;">Archivos y Recursos de la Actividad</h4>
+                </div>
+                <div class="question-body">
+                    <p>Descarga los archivos originales asociados a esta actividad:</p>
+                    <div class="download-grid">
+                        <a href="actvidad4.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">📄</span> Actividad (PDF)
+                        </a>
+                        <a href="enunciado.pdf" target="_blank" class="download-btn">
+                            <span class="btn-icon">📋</span> Enunciado (PDF)
+                        </a>
+                        <a href="MF0952_2_UD 1#Actividad 4_Caso práctico.zip" download class="download-btn">
+                            <span class="btn-icon">🗜️</span> Paquete (ZIP)
+                        </a>
+                        <a href="actvidad.indd" download class="download-btn">
+                            <span class="btn-icon">🖋️</span> InDesign (INDD)
+                        </a>
+                    </div>
+                </div>
+            </article>
+
+            <div class="example-box" style="margin-top: 2rem;">
+                <h4 style="color: #10b981; margin-bottom: 1rem;">Enunciado (Descripción)</h4>
+                <p>A la hora de publicar nuestra página web debemos optar por un servidor web. En este servidor web encontraremos una serie de carpetas donde en alguna de ellas alojaremos nuestras páginas web. Esta carpeta tiene permisos bien diferenciados del resto de carpetas o directorios.</p>
+                <p>Para realizar este ejercicio puedes utilizar un servicio de alojamiento gratuito tipo <a href="https://www.000webhost.com/" target="_blank" style="color: #10b981;">https://www.000webhost.com/</a> o bien utilizar un servicio de alojamiento al que dispongamos de acceso ftp y con un cliente ftp revisar los permisos.</p>
+            </div>
+
+            <div class="section-title">
+                <h3>Preguntas y actividades a realizar</h3>
+            </div>
+            
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">1</span>
+                    <h4>¿Qué permiso tienen las carpetas del servidor?</h4>
+                </div>
+                <div class="question-body">
+                    <div class="info-box">
+                        <p>En los servidores web basados en Linux, la correcta configuración de los permisos de archivos y directorios constituye un aspecto fundamental para garantizar tanto el funcionamiento del servicio como la seguridad del sistema.</p>
+                        <p>Los directorios que alojan sitios web suelen configurarse con permisos <strong>755 (drwxr-xr-x)</strong>, lo que permite al propietario leer, escribir y acceder a su contenido, mientras que el grupo y el resto de usuarios únicamente disponen de permisos de lectura y acceso.</p>
+                        <p>Esta configuración facilita que el servidor web pueda recorrer la estructura de directorios y servir el contenido a los clientes sin otorgar permisos de escritura innecesarios.</p>
+                        <p>Es importante destacar que, en el caso de los directorios, el permiso de ejecución (x) no implica la ejecución de programas, sino la posibilidad de acceder o atravesar el directorio. Este permiso resulta imprescindible para que el servidor web pueda localizar los archivos que componen el sitio, como documentos HTML, hojas de estilo CSS, scripts JavaScript o aplicaciones PHP. Sin él, el acceso al contenido quedaría bloqueado, incluso aunque los archivos dispusieran de permisos de lectura.</p>
+                        <p>Como práctica recomendada, los directorios se configuran habitualmente con permisos 755, mientras que los archivos utilizan permisos <strong>644 (-rw-r--r--)</strong>, permitiendo que únicamente el propietario pueda modificarlos. Esta combinación sigue el principio de mínimo privilegio, reduciendo el riesgo de modificaciones no autorizadas y contribuyendo a mantener la integridad, disponibilidad y seguridad de la aplicación web. Por ello, la correcta gestión de los permisos constituye una medida esencial dentro de la administración y protección de cualquier servidor web moderno.</p>
+                    </div>
+                    <div class="conclusion-box" style="margin-top: 1.5rem;">
+                        <h5 style="color: #8b5cf6;">¿Tienen diferentes permisos?</h5>
+                        <p>Naturalmente sí, el usuario no debe poder eliminar o modificar ciertos archivos.</p>
+                    </div>
+                </div>
+            </article>
+
+            <article class="question-card">
+                <div class="question-header">
+                    <span class="question-number">2</span>
+                    <h4>¿Qué permisos son los que diferencian un directorio público de otro no público?</h4>
+                </div>
+                <div class="question-body">
+                    <p>La diferencia entre un directorio público y uno no público en un servidor web radica principalmente en los permisos de acceso asignados a los usuarios y al propio servidor web. Un directorio público está configurado para que el servidor pueda acceder a él y servir su contenido a los clientes, mientras que un directorio no público restringe dicho acceso para proteger información sensible o archivos de configuración.</p>
+                    
+                    <div class="grid-2-col">
+                        <div class="badge-item">
+                            <span class="badge">Directorio Público</span>
+                            <p>En la mayoría de los servidores Linux, un directorio público suele tener permisos <strong>755 (drwxr-xr-x)</strong>, lo que permite que el propietario lea, escriba y acceda al directorio, mientras que el grupo y el resto de usuarios pueden leer y acceder a su contenido. Esta configuración es suficiente para que el servidor web pueda recorrer la estructura de directorios y entregar los archivos solicitados por los usuarios.</p>
+                        </div>
+                        <div class="badge-item">
+                            <span class="badge" style="background: #ef4444;">Directorio No Público</span>
+                            <p>Por el contrario, un directorio no público emplea permisos más restrictivos, como <strong>750 (drwxr-x---)</strong> o <strong>700 (drwx------)</strong>. Con permisos 750, únicamente el propietario y los miembros del grupo autorizado pueden acceder al directorio, mientras que el resto de usuarios no tiene ningún tipo de acceso. Con permisos 700, el acceso queda reservado exclusivamente al propietario.</p>
+                            <p class="small-text">Estas configuraciones se utilizan para proteger archivos confidenciales, copias de seguridad, registros del sistema, credenciales o cualquier información que no deba ser accesible desde la web.</p>
+                        </div>
+                    </div>
+
+                    <div class="conclusion-box">
+                        <p>En consecuencia, el permiso que marca la diferencia entre un directorio público y uno privado es la <strong>existencia o ausencia de permisos de lectura (r) y ejecución (x)</strong> para el grupo y otros usuarios.</p>
+                        <p>Mientras que un directorio público concede estos permisos para permitir el acceso al contenido, un directorio no público los restringe con el fin de preservar la confidencialidad y aumentar la seguridad del servidor.</p>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+
+        <footer class="main-footer">
+            <p>&copy; 2026 Alfonso Rubio Rioseras - MF0952_2_UD 1#Actividad 4</p>
+        </footer>
+    </div>
+
+</body>
+</html>

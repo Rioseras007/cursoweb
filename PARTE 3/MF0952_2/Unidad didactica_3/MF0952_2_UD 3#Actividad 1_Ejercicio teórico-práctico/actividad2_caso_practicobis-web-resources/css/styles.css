@@ -1,0 +1,541 @@
+/* ============================================================
+   PUBLICAR PÁGINAS WEB — MF0952_2 — Actividad 1
+   Estilos modernos con énfasis en tipografía y legibilidad
+   ============================================================ */
+
+/* Google Fonts: Outfit (títulos/UI) + Merriweather (cuerpo) */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Source+Code+Pro:wght@400;600&display=swap');
+
+/* ── Variables globales ── */
+:root {
+  --color-bg:          #0f1117;
+  --color-surface:     #1a1d27;
+  --color-surface-2:   #22263a;
+  --color-border:      #2e3250;
+  --color-accent:      #6c8bef;
+  --color-accent-glow: rgba(108, 139, 239, 0.18);
+  --color-question:    #e8b84b;
+  --color-question-bg: rgba(232, 184, 75, 0.08);
+  --color-answer:      #c8d6f5;
+  --color-muted:       #7a84a8;
+  --color-text:        #dde3f8;
+  --color-white:       #f0f4ff;
+  --color-tag-green:   #3ecf8e;
+  --color-tag-red:     #e56767;
+
+  --font-ui:     'Outfit', sans-serif;
+  --font-body:   'Merriweather', Georgia, serif;
+  --font-code:   'Source Code Pro', monospace;
+
+  --radius-sm:   6px;
+  --radius-md:   12px;
+  --radius-lg:   20px;
+  --radius-xl:   28px;
+
+  --shadow-card: 0 4px 32px rgba(0,0,0,.45);
+  --shadow-glow: 0 0 28px rgba(108, 139, 239, 0.18);
+
+  --max-width: 860px;
+}
+
+/* ── Reset & base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.75;
+  min-height: 100vh;
+  padding-bottom: 4rem;
+}
+
+/* ── Decoración de fondo ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 70% 40% at 80% 10%, rgba(108,139,239,.10) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 35% at 15% 85%, rgba(62,207,142,.07) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Contenedor principal ── */
+.page-wrapper {
+  position: relative;
+  z-index: 1;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+/* ── PORTADA ── */
+.cover-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 3rem;
+}
+
+.cover-image-wrap {
+  width: 100%;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.cover-image-wrap img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.cover-card {
+  width: 100%;
+  background: linear-gradient(135deg, var(--color-surface) 0%, var(--color-surface-2) 100%);
+  border: 2px solid var(--color-border);
+  border-top: none;
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 2.5rem 2.5rem 2rem;
+  box-shadow: var(--shadow-card);
+}
+
+.cover-label {
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: 0.4rem;
+}
+
+.cover-main-title {
+  font-family: var(--font-ui);
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  font-weight: 800;
+  color: var(--color-white);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #f0f4ff 0%, #8aa3f5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cover-subtitle {
+  font-family: var(--font-ui);
+  font-size: 1.05rem;
+  font-weight: 400;
+  color: var(--color-muted);
+  margin-bottom: 1.5rem;
+}
+
+.cover-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.6rem;
+}
+
+.meta-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: var(--color-accent-glow);
+  border: 1px solid rgba(108,139,239,.35);
+  border-radius: 999px;
+  padding: 0.3rem 0.9rem;
+  font-family: var(--font-ui);
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-accent);
+}
+
+.meta-chip .icon { font-size: 0.9rem; }
+
+.cover-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1.5rem;
+  border-top: 1px solid var(--color-border);
+  padding-top: 1.2rem;
+}
+
+.info-item { font-family: var(--font-ui); font-size: 0.88rem; }
+.info-item .info-label { color: var(--color-muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.info-item .info-value { color: var(--color-white); font-weight: 600; }
+
+/* ── Sección de descargas ── */
+.downloads-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.8rem 2rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-card);
+}
+
+.downloads-title {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-muted);
+  margin-bottom: 1rem;
+}
+
+.downloads-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.btn-download {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.65rem 1.3rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-ui);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(.22,1,.36,1);
+  cursor: pointer;
+  border: none;
+}
+
+.btn-download .btn-icon {
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+
+.btn-download--pdf {
+  background: linear-gradient(135deg, #e05555 0%, #c03030 100%);
+  color: #fff;
+  box-shadow: 0 2px 14px rgba(224,85,85,.35);
+}
+.btn-download--pdf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(224,85,85,.5);
+}
+
+.btn-download--zip {
+  background: linear-gradient(135deg, #3a7bd5 0%, #2558b8 100%);
+  color: #fff;
+  box-shadow: 0 2px 14px rgba(58,123,213,.35);
+}
+.btn-download--zip:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(58,123,213,.5);
+}
+
+.btn-download--indd {
+  background: linear-gradient(135deg, #d84080 0%, #a02060 100%);
+  color: #fff;
+  box-shadow: 0 2px 14px rgba(216,64,128,.35);
+}
+.btn-download--indd:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(216,64,128,.5);
+}
+
+.btn-download--enunciado {
+  background: transparent;
+  color: var(--color-muted);
+  border: 1px solid var(--color-border);
+  box-shadow: none;
+}
+.btn-download--enunciado:hover {
+  color: var(--color-text);
+  border-color: var(--color-accent);
+  transform: translateY(-2px);
+}
+
+/* ── Separador de sección de preguntas ── */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.section-header-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--color-border) 0%, transparent 100%);
+}
+
+.section-header-badge {
+  font-family: var(--font-ui);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  background: var(--color-accent-glow);
+  border: 1px solid rgba(108,139,239,.3);
+  border-radius: 999px;
+  padding: 0.35rem 1rem;
+  white-space: nowrap;
+}
+
+/* ── PREGUNTA principal (bloque) ── */
+.pregunta-bloque {
+  margin-bottom: 2.5rem;
+}
+
+.pregunta-numero {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin-bottom: 1rem;
+}
+
+.pregunta-badge {
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-question);
+  background: rgba(232,184,75,.12);
+  border: 1px solid rgba(232,184,75,.3);
+  border-radius: 999px;
+  padding: 0.25rem 0.8rem;
+}
+
+/* ── Enunciado de pregunta ── */
+.enunciado {
+  background: var(--color-question-bg);
+  border-left: 4px solid var(--color-question);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  padding: 1.1rem 1.5rem;
+  margin-bottom: 1.4rem;
+  position: relative;
+}
+
+.enunciado::before {
+  content: '?';
+  position: absolute;
+  right: 1.2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-ui);
+  font-size: 3.5rem;
+  font-weight: 800;
+  color: rgba(232,184,75,.08);
+  line-height: 1;
+  pointer-events: none;
+}
+
+.enunciado p {
+  font-family: var(--font-ui);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-question);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ── Sub-preguntas (a. b. c. …) ── */
+.subpregunta {
+  margin-bottom: 1.6rem;
+}
+
+.subpregunta-enunciado {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.9rem;
+  background: rgba(108,139,239,.07);
+  border: 1px solid rgba(108,139,239,.18);
+  border-radius: var(--radius-md);
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.subpregunta-letra {
+  flex-shrink: 0;
+  width: 1.9rem;
+  height: 1.9rem;
+  background: var(--color-accent);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.subpregunta-enunciado p {
+  font-family: var(--font-ui);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-accent);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ── Respuesta ── */
+.respuesta {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 1.4rem 1.6rem;
+  box-shadow: var(--shadow-card);
+}
+
+.respuesta-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-tag-green);
+  margin-bottom: 0.9rem;
+}
+
+.respuesta-label::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-tag-green);
+}
+
+.respuesta p {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--color-answer);
+  line-height: 1.85;
+  margin-bottom: 0.9rem;
+}
+
+.respuesta p:last-child { margin-bottom: 0; }
+
+/* ── Respuesta directa corta (No / Sí) ── */
+.respuesta-directa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: var(--radius-sm);
+}
+
+.respuesta-directa--no {
+  color: var(--color-tag-red);
+  background: rgba(229,103,103,.1);
+  border: 1px solid rgba(229,103,103,.25);
+}
+
+.respuesta-directa--si {
+  color: var(--color-tag-green);
+  background: rgba(62,207,142,.1);
+  border: 1px solid rgba(62,207,142,.25);
+}
+
+/* ── Código inline ── */
+code {
+  font-family: var(--font-code);
+  font-size: 0.85em;
+  background: rgba(108,139,239,.12);
+  border: 1px solid rgba(108,139,239,.22);
+  border-radius: 4px;
+  padding: 0.1em 0.45em;
+  color: var(--color-accent);
+}
+
+/* ── Sección de capturas ── */
+.capturas-section {
+  margin-top: 0.5rem;
+}
+
+.captura-item {
+  margin-bottom: 2rem;
+}
+
+.captura-label {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  font-family: var(--font-ui);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--color-muted);
+  margin-bottom: 0.7rem;
+}
+
+.captura-label::before {
+  content: '';
+  display: inline-block;
+  width: 3px;
+  height: 1em;
+  background: var(--color-accent);
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.captura-frame {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+}
+
+.captura-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ── Footer ── */
+.page-footer {
+  margin-top: 4rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-family: var(--font-ui);
+  font-size: 0.78rem;
+  color: var(--color-muted);
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+  .cover-info-grid { grid-template-columns: 1fr; }
+  .cover-card { padding: 1.8rem 1.4rem 1.5rem; }
+  .downloads-section { padding: 1.4rem 1.2rem; }
+  .respuesta { padding: 1.1rem 1.2rem; }
+  .enunciado { padding: 0.9rem 1.1rem; }
+  .downloads-grid { flex-direction: column; }
+  .btn-download { justify-content: center; }
+}
